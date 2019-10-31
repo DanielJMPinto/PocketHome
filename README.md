@@ -1,9 +1,32 @@
 
 # Proj_IES
 
+EasyHome
+PocketHome
+HomeLab
+HomeCare
+
 ## Project Abstract
 
 Isto é um abstrato
+
+### Project Manager ()
+
+> Study guidelines
+> Meeting times, online collab, ...
+
+### DevOps ()
+
+> Git repo
+> Backlog tool (Pivotal Tracker)
+
+### Product owner (Rodrigo)
+
+> Proeminent user stories
+
+### Architet (Tomás)
+
+> Solution architecture in detail
 
 ## Project Team
 
@@ -20,3 +43,11 @@ Isto é um abstrato
 ## Project Resources Bookmarks
 
 Isto é um resources bookmarks
+
+<https://github.com/tomas99batista/Proj_IES/>
+
+<https://tutorials-raspberrypi.com/raspberry-pi-sensors-overview-50-important-components/>
+
+<https://www.nagios.org/about/overview/>
+
+<https://www.elastic.co/pt/>
