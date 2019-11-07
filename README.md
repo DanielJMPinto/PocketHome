@@ -15,11 +15,11 @@ Isto é um abstrato
 > Git repo
 > Backlog tool (Pivotal Tracker)
 
-### Product owner [Rodrigo]
+### Product owner [Rodrigo Oliveira]
 
 > Proeminent user stories
 
-### Architet [Tomás]
+### Architect [Tomás]
 
 > Solution architecture in detail
 
