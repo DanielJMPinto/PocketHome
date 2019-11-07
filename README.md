@@ -45,6 +45,10 @@ Isto é um resources bookmarks
 
 <https://tutorials-raspberrypi.com/raspberry-pi-sensors-overview-50-important-components/>
 
+<https://randomnerdtutorials.com/esp32-esp8266-raspberry-pi-lamp-server/>
+
+<https://www.instructables.com/id/Raspberry-Pi-as-low-cost-HD-surveillance-camera/>
+
 <https://www.nagios.org/about/overview/>
 
 <https://www.elastic.co/pt/>
