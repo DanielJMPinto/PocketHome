@@ -1,14 +1,10 @@
-'''
-Created Date: Thursday, November 14th 2019, 11:50:36 am
-Author: tomas
-
-Copyright (c) 2019 Tomás
-'''
+#!/usr/bin/env python
 import pika
-import json
 import uuid
 
-class RPCCli(object):
+
+class FibonacciRpcClient(object):
+
     def __init__(self):
         self.connection = pika.BlockingConnection(
             pika.ConnectionParameters(host='localhost'))
@@ -27,23 +23,24 @@ class RPCCli(object):
         if self.corr_id == props.correlation_id:
             self.response = body
 
-    def call(self, text):
+    def call(self, n):
         self.response = None
         self.corr_id = str(uuid.uuid4())
         self.channel.basic_publish(
             exchange='',
-            routing_key='comm_channel',
+            routing_key='rpc_queue',
             properties=pika.BasicProperties(
                 reply_to=self.callback_queue,
                 correlation_id=self.corr_id,
             ),
-            body=json.dumps(text))
+            body=str(n))
         while self.response is None:
             self.connection.process_data_events()
-        return self.response
+        return int(self.response)
 
 
-rpc_cli = RPCCli()
-while True:
-    response = rpc_cli.call('30')
-    print(json.load(response))
+fibonacci_rpc = FibonacciRpcClient()
+
+print(" [x] Requesting fib(30)")
+response = fibonacci_rpc.call(30)
+print(" [.] Got %r" % response)
