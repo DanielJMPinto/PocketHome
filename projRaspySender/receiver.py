@@ -1,27 +1,24 @@
 #!/usr/bin/env python
 import pika
+import json
 
 connection = pika.BlockingConnection(
     pika.ConnectionParameters(host='localhost'))
-
 channel = connection.channel()
 
-channel.queue_declare(queue='rpc_queue')
-
-def on_request(ch, method, props, body):
-    print(" [.] Got message (%s)" % body)
-    response = input("Response: ")
-
-    ch.basic_publish(exchange='',
-                     routing_key=props.reply_to,
-                     properties=pika.BasicProperties(correlation_id = \
-                                                         props.correlation_id),
-                     body=str(response))
-    ch.basic_ack(delivery_tag=method.delivery_tag)
+channel.queue_declare(queue='comm_channel')
 
 
-channel.basic_qos(prefetch_count=1)
-channel.basic_consume(queue='rpc_queue', on_message_callback=on_request)
+def callback(ch, method, properties, body):
+    message = json.loads(body)
+    msg_id = message['MESSAGE_ID']
+    timestamp = message['TIMESTAMP']
+    content = message['CONTENT']
+    print(f'  [x] Received message [{msg_id}] at [{timestamp}]: {content}')
 
-print(" [x] Awaiting RPC requests")
+
+channel.basic_consume(
+    queue='comm_channel', on_message_callback=callback, auto_ack=True)
+
+print(' [*] Waiting for messages. To exit press CTRL+C')
 channel.start_consuming()
