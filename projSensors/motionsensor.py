@@ -1,6 +1,8 @@
 import RPi.GPIO as GPIO
 import time
 
+# https://www.hackster.io/hardikrathod/pir-motion-sensor-with-raspberry-pi-415c04
+
 SENSOR_PIN = 23
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(SENSOR_PIN, GPIO.IN)
