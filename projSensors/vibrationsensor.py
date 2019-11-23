@@ -3,6 +3,8 @@ import RPi.GPIO as GPIO
 import time
 import datetime
 
+# http://www.piddlerintheroot.com/vibration-sensor/
+
 #GPIO SETUP
 channel = 17
 GPIO.setmode(GPIO.BCM)
