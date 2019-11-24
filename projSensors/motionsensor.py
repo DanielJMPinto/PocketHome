@@ -7,19 +7,13 @@ SENSOR_PIN = 23
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(SENSOR_PIN, GPIO.IN)
 
-
-def mycallback(channel):
-	print("MOVEMENT!!!!")
-	# adicionar oq quisermos aqui
-	# pex. tirar uma foto c a camara
-
 try:
-	GPIO.add_event_detect(SENSOR_PIN, GPIO.RISING, callback=mycallback)
-	while True:
-		time.sleep(100)
-		print("\tWatching......")
+    time.sleep(2) # to stabilize sensor
+    while True:
+        if GPIO.input(23):
+            print("Motion Detected...")
+            time.sleep(5) #to avoid multiple detection
+        time.sleep(0.1) #loop delay, should be less than detection delay
 
-except KeyboardInterrupt:
-	print("FINISHED!")
-
-GPIO.cleanup()
+except:
+    GPIO.cleanup()
