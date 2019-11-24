@@ -5,6 +5,8 @@ from picamera import PiCamera
 
 # https://www.hackster.io/hardikrathod/pir-motion-sensor-with-raspberry-pi-415c04
 
+# https://www.hackster.io/hardikrathod/pir-motion-sensor-with-raspberry-pi-415c04
+
 SENSOR_PIN = 23
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(SENSOR_PIN, GPIO.IN)
@@ -31,6 +33,3 @@ try:
 
 except:
     GPIO.cleanup()
-            
-   
-    
