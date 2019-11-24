@@ -6,7 +6,7 @@ import json
 
 class Sender:
     def __init__(self):
-        self.connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
+        self.connection = pika.BlockingConnection(pika.ConnectionParameters(host="192.168.1.94"))
         self.channel = self.connection.channel()
         self.channel.queue_declare(queue='comm_channel')
 
