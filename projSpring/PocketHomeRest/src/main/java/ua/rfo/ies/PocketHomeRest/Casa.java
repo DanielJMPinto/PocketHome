@@ -1,5 +1,8 @@
 package ua.rfo.ies.PocketHomeRest;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -9,16 +12,29 @@ public class Casa {
 	private String address;
 	private String alias;
 	
+	@OneToMany(mappedBy = "houseId")
+	private List<Divisao> rooms = new ArrayList<>();
+	
 	@ManyToOne
 	@JoinColumn(name = "owner_id")
 	private User ownerId;
 	
 	public Casa() {}
 	
-	public Casa(long id, String address, String alias) {
+	public Casa(long id, String address, String alias, User owner) {
 		this.id = id;
 		this.address = address;
 		this.alias = alias;
+		owner.updateHouses(this);
+	}
+	
+	public void updateRooms(Divisao room) {
+		this.rooms.add(room);
+		room.setHouse(this);
+	}
+	
+	public void setOwner(User ownerId) {
+		this.ownerId = ownerId;
 	}
 
 	@Id

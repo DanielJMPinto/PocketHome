@@ -1,7 +1,7 @@
 package ua.rfo.ies.PocketHomeRest;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Table(name = "users")
@@ -13,7 +13,7 @@ public class User {
 	private String password;
 	
 	@OneToMany(mappedBy = "ownerId")
-	private List<Casa> houses;
+	private List<Casa> houses = new ArrayList<>();
 	
 	
 	public User() {}
@@ -24,6 +24,11 @@ public class User {
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
+	}
+	
+	public void updateHouses(Casa house) {
+		this.houses.add(house);
+		house.setOwner(this);
 	}
 	
 	@Id
