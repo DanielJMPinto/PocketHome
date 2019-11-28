@@ -5,17 +5,18 @@ import datetime
 from picamera import PiCamera
 
 #GPIO SETUP
-channel = 17
+channel = 23
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(channel, GPIO.IN)
-camera = PiCamera()
-camera.rotation = 180
+
+#camera = PiCamera()
+#camera.rotation = 180
 
 def take_photo():
-    camera.start_preview()
+#    camera.start_preview()
     img_name = 'image_' + str(datetime.datetime.now())
-    camera.capture('./door_knock_captures/image_%s.jpg' % img_name)
-    camera.stop_preview()
+#    camera.capture('./door_knock_captures/image_%s.jpg' % img_name)
+#    camera.stop_preview()
     print("Photo taken! ", img_name)
 
 def callback(channel):

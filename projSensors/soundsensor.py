@@ -4,7 +4,7 @@ import RPi.GPIO as GPIO
 import time
 from datetime import datetime
 
-channel = 17
+channel = 22
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(channel, GPIO.IN)
 
