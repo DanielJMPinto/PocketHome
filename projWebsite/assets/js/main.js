@@ -4,6 +4,8 @@
 	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 */
 
+$("[name='my-checkbox']").bootstrapSwitch();
+
 (function($) {
 
 	// Breakpoints.
