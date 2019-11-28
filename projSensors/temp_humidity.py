@@ -3,6 +3,8 @@ import dht11
 import time
 import datetime
 
+# http://www.piddlerintheroot.com/dht11/
+
 # initialize GPIO
 GPIO.setwarnings(True)
 GPIO.setmode(GPIO.BCM)

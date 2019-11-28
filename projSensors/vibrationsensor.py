@@ -4,6 +4,8 @@ import time
 import datetime
 from picamera import PiCamera
 
+# http://www.piddlerintheroot.com/vibration-sensor/
+
 #GPIO SETUP
 channel = 23
 GPIO.setmode(GPIO.BCM)
