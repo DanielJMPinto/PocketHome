@@ -448,31 +448,51 @@
 									<p><span class="image left"><img src="images/pic02.jpg" alt="" /></span>Lorem ipsum dolor sit accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Vestibulum ante ipsum primis in faucibus magna blandit adipiscing eu felis iaculis volutpat lorem ipsum dolor sit amet dolor consequat.</p>
 									<p><span class="image right"><img src="images/pic02.jpg" alt="" /></span>Lorem ipsum dolor sit accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Vestibulum ante ipsum primis in faucibus magna blandit adipiscing eu felis iaculis volutpat lorem ipsum dolor sit amet dolor consequat.</p>
 
-								<!-- Box -->
-									<h3>Box</h3>
-									<div class="box">
-										<p>Felis sagittis eget tempus primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Magna sed etiam ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus lorem ipsum dolor sit amet nullam.</p>
-									</div>
-
-								<!-- Preformatted Code -->
-									<h3>Preformatted</h3>
-									<pre><code>i = 0;
-
-while (!deck.isInOrder()) {
-    print 'Iteration ' + i;
-    deck.shuffle();
-    i++;
-}
-
-print 'It took ' + i + ' iterations to sort the deck.';
-</code></pre>
-
-						</div>
-					</div>
-
-				</div>
 
 			</section>
+
+		<!-- Dashboard -->
+		<div class="row">
+			<div class="container">
+				<h1>Temperature &amp; Humidity Dashboard <small>Firebase + ESP8266</small></h1>
+				<hr />
+				 
+				<!-- Nav tabs -->
+				<ul class="nav nav-tabs" role="tablist">
+				  <li role="presentation" class="active"><a href="#overview" aria-controls="home" role="tab" data-toggle="tab">Overview</a></li>
+				  <li role="presentation"><a href="#history" aria-controls="profile" role="tab" data-toggle="tab">History</a></li>
+				</ul>
+			
+				<!-- Tab panes -->
+				<div class="tab-content">
+				  <div role="tabpanel" class="tab-pane active" id="overview">
+					<div class="row">
+					   <div class="col-sm-4">
+						 <div class="dialog primary fadeIn animated" id="temperature">
+						   <div class="content">00.0 &deg;C</div>
+						   <div class="title">Temperature</div>
+						 </div>
+					   </div>
+					   <div class="col-sm-4">
+						 <div class="dialog info fadeIn animated" id="humidity">
+						   <div class="content">00.0 %</div>
+						   <div class="title">Humidity</div>
+						 </div>
+					   </div>
+					   <div class="col-sm-4">
+						 <div class="dialog success fadeIn animated" id="status">
+						   <div class="content">???</div>
+						   <div class="title">Node 1</div>
+						 </div>
+					   </div>
+					</div>
+				  </div>
+				  <div role="tabpanel" class="tab-pane" id="history">
+					<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+				  </div>
+				</div>
+			  </div>
+		</div>
 
 		<!-- Footer -->
 			<footer id="footer">
