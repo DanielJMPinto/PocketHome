@@ -57,11 +57,11 @@ public class User {
     }
  
     @Column(name = "email_address", nullable = false)
-    public String getEmailId() {
+    public String getEmail() {
         return email;
     }
-    public void setEmailId(String emailId) {
-        this.email = emailId;
+    public void setEmail(String email) {
+        this.email = email;
     }
     
     @Column(name = "password", nullable = false)
