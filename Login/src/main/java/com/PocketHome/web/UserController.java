@@ -1,9 +1,9 @@
-package web;
+package com.PocketHome.web;
 
-import model.User;
-import service.SecurityService;
-import service.UserService;
-import validator.UserValidator;
+import com.PocketHome.model.User;
+import com.PocketHome.service.SecurityService;
+import com.PocketHome.service.UserService;
+import com.PocketHome.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

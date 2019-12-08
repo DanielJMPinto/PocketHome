@@ -1,7 +1,7 @@
-package validator;
+package com.PocketHome.validator;
 
-import model.User;
-import service.UserService;
+import com.PocketHome.model.User;
+import com.PocketHome.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
