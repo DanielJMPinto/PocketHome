@@ -1,19 +1,19 @@
-#!/usr/bin/env python
-# https://www.instructables.com/id/Sound-Sensor-Raspberry-Pi/
+#!/usr/bin/python
 import RPi.GPIO as GPIO
 import time
-from datetime import datetime
 
-channel = 22
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(channel, GPIO.IN)
-
-def callback(channel):
+def callback(channel):  
 	if GPIO.input(channel):
-		print (datetime.now(), " | Sound detected!")
+		print ("Sound!")
+	else:
+		print ("No sound")
 
-GPIO.add_event_detect(channel, GPIO.BOTH, bouncetime=300) # to know when the pin goes HIGH/LOW
-GPIO.add_event_callback(channel, callback)
+# SOUND SENSOR
+SOUND_SENSOR_PIN = 22
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(SOUND_SENSOR_PIN, GPIO.IN)
+GPIO.add_event_detect(SOUND_SENSOR_PIN, GPIO.BOTH, bouncetime=300)
+GPIO.add_event_callback(SOUND_SENSOR_PIN, callback)
 
 while True:
-	time.sleep(1)
+	time.sleep(0.1)

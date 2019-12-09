@@ -1,35 +1,33 @@
 #!/usr/bin/python
 import RPi.GPIO as GPIO
 import time
-import datetime
+from datetime import datetime
 from picamera import PiCamera
 
-# http://www.piddlerintheroot.com/vibration-sensor/
-
-#GPIO SETUP
-channel = 23
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(channel, GPIO.IN)
-
-#camera = PiCamera()
-#camera.rotation = 180
-
 def take_photo():
-#    camera.start_preview()
-    img_name = 'image_' + str(datetime.datetime.now())
-#    camera.capture('./door_knock_captures/image_%s.jpg' % img_name)
-#    camera.stop_preview()
+    # camera = PiCamera()
+    # camera.rotation = 180
+    # camera.start_preview()
+    img_name = 'image_' + str(datetime.now())
+    # camera.capture('./motion_sensor_captures/image_%s.jpg' % img_name)
     print("Photo taken! ", img_name)
+    # camera.stop_preview()
 
-def callback(channel):
-        if GPIO.input(channel):
-                print (datetime.datetime.now(), " | Vibration Detected!")
-                take_photo()
+def callback(channel):  
+	if GPIO.input(channel):
+		print ("knocked on the door")
+		take_photo()
+        # Para multiplos knocks na porta, nao estar sempre a repetir alguem bateu a porta
+		time.sleep(3)
+	else:
+		print ("no knock")
 
-GPIO.add_event_detect(channel, GPIO.BOTH, bouncetime=300)  # let us know when the pin goes HIGH or LOW
-GPIO.add_event_callback(channel, callback)  # assign function to GPIO PIN, Run function on change
+# VIBRATION SENSOR
+VIBRATION_SENSOR_PIN = 23
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(VIBRATION_SENSOR_PIN, GPIO.IN)
+GPIO.add_event_detect(VIBRATION_SENSOR_PIN, GPIO.BOTH, bouncetime=300)
+GPIO.add_event_callback(VIBRATION_SENSOR_PIN, callback)
 
-# infinite loop
 while True:
-    print("waiting to vibration...")
-    time.sleep(1)
+	time.sleep(0.1)

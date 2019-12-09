@@ -2,17 +2,18 @@
 import RPi.GPIO as GPIO
 import time
  
-#GPIO SETUP
-channel = 21
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(channel, GPIO.IN)
- 
 def callback(channel):
-    print("flame detected")
+    if not GPIO.input(channel):
+        print("flame detected")
+    else:
+        print('no flame')
+
+# FLAME SENSOR
+FLAME_SENSOR_PIN = 21
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(FLAME_SENSOR_PIN, GPIO.IN) 
+GPIO.add_event_detect(FLAME_SENSOR_PIN, GPIO.BOTH, bouncetime=300)
+GPIO.add_event_callback(FLAME_SENSOR_PIN, callback)
  
-GPIO.add_event_detect(channel, GPIO.BOTH, bouncetime=300)  # let us know when the pin goes HIGH or LOW
-GPIO.add_event_callback(channel, callback)  # assign function to GPIO PIN, Run function on change
- 
-# infinite loop
 while True:
-        time.sleep(1)
+        time.sleep(0.1)

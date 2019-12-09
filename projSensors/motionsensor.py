@@ -1,39 +1,31 @@
-
+#!/usr/bin/python
 import RPi.GPIO as GPIO
 import time
 from datetime import datetime
 from picamera import PiCamera
 
-#https://www.hackster.io/hardikrathod/pir-motion-sensor-with-raspberry-pi-415c04
-
-
-# https://www.hackster.io/hardikrathod/pir-motion-sensor-with-raspberry-pi-415c04
-
-SENSOR_PIN = 24
-
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(SENSOR_PIN, GPIO.IN)
-
-#camera = PiCamera()
-#camera.rotation = 180
-
 def take_photo():
-#    camera.start_preview()
+    # camera = PiCamera()
+    # camera.rotation = 180
+    # camera.start_preview()
     img_name = 'image_' + str(datetime.now())
-#    camera.capture('./motion_sensor_captures/image_%s.jpg' % img_name)
+    # camera.capture('./motion_sensor_captures/image_%s.jpg' % img_name)
     print("Photo taken! ", img_name)
-#    camera.stop_preview()
+    # camera.stop_preview()
 
-try:
-    time.sleep(2) # to stabilize sensor
-    while True:
-        print('watching...')
-        if GPIO.input(24):
-            print("MOTION DETECTED!")
-            take_photo()
-            time.sleep(5)
-        time.sleep(0.1)
+def callback(channel):  
+	if GPIO.input(channel):
+		print ("movement!")
+		take_photo()
+	else:
+		print ("no movement")
 
+# MOTION SENSOR
+MOTION_SENSOR_PIN = 24
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(MOTION_SENSOR_PIN, GPIO.IN)
+GPIO.add_event_detect(MOTION_SENSOR_PIN, GPIO.BOTH, bouncetime=300)
+GPIO.add_event_callback(MOTION_SENSOR_PIN, callback)
 
-except:
-    GPIO.cleanup()
+while True:
+	time.sleep(0.1)

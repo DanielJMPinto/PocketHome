@@ -1,18 +1,19 @@
 #!/usr/bin/python
 import RPi.GPIO as GPIO
 import time
- 
-#GPIO SETUP
-channel = 20
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(channel, GPIO.IN)
- 
+
 def callback(channel):
-    print("Gas detected!")
+	if not GPIO.input(channel):
+		print("not gas")
+	else:
+		print("gas")
+
+#GPIO SETUP
+GAS_SENSOR_PIN = 20
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(GAS_SENSOR_PIN, GPIO.IN, pull_up_down = GPIO.PUD_UP)
+GPIO.add_event_detect(GAS_SENSOR_PIN, GPIO.BOTH, bouncetime=300)
+GPIO.add_event_callback(GAS_SENSOR_PIN, callback)
  
-GPIO.add_event_detect(channel, GPIO.BOTH, bouncetime=300)  # let us know when the pin goes HIGH or LOW
-GPIO.add_event_callback(channel, callback)  # assign function to GPIO PIN, Run function on change
- 
-# infinite loop
 while True:
-        time.sleep(1)
+        time.sleep(0.1)

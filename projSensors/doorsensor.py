@@ -1,20 +1,19 @@
+#!/usr/bin/python
 import RPi.GPIO as GPIO
 import time
 
-# Set Broadcom mode so we can address GPIO pins by number.
-GPIO.setmode(GPIO.BCM) 
-
-# This is the GPIO pin number we have one of the door sensor
-DOOR_SENSOR_PIN = 26
-
-# Set up the door sensor pin.
-GPIO.setup(DOOR_SENSOR_PIN, GPIO.IN, pull_up_down = GPIO.PUD_UP) 
-
-while True: 
-	status = GPIO.input(DOOR_SENSOR_PIN)
-	if  not status:
-		print("Closed!")
+def callback(channel):
+	if not GPIO.input(channel):
+		print("CLOSED!")
 	else:
 		print("OPEN!")
-	time.sleep(3)
 
+# DOOR SENSOR
+DOOR_SENSOR_PIN = 26
+GPIO.setmode(GPIO.BCM) 
+GPIO.setup(DOOR_SENSOR_PIN, GPIO.IN, pull_up_down = GPIO.PUD_UP) 
+GPIO.add_event_detect(DOOR_SENSOR_PIN, GPIO.BOTH, bouncetime=300)
+GPIO.add_event_callback(DOOR_SENSOR_PIN, callback)
+
+while True:
+	time.sleep(0.1)
