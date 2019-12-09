@@ -12,8 +12,10 @@ public class User {
 	private String email;
 	private String password;
 	
+	/*
 	@OneToMany(mappedBy = "ownerId")
 	private List<Casa> houses = new ArrayList<>();
+	*/
 	
 	
 	public User() {}
@@ -26,10 +28,12 @@ public class User {
 		this.password = password;
 	}
 	
+	/*
 	public void updateHouses(Casa house) {
 		this.houses.add(house);
 		house.setOwner(this);
 	}
+	*/
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

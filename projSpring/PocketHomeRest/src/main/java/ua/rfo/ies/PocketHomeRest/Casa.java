@@ -12,12 +12,16 @@ public class Casa {
 	private String address;
 	private String alias;
 	
+	private long ownerId;
+	
 	@OneToMany(mappedBy = "houseId")
 	private List<Divisao> rooms = new ArrayList<>();
 	
+	/*
 	@ManyToOne
 	@JoinColumn(name = "owner_id")
-	private User ownerId;
+	private User owner;
+	*/
 	
 	public Casa() {}
 	
@@ -25,16 +29,12 @@ public class Casa {
 		this.id = id;
 		this.address = address;
 		this.alias = alias;
-		owner.updateHouses(this);
+		//owner.updateHouses(this);
 	}
 	
 	public void updateRooms(Divisao room) {
 		this.rooms.add(room);
 		room.setHouse(this);
-	}
-	
-	public void setOwner(User ownerId) {
-		this.ownerId = ownerId;
 	}
 
 	@Id
@@ -44,6 +44,15 @@ public class Casa {
 	}
 	public void setId(long id) {
 		this.id = id;
+	}
+	
+	@Column(name = "owner_id", nullable = false)
+	public long getOwnerId() {
+		return ownerId;
+	}
+	
+	public void setOwnerId(long ownerId) {
+		this.ownerId = ownerId;
 	}
 	
 	@Column(name = "address", nullable = false)

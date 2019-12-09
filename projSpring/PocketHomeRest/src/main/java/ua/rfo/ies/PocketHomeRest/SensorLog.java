@@ -10,11 +10,11 @@ import javax.persistence.*;
 public class SensorLog {
 	private long id;
 	private Date date;
-	private Sensor sensorId;
+	private long sensorId;
 	private String sensorType;
-	private Divisao roomId;
+	private long roomId;
 
-	public SensorLog(long id, Date date, Sensor sensorId, String sensorType, Divisao roomId) {
+	public SensorLog(long id, Date date, long sensorId, String sensorType, long roomId) {
 		super();
 		this.id = id;
 		this.date = date;
@@ -43,11 +43,11 @@ public class SensorLog {
 	}
 	
 	@Column(name = "sensor_id", nullable = false)
-	public Sensor getSensorId() {
+	public long getSensorId() {
 		return sensorId;
 	}
 
-	public void setSensorId(Sensor sensorId) {
+	public void setSensorId(long sensorId) {
 		this.sensorId = sensorId;
 	}
 	
@@ -61,11 +61,11 @@ public class SensorLog {
 	}
 	
 	@Column(name = "room_id", nullable = false)
-	public Divisao getRoomId() {
+	public long getRoomId() {
 		return roomId;
 	}
 
-	public void setRoomId(Divisao roomId) {
+	public void setRoomId(long roomId) {
 		this.roomId = roomId;
 	}
 	
