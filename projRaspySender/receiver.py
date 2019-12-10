@@ -3,7 +3,10 @@ import pika
 import json
 
 connection = pika.BlockingConnection(
-    pika.ConnectionParameters(host='localhost'))
+    pika.ConnectionParameters(host='192.168.43.40', 
+                            port=5672,
+                            virtual_host='/',
+                            credentials=pika.PlainCredentials('tomas', 'tomas25')))
 channel = connection.channel()
 
 channel.queue_declare(queue='comm_channel')
