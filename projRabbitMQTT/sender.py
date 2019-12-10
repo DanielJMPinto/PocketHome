@@ -34,4 +34,3 @@ while True:
         sender.connection.close()
         break
     sender.send(msg)
-
