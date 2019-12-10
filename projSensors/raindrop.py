@@ -18,6 +18,7 @@ def rain_sensor_callback(channel):
 		'DATE': str(datetime.now()),
 	}
 	sender.send(msg)
+	time.sleep(3)
 
 # Configure Sender
 if len(sys.argv) != 2:

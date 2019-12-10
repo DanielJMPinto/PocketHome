@@ -47,4 +47,3 @@ GPIO.add_event_callback(MOTION_SENSOR_PIN, motion_sensor_callback)
 
 while True:
 	time.sleep(0.1)
-

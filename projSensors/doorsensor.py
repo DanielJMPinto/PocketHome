@@ -34,4 +34,3 @@ GPIO.add_event_callback(DOOR_SENSOR_PIN, door_sensor_callback)
 
 while True:
 	time.sleep(1)
-
