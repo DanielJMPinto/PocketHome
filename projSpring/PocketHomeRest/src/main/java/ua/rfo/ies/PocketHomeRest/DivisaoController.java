@@ -15,18 +15,27 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class DivisaoController {
 	@Autowired
-	private DivisaoRepository divisaorepository;
+	private DivisaoRepository divisaorepo;
 	
-	/*
 	@GetMapping("/{house_id}/rooms")
-	public ResponseEntity<Divisao> getRoomsByHouse(@PathVariable(value = "house_id") Long houseId){
-		return true;
+	public List<Divisao> getRoomsByHouse(@PathVariable(value = "house_id") Long houseId){
+		return divisaorepo.findByhouseId(houseId);
 	}
 	
-	@PostMapping("/houses")
-	public Casa createHouse(@Valid @RequestBody Casa house) {
-		return divisaorepository.save(house);
-	}*/
+	@GetMapping("/rooms")
+	public List<Divisao> getAllRooms(){
+		return divisaorepo.findAll();
+	}
+	
+	@GetMapping("/rooms/{id}")
+	public Divisao getRoom(@PathVariable(value = "id") Long Id){
+		return divisaorepo.findById(Id).get();
+	}
+	
+	@PostMapping("/rooms")
+	public Divisao createRoom(@Valid @RequestBody Divisao room) {
+		return divisaorepo.save(room);
+	}
 	
 
 }

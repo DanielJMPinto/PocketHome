@@ -6,9 +6,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface DivisaoRepository extends JpaRepository<Divisao, Long>{
-	List<Divisao> findByhouseId(long houseId);
+public interface LogRepository extends JpaRepository<SensorLog, Long>{
+	List<SensorLog> findByroomIdAndSensorId(long roomId, long sensorId);
 	
-	Divisao findById(long id);
+	SensorLog findById(long id);
 
 }

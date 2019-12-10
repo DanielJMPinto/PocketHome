@@ -32,13 +32,15 @@ public class Casa {
 		//owner.updateHouses(this);
 	}
 	
+	/*
 	public void updateRooms(Divisao room) {
 		this.rooms.add(room);
 		room.setHouse(this);
 	}
+	*/
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 		public long getId() {
 		return id;
 	}

@@ -10,33 +10,40 @@ import javax.persistence.*;
 public class Divisao {
 	private long id;
 	private String alias;
+	private long houseId;
 	
-	@ManyToOne
-	@JoinColumn(name  = "house_id")
-	private Casa houseId;
-	
+	/*
 	@OneToMany(mappedBy = "roomId")
 	private List<Sensor> sensors = new ArrayList<>();
+	*/
 	
 	public Divisao() {}
 
-	public Divisao(long id, String alias, Casa house) {
+	public Divisao(long id, String alias, long houseId) {
 		this.id = id;
 		this.alias = alias;
-		house.updateRooms(this);
+		this.houseId = houseId;
 	}
 	
+	/*
 	public void updateSensors(Sensor sensor) {
 		this.sensors.add(sensor);
 		sensor.setRoom(this);
 	}
+	*/
 	
-	public void setHouse(Casa house) {
-		this.houseId = house;
+	
+	@Column(name = "house_id", nullable = false)
+	public long getHouseId() {
+		return houseId;
 	}
-	
+
+	public void setHouseId(long houseId) {
+		this.houseId = houseId;
+	}
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public long getId() {
 		return id;
 	}

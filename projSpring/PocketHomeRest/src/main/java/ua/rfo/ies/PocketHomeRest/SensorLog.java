@@ -12,19 +12,21 @@ public class SensorLog {
 	private Date date;
 	private long sensorId;
 	private String sensorType;
+	private long value;
 	private long roomId;
 
-	public SensorLog(long id, Date date, long sensorId, String sensorType, long roomId) {
+	public SensorLog(long id, Date date, long sensorId, String sensorType, long roomId, long value) {
 		super();
 		this.id = id;
 		this.date = date;
 		this.sensorId = sensorId;
 		this.sensorType = sensorType;
 		this.roomId = roomId;
+		this.value = value;
 	}
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public long getId() {
 		return id;
 	}
@@ -68,6 +70,17 @@ public class SensorLog {
 	public void setRoomId(long roomId) {
 		this.roomId = roomId;
 	}
+	
+	@Column(name = "value", nullable = false)
+	public long getValue() {
+		return value;
+	}
+
+	public void setValue(long value) {
+		this.value = value;
+	}
+	
+	
 	
 	
 	

@@ -8,24 +8,17 @@ import javax.persistence.*;
 public class Sensor {
 	private long id;
 	private String type;
-	
-	@ManyToOne
-	@JoinColumn(name  = "room_id")
-	private Divisao roomId;
+	private long roomId;
 
-	public Sensor(long id, String type, Divisao roomId) {
+	public Sensor(long id, String type, long roomId) {
 		super();
 		this.id = id;
 		this.type = type;
-		roomId.updateSensors(this);
-	}
-	
-	public void setRoom(Divisao roomId) {
 		this.roomId = roomId;
 	}
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public long getId() {
 		return id;
 	}
@@ -34,6 +27,15 @@ public class Sensor {
 		this.id = id;
 	}
 	
+	@Column(name = "room_id", nullable = true)
+	public long getRoomId() {
+		return roomId;
+	}
+
+	public void setRoomId(long roomId) {
+		this.roomId = roomId;
+	}
+
 	@Column(name = "type", nullable = false)
 	public String getType() {
 		return type;
