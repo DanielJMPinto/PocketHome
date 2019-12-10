@@ -1,8 +1,11 @@
 #!/usr/bin/python
 import RPi.GPIO as GPIO
 import time
+import sys
 from datetime import datetime
+from sender import Sender
 from picamera import PiCamera
+
 
 def take_photo():
     # camera = PiCamera()
@@ -13,12 +16,28 @@ def take_photo():
     print("Photo taken! ", img_name)
     # camera.stop_preview()
 
-def vibration_sensor_callback(channel):  
+
+def vibration_sensor_callback(channel):
 	if GPIO.input(channel):
-		print ("knocked on the door")
-		take_photo()
+		print("KNOCK")
+        val = 'KNOCK'
         # Para multiplos knocks na porta, nao estar sempre a repetir alguem bateu a porta
-		time.sleep(3)
+    msg = {
+	    	'SENSOR': 'DOOR_SENSOR',
+	    	'VALUE': val,
+	    	'DATE': str(datetime.now()),
+	    }
+	take_photo()
+	    sender.send(msg)
+	time.sleep(3)
+
+
+# Configure Sender
+if len(sys.argv) != 2:
+	print('USAGE: python3 file.py 192.168.X.Y')
+	exit()
+sender = Sender(sys.argv[1])
+
 
 # VIBRATION SENSOR
 VIBRATION_SENSOR_PIN = 23

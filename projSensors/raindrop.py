@@ -1,12 +1,30 @@
 #!/usr/bin/python
 import RPi.GPIO as GPIO
 import time
+import sys
+from datetime import datetime
+from sender import Sender
 
 def rain_sensor_callback(channel):  
 	if not GPIO.input(channel):
-		print ("Raining!")
+		print('RAIN')
+		val = 'RAIN'
 	else:
-		print ("Stopped Raining!")
+		print('NO_RAIN')
+		val = 'NO_RAIN'
+	msg = {
+		'SENSOR': 'RAIN_SENSOR',
+		'VALUE': val,
+		'DATE': str(datetime.now()),
+	}
+	sender.send(msg)
+	time.sleep(3)
+
+# Configure Sender
+if len(sys.argv) != 2:
+	print('USAGE: python3 file.py 192.168.X.Y')
+	exit()
+sender = Sender(sys.argv[1])
 
 # RAIN SENSOR
 RAIN_SENSOR_PIN = 18

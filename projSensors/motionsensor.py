@@ -1,25 +1,43 @@
 #!/usr/bin/python
 import RPi.GPIO as GPIO
 import time
+import sys
 from datetime import datetime
+from sender import Sender
 from picamera import PiCamera
 
-def take_photo():
-    # camera = PiCamera()
-    # camera.rotation = 180
-    # camera.start_preview()
-    img_name = 'PIR_image_' + str(datetime.now())
-    # camera.capture('./captures/image_%s.jpg' % img_name)
-    print("Photo taken! ", img_name)
-    # camera.stop_preview()
 
-def motion_sensor_callback(channel):  
+def take_photo():
+	# camera = PiCamera()
+	# camera.rotation = 180
+	# camera.start_preview()
+	img_name = 'PIR_image_' + str(datetime.now())
+	# camera.capture('./captures/image_%s.jpg' % img_name)
+	print("Photo taken! ", img_name)
+	# camera.stop_preview()
+
+
+def motion_sensor_callback(channel):
 	if GPIO.input(channel):
-		print ("movement!")
+		print("MOVEMENT")
+		val = 'MOVEMENT'
 		take_photo()
-        # Time to stop searching, to not give multiple values
-        time.sleep(3)
-        
+		msg = {
+			'SENSOR': 'PIR_SENSOR',
+			'VALUE': val,
+			'DATE': str(datetime.now()),
+		}
+		sender.send(msg)
+		# Time to stop searching, to not give multiple values
+		time.sleep(3)
+
+
+# Configure Sender
+if len(sys.argv) != 2:
+	print('USAGE: python3 file.py 192.168.X.Y')
+	exit()
+sender = Sender(sys.argv[1])
+
 # MOTION SENSOR
 MOTION_SENSOR_PIN = 24
 GPIO.setmode(GPIO.BCM)

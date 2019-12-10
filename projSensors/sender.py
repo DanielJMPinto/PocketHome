@@ -5,14 +5,13 @@ import uuid
 import json
 
 class Sender:
-    def __init__(self):
+    def __init__(self, ip):
         self.credentials = pika.PlainCredentials('tomas', 'tomas25')
         self.connection = pika.BlockingConnection(
-                            pika.ConnectionParameters(host='192.168.43.40', 
+                            pika.ConnectionParameters(host=ip, 
                                                         port=5672,
                                                         virtual_host='/',
                                                         credentials=self.credentials))
-
         self.channel = self.connection.channel()
         self.channel.queue_declare(queue='comm_channel')
 
@@ -25,14 +24,13 @@ class Sender:
         self.channel.basic_publish(exchange='', routing_key='comm_channel', body=json.dumps(message))
         print(f" [x] Sent {message}!")
 
-sender = Sender()
-while True:
-    msg = input('Message: ')
-    if not msg:
-        sender.send('FINISHED_CONN')
-        print('bye')
-        sender.connection.close()
-        break
-    sender.send(msg)
-
+# sender = Sender('192.168.43.40')
+# while True:
+#     msg = input('Message: ')
+#     if not msg:
+#         sender.send('FINISHED_CONN')
+#         print('bye')
+#         sender.connection.close()
+#         break
+#     sender.send(msg)
 
