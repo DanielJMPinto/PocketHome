@@ -22,12 +22,12 @@ public class UserValidator implements Validator {
     public void validate(Object o, Errors errors) {
         User user = (User) o;
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "NotEmpty");
-        if (user.getUsername().length() < 6 || user.getUsername().length() > 32) {
-            errors.rejectValue("username", "Size.userForm.username");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "NotEmpty");
+        if (user.getEmail().length() < 6 || user.getEmail().length() > 32) {
+            errors.rejectValue("email", "Size.userForm.email");
         }
-        if (userService.findByUsername(user.getUsername()) != null) {
-            errors.rejectValue("username", "Duplicate.userForm.username");
+        if (userService.findByEmail(user.getEmail()) != null) {
+            errors.rejectValue("email", "Duplicate.userForm.email");
         }
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty");
@@ -35,7 +35,7 @@ public class UserValidator implements Validator {
             errors.rejectValue("password", "Size.userForm.password");
         }
 
-        if (!user.getPasswordConfirm().equals(user.getPassword())) {
+        if (!user.getPassword().equals(user.getPassword())) {
             errors.rejectValue("passwordConfirm", "Diff.userForm.passwordConfirm");
         }
     }
