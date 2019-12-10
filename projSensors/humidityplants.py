@@ -1,31 +1,36 @@
 #!/usr/bin/python
+import RPi.GPIO as GPIO
+import time
+import sys
+from datetime import datetime
+from sender import Sender
 
-# Start by importing the libraries we want to use
-# https://thepihut.com/blogs/raspberry-pi-tutorials/raspberry-pi-plant-pot-moisture-sensor-with-email-notification-tutorial
-import RPi.GPIO as GPIO # This is the GPIO library we need to use the GPIO pins on the Raspberry Pi
-import time # This is the time library, we need this so we can use the sleep function
-
-# This is our callback function, this function will be called every time there is a change on the specified GPIO channel, in this example we are using 17
-def callback(channel):  
-	if GPIO.input(channel):
-		print ("NO MOISTURE")
+def humplants_sensor_callback(channel):  
+	if not GPIO.input(channel):
+		print('MOISTURE')
+		val = 'MOISTURE'
 	else:
-		print ("MOISTURE CHECK")
+		print('NO_MOISTURE')
+		val = 'NO_MOISTURE'
+	msg = {
+		'SENSOR': 'HUMIDITYPLANTS_SENSOR',
+		'VALUE': val,
+		'DATE': str(datetime.now()),
+	}
+	sender.send(msg)
 
-# Set our GPIO numbering to BCM
+# Configure Sender
+if len(sys.argv) != 2:
+	print('USAGE: python3 file.py 192.168.X.Y')
+	exit()
+sender = Sender(sys.argv[1])
+
+# HUMIDITY PLANTS
+HUMIDITYPLANTS_SENSOR_PIN = 25
 GPIO.setmode(GPIO.BCM)
+GPIO.setup(HUMIDITYPLANTS_SENSOR_PIN, GPIO.IN)
+GPIO.add_event_detect(HUMIDITYPLANTS_SENSOR_PIN, GPIO.BOTH, bouncetime=300)
+GPIO.add_event_callback(HUMIDITYPLANTS_SENSOR_PIN, humplants_sensor_callback)
 
-# Define the GPIO pin that we have our digital output from our sensor connected to
-channel = 17
-# Set the GPIO pin to an input
-GPIO.setup(channel, GPIO.IN)
-
-# This line tells our script to keep an eye on our gpio pin and let us know when the pin goes HIGH or LOW
-GPIO.add_event_detect(channel, GPIO.BOTH, bouncetime=300)
-# This line asigns a function to the GPIO pin so that when the above line tells us there is a change on the pin, run this function
-GPIO.add_event_callback(channel, callback)
-
-# This is an infinte loop to keep our script running
 while True:
-	# This line simply tells our script to wait 0.1 of a second, this is so the script doesnt hog all of the CPU
 	time.sleep(0.1)
