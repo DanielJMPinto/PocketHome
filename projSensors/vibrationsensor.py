@@ -23,7 +23,7 @@ def vibration_sensor_callback(channel):
         val = 'KNOCK'
         # Para multiplos knocks na porta, nao estar sempre a repetir alguem bateu a porta
     msg = {
-	    	'SENSOR': 'DOOR_SENSOR',
+	    	'SENSOR': 'KNOCK_SENSOR',
 	    	'VALUE': val,
 	    	'DATE': str(datetime.now()),
 	    }

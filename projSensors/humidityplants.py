@@ -34,4 +34,3 @@ GPIO.add_event_callback(HUMIDITYPLANTS_SENSOR_PIN, humplants_sensor_callback)
 
 while True:
 	time.sleep(0.1)
-

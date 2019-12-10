@@ -35,4 +35,3 @@ GPIO.add_event_callback(LIGHT_SENSOR_PIN, light_sensor_callback)
 
 while True:
 	time.sleep(0.1)
-
