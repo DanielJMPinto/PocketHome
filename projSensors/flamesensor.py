@@ -35,3 +35,4 @@ GPIO.add_event_callback(FLAME_SENSOR_PIN, flame_sensor_callback)
  
 while True:
         time.sleep(0.1)
+

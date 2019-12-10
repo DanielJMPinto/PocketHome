@@ -36,3 +36,4 @@ GPIO.add_event_callback(GAS_SENSOR_PIN, gas_sensor_callback)
  
 while True:
         time.sleep(0.1)
+

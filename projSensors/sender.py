@@ -33,4 +33,3 @@ class Sender:
 #         sender.connection.close()
 #         break
 #     sender.send(msg)
-
