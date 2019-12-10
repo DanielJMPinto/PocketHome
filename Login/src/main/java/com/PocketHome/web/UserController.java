@@ -39,15 +39,17 @@ public class UserController {
         userService.save(userForm);
 
         securityService.autoLogin(userForm.getEmail(), userForm.getPassword());
-
+        System.out.println("i got here didnt i?");
         return "redirect:/welcome";
     }
 
     @GetMapping("/login")
     public String login(Model model, String error, String logout) {
-        //System.out.println("error - " + error);
+
+        System.out.println("error - " + error);
+
         if (error != null)
-            model.addAttribute("error", "comes merda Your username and password is invalid.");
+            model.addAttribute("error", "Your username and password is invalid.");
         //System.out.println("logout - " + logout);
         if (logout != null)
             model.addAttribute("message", "You have been logged out successfully.");
