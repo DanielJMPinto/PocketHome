@@ -4,16 +4,16 @@ import time
 import sys
 from datetime import datetime
 from sender import Sender
-
-def light_sensor_callback(channel):  
+ 
+def flame_sensor_callback(channel):
 	if not GPIO.input(channel):
-		print('LIGHT')
-		val = 'LIGHT'
+		print('FLAME')
+		val = 'FLAME'
 	else:
-		print('NO_LIGHT')
-		val = 'NO_LIGHT'
+		print('NO_FLAME')
+		val = 'NO_FLAME'
 	msg = {
-		'SENSOR': 'LIGHT_SENSOR',
+		'SENSOR': 'FLAME_SENSOR',
 		'VALUE': val,
 		'DATE': str(datetime.now()),
 	}
@@ -25,13 +25,13 @@ if len(sys.argv) != 2:
 	exit()
 sender = Sender(sys.argv[1])
 
-
-# LIGHT SENSOR
-LIGHT_SENSOR_PIN = 4
+# FLAME SENSOR
+FLAME_SENSOR_PIN = 21
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(LIGHT_SENSOR_PIN, GPIO.IN)
-GPIO.add_event_detect(LIGHT_SENSOR_PIN, GPIO.BOTH, bouncetime=300)
-GPIO.add_event_callback(LIGHT_SENSOR_PIN, light_sensor_callback)
-
+GPIO.setup(FLAME_SENSOR_PIN, GPIO.IN) 
+GPIO.add_event_detect(FLAME_SENSOR_PIN, GPIO.BOTH, bouncetime=300)
+GPIO.add_event_callback(FLAME_SENSOR_PIN, flame_sensor_callback)
+ 
 while True:
-	time.sleep(0.1)
+        time.sleep(0.1)
+

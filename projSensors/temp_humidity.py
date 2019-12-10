@@ -9,7 +9,7 @@ import datetime
 GPIO.setwarnings(True)
 GPIO.setmode(GPIO.BCM)
 
-# read data using pin 14
+# read data using pin 17
 instance = dht11.DHT11(pin=17)
 
 try:

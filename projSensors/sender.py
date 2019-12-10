@@ -12,7 +12,6 @@ class Sender:
                                                         port=5672,
                                                         virtual_host='/',
                                                         credentials=self.credentials))
-
         self.channel = self.connection.channel()
         self.channel.queue_declare(queue='comm_channel')
 
@@ -25,13 +24,12 @@ class Sender:
         self.channel.basic_publish(exchange='', routing_key='comm_channel', body=json.dumps(message))
         print(f" [x] Sent {message}!")
 
-sender = Sender('192.168.43.40')
-while True:
-    msg = input('Message: ')
-    if not msg:
-        sender.send('FINISHED_CONN')
-        print('bye')
-        sender.connection.close()
-        break
-    sender.send(msg)
-
+# sender = Sender('192.168.43.40')
+# while True:
+#     msg = input('Message: ')
+#     if not msg:
+#         sender.send('FINISHED_CONN')
+#         print('bye')
+#         sender.connection.close()
+#         break
+#     sender.send(msg)
