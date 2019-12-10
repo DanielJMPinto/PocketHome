@@ -3,7 +3,7 @@ import pika
 import json
 
 connection = pika.BlockingConnection(
-    pika.ConnectionParameters(host='192.168.43.40', 
+    pika.ConnectionParameters(host='deti-engsoft-08.ua.pt', 
                             port=5672,
                             virtual_host='/',
                             credentials=pika.PlainCredentials('tomas', 'tomas25')))
