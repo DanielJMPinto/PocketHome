@@ -20,16 +20,17 @@ def take_photo():
 def vibration_sensor_callback(channel):
 	if GPIO.input(channel):
 		print("KNOCK")
-        val = 'KNOCK'
-        # Para multiplos knocks na porta, nao estar sempre a repetir alguem bateu a porta
-    msg = {
-	    	'SENSOR': 'DOOR_SENSOR',
-	    	'VALUE': val,
-	    	'DATE': str(datetime.now()),
-	    }
-	take_photo()
-	    sender.send(msg)
-	time.sleep(3)
+        val = 1
+		# take_photo()
+    	msg = {
+				'SENSOR_ID': 10
+		    	'SENSOR': 'DOOR_SENSOR',
+		    	'VALUE': val,
+		    	'DATE': str(datetime.now()),
+		    }
+		sender.send(msg)
+    	# Para multiplos knocks na porta, nao estar sempre a repetir alguem bateu a porta
+		time.sleep(3)
 
 
 # Configure Sender

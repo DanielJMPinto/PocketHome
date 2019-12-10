@@ -48,4 +48,3 @@ try:
 except KeyboardInterrupt:
 	print("Cleanup")
 	GPIO.cleanup()
-

@@ -8,11 +8,12 @@ from sender import Sender
 def light_sensor_callback(channel):  
 	if not GPIO.input(channel):
 		print('LIGHT')
-		val = 'LIGHT'
+		val = 1
 	else:
 		print('NO_LIGHT')
-		val = 'NO_LIGHT'
+		val = 0
 	msg = {
+		'SENSOR_ID': 4,
 		'SENSOR': 'LIGHT_SENSOR',
 		'VALUE': val,
 		'DATE': str(datetime.now()),
@@ -35,4 +36,3 @@ GPIO.add_event_callback(LIGHT_SENSOR_PIN, light_sensor_callback)
 
 while True:
 	time.sleep(0.1)
-
