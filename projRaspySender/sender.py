@@ -6,9 +6,15 @@ import json
 
 class Sender:
     def __init__(self):
-        self.connection = pika.BlockingConnection(pika.ConnectionParameters(host="localhost"))
+        self.credentials = pika.PlainCredentials('tomas', 'tomas25')
+        self.connection = pika.BlockingConnection(
+                            pika.ConnectionParameters(host='192.168.43.40', 
+                                                        port=5672,
+                                                        virtual_host='/',
+                                                        credentials=self.credentials))
+
         self.channel = self.connection.channel()
-        self.channel.exchange_declare(exchange='working_queues', exchange_type='fanout')
+        self.channel.queue_declare(queue='comm_channel')
 
     def send(self, message):
         message = {
@@ -16,13 +22,12 @@ class Sender:
             'TIMESTAMP': str(datetime.datetime.now()),
             'CONTENT': message
         }
-        self.channel.basic_publish(exchange='working_queues', routing_key='', body=json.dumps(message))
+        self.channel.basic_publish(exchange='', routing_key='comm_channel', body=json.dumps(message))
         print(f" [x] Sent {message}!")
 
 sender = Sender()
 while True:
     msg = input('Message: ')
-    # Se nao inserir nada, desliga a conexão
     if not msg:
         sender.send('FINISHED_CONN')
         print('bye')
