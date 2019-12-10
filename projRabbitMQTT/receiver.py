@@ -13,7 +13,6 @@ channel.queue_declare(queue='comm_channel')
 
 
 def callback(ch, method, properties, body):
-    print(body)
     message = json.loads(body)
     msg_id = message['MESSAGE_ID']
     timestamp = message['TIMESTAMP']

@@ -8,12 +8,13 @@ from sender import Sender
 def humplants_sensor_callback(channel):  
 	if not GPIO.input(channel):
 		print('MOISTURE')
-		val = 'MOISTURE'
+		val = 1
 	else:
 		print('NO_MOISTURE')
-		val = 'NO_MOISTURE'
+		val = 0
 	msg = {
-		'SENSOR': 'HUMIDITYPLANTS_SENSOR',
+		'SENSOR_ID': 3,
+		'SENSOR': 'HUMPLANTS_SENSOR',
 		'VALUE': val,
 		'DATE': str(datetime.now()),
 	}

@@ -8,11 +8,12 @@ from sender import Sender
 def flame_sensor_callback(channel):
 	if not GPIO.input(channel):
 		print('FLAME')
-		val = 'FLAME'
+		val = 1
 	else:
 		print('NO_FLAME')
-		val = 'NO_FLAME'
+		val = 0
 	msg = {
+		'SENSOR_ID': 1,
 		'SENSOR': 'FLAME_SENSOR',
 		'VALUE': val,
 		'DATE': str(datetime.now()),
