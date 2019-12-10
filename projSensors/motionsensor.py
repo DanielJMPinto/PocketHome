@@ -20,9 +20,10 @@ def take_photo():
 def motion_sensor_callback(channel):
 	if GPIO.input(channel):
 		print("MOVEMENT")
-		val = 'MOVEMENT'
+		val = 1
 		take_photo()
 		msg = {
+			'SENSOR_ID': 5,
 			'SENSOR': 'PIR_SENSOR',
 			'VALUE': val,
 			'DATE': str(datetime.now()),

@@ -8,11 +8,12 @@ from sender import Sender
 def gas_sensor_callback(channel):
 	if not GPIO.input(channel):
 		print('NO_GAS')
-		val = 'NO_GAS'
+		val = 0
 	else:
 		print('GAS')
-		val = 'GAS'
+		val = 1
 	msg = {
+		'SENSOR_ID': 2,
 		'SENSOR': 'GAS_SENSOR',
 		'VALUE': val,
 		'DATE': str(datetime.now()),

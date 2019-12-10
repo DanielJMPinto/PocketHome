@@ -8,8 +8,9 @@ from sender import Sender
 def sound_sensor_callback(channel):  
 	if GPIO.input(channel):
 		print('SOUND')
-		val = 'SOUND'
+		val = 1
 		msg = {
+			'SENSOR_ID': 7,
 			'SENSOR': 'SOUND_SENSOR',
 			'VALUE': val,
 			'DATE': str(datetime.now()),

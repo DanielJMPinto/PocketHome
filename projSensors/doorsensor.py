@@ -8,11 +8,12 @@ from sender import Sender
 def door_sensor_callback(channel):
 	if not GPIO.input(channel):
 		print('CLOSED')
-		val = 'CLOSED'
+		val = 1
 	else:
 		print('OPEN')
-		val = 'OPEN'
+		val = 0
 	msg = {
+		'SENSOR_ID': 0,
 		'SENSOR': 'DOOR_SENSOR',
 		'VALUE': val,
 		'DATE': str(datetime.now()),

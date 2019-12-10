@@ -8,11 +8,12 @@ from sender import Sender
 def rain_sensor_callback(channel):  
 	if not GPIO.input(channel):
 		print('RAIN')
-		val = 'RAIN'
+		val = 1
 	else:
 		print('NO_RAIN')
-		val = 'NO_RAIN'
+		val = 0
 	msg = {
+		'SENSOR_ID': 6,
 		'SENSOR': 'RAIN_SENSOR',
 		'VALUE': val,
 		'DATE': str(datetime.now()),
