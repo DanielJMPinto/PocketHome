@@ -12,9 +12,9 @@
 /app/src/main/java/com/PocketHome/service/UserServiceImpl.java
 /app/src/main/java/com/PocketHome/repository/CasaRepository.java
 /app/src/main/java/com/PocketHome/repository/UserRepository.java
-/app/src/main/java/com/PocketHome/model/User.java
-/app/src/main/java/com/PocketHome/web/CasaController.java
 /app/src/main/java/com/PocketHome/web/UserController2.java
+/app/src/main/java/com/PocketHome/web/CasaController.java
+/app/src/main/java/com/PocketHome/model/User.java
 /app/src/main/java/com/PocketHome/service/SecurityService.java
-/app/src/main/java/com/PocketHome/model/Divisao.java
 /app/src/main/java/com/PocketHome/web/DivisaoController.java
+/app/src/main/java/com/PocketHome/model/Divisao.java

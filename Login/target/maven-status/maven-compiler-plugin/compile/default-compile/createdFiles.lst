@@ -9,8 +9,8 @@ com/PocketHome/web/UserController.class
 com/PocketHome/repository/UserRepository.class
 com/PocketHome/web/UserController2.class
 com/PocketHome/service/UserDetailsServiceImpl.class
-com/PocketHome/WebSecurityConfig.class
 com/PocketHome/web/CasaController.class
+com/PocketHome/WebSecurityConfig.class
 com/PocketHome/service/SecurityService.class
 com/PocketHome/model/User.class
 com/PocketHome/repository/CasaRepository.class
