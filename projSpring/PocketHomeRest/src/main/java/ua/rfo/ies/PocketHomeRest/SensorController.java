@@ -17,9 +17,9 @@ public class SensorController {
 	@Autowired
 	private SensorRepository sensrepo;
 	
-	@GetMapping("/{room_id}/sensors")
-	public List<Sensor> getSensorsByRoom(@PathVariable(value = "room_id") Long roomId){
-		return sensrepo.findByroomId(roomId);
+	@GetMapping("/{house_id}/sensors")
+	public List<Sensor> getSensorsByRoom(@PathVariable(value = "house_id") Long houseId){
+		return sensrepo.findByhouseId(houseId);
 	}
 	
 	@GetMapping("/sensors")

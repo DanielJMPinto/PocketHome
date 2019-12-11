@@ -8,13 +8,13 @@ import javax.persistence.*;
 public class Sensor {
 	private long id;
 	private String type;
-	private long roomId;
+	private long houseId;
 
-	public Sensor(long id, String type, long roomId) {
+	public Sensor(long id, String type, long houseId) {
 		super();
 		this.id = id;
 		this.type = type;
-		this.roomId = roomId;
+		this.houseId = houseId;
 	}
 	
 	@Id
@@ -27,13 +27,13 @@ public class Sensor {
 		this.id = id;
 	}
 	
-	@Column(name = "room_id", nullable = true)
-	public long getRoomId() {
-		return roomId;
+	@Column(name = "house_id", nullable = true)
+	public long getHouseId() {
+		return houseId;
 	}
 
-	public void setRoomId(long roomId) {
-		this.roomId = roomId;
+	public void setHouseId(long houseId) {
+		this.houseId = houseId;
 	}
 
 	@Column(name = "type", nullable = false)

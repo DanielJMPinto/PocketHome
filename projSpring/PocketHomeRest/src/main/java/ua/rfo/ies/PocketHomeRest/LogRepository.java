@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LogRepository extends JpaRepository<SensorLog, Long>{
-	List<SensorLog> findByroomIdAndSensorId(long roomId, long sensorId);
+	List<SensorLog> findByhouseIdAndSensorId(long houseId, long sensorId);
 	
 	SensorLog findById(long id);
 

@@ -17,9 +17,9 @@ public class LogController {
 	@Autowired
 	private LogRepository logrepo;
 	
-	@GetMapping("/logs/{room_id}/{sensor_id}")
-	public List<SensorLog> getSensorsByRoomAndSensor(@PathVariable(value = "room_id") Long roomId, @PathVariable(value = "sensor_id") Long sensorId){
-		return logrepo.findByroomIdAndsensorId(roomId,sensorId);
+	@GetMapping("/logs/{house_id}/{sensor_id}")
+	public List<SensorLog> getSensorsByHouseAndSensor(@PathVariable(value = "house_id") Long houseId, @PathVariable(value = "sensor_id") Long sensorId){
+		return logrepo.findByhouseIdAndSensorId(houseId,sensorId);
 	}
 	
 	@GetMapping("/logs")

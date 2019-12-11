@@ -13,15 +13,15 @@ public class SensorLog {
 	private long sensorId;
 	private String sensorType;
 	private long value;
-	private long roomId;
+	private long houseId;
 
-	public SensorLog(long id, Date date, long sensorId, String sensorType, long roomId, long value) {
+	public SensorLog(long id, Date date, long sensorId, String sensorType, long houseId, long value) {
 		super();
 		this.id = id;
 		this.date = date;
 		this.sensorId = sensorId;
 		this.sensorType = sensorType;
-		this.roomId = roomId;
+		this.houseId = houseId;
 		this.value = value;
 	}
 	
@@ -62,13 +62,13 @@ public class SensorLog {
 		this.sensorType = sensorType;
 	}
 	
-	@Column(name = "room_id", nullable = false)
-	public long getRoomId() {
-		return roomId;
+	@Column(name = "house_id", nullable = false)
+	public long getHouseId() {
+		return houseId;
 	}
 
-	public void setRoomId(long roomId) {
-		this.roomId = roomId;
+	public void setHouseId(long houseId) {
+		this.houseId = houseId;
 	}
 	
 	@Column(name = "value", nullable = false)

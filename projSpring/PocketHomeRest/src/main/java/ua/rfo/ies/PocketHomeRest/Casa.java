@@ -11,33 +11,15 @@ public class Casa {
 	private long id;
 	private String address;
 	private String alias;
-	
 	private long ownerId;
-	
-	@OneToMany(mappedBy = "houseId")
-	private List<Divisao> rooms = new ArrayList<>();
-	
-	/*
-	@ManyToOne
-	@JoinColumn(name = "owner_id")
-	private User owner;
-	*/
-	
+
 	public Casa() {}
 	
 	public Casa(long id, String address, String alias, User owner) {
 		this.id = id;
 		this.address = address;
 		this.alias = alias;
-		//owner.updateHouses(this);
 	}
-	
-	/*
-	public void updateRooms(Divisao room) {
-		this.rooms.add(room);
-		room.setHouse(this);
-	}
-	*/
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
