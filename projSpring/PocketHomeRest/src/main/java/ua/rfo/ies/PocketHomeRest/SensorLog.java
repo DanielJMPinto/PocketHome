@@ -1,22 +1,27 @@
 package ua.rfo.ies.PocketHomeRest;
 
-
 import java.util.Date;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "sensor_logs")
 public class SensorLog {
 	private long id;
-	private Date date;
 	private long sensorId;
 	private String sensorType;
 	private long value;
 	private long houseId;
+	
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	private Date date;
+	
+	public SensorLog() {
+	}
 
 	public SensorLog(long id, Date date, long sensorId, String sensorType, long houseId, long value) {
-		super();
 		this.id = id;
 		this.date = date;
 		this.sensorId = sensorId;
