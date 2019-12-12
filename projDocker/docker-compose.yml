@@ -10,15 +10,3 @@ services:
     ports:
       - "5433:5432"
     restart: always
-
-  registration-login:
-    build: .
-    volumes:
-      - .:/app
-      - ~/.m2:/root/.m2
-    working_dir: /app
-    ports:
-      - 8080:8080
-    command: mvn clean spring-boot:run
-    depends_on:
-      - postgres_db

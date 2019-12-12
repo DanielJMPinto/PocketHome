@@ -1,7 +1,7 @@
 package com.PocketHome.service;
 
-import com.PocketHome.repository.UserRepository;
 import com.PocketHome.model.User;
+import com.PocketHome.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
