@@ -11,6 +11,7 @@
 	<groupId>ua.rfo.ies</groupId>
 	<artifactId>PocketHomeRest</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	<name>PocketHomeRest</name>
 	<description>SpringBoot project for the IES Project PocketHome</description>
 
