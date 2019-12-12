@@ -10,10 +10,11 @@ def sound_sensor_callback(channel):
 		print('SOUND')
 		val = 1
 		msg = {
-			'SENSOR_ID': 7,
-			'SENSOR': 'SOUND_SENSOR',
-			'VALUE': val,
-			'DATE': str(datetime.now()),
+			'sensorId': 7,
+			'sensorType': 'SOUND_SENSOR',
+			'value': val,
+			'date': str(datetime.now()),
+			'houseId': 1,
 		}
 		sender.send(msg)
 

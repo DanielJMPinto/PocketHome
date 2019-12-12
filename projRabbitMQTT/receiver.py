@@ -17,6 +17,8 @@ def callback(ch, method, properties, body):
     msg_id = message['MESSAGE_ID']
     timestamp = message['TIMESTAMP']
     content = message['CONTENT']
+    # curl -X POST localhost:8080/logs -H 'Content-type:application/json' -d 
+    #   '{"date": "2019-12-12 12:20:48.933046", "sensorId": 1, "sensorType": "door", "value": 0, "houseId": 1}'
     print(f'  [x] Received message [{msg_id}] at [{timestamp}]: {content}')
 
 
