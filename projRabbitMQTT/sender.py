@@ -5,10 +5,10 @@ import uuid
 import json
 
 class Sender:
-    def __init__(self):
+    def __init__(self, ip):
         self.credentials = pika.PlainCredentials('tomas', 'tomas25')
         self.connection = pika.BlockingConnection(
-                            pika.ConnectionParameters(host='deti-engsoft-08.ua.pt', 
+                            pika.ConnectionParameters(host=ip, 
                                                         port=5672,
                                                         virtual_host='/',
                                                         credentials=self.credentials))
@@ -25,12 +25,11 @@ class Sender:
         print(f" [x] Sent {message}!")
 
 # sender = Sender('192.168.43.40')
-sender = Sender()
-while True:
-    msg = input('Message: ')
-    if not msg:
-        sender.send('FINISHED_CONN')
-        print('bye')
-        sender.connection.close()
-        break
-    sender.send(msg)
+# while True:
+#     msg = input('Message: ')
+#     if not msg:
+#         sender.send('FINISHED_CONN')
+#         print('bye')
+#         sender.connection.close()
+#         break
+#     sender.send(msg)
