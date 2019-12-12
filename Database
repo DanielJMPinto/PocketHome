@@ -1,5 +1,5 @@
 # Connect to Postgres running on docker
-` sudo sudo docker exec -it ies_db bash `
+` sudo docker exec -it ies_db bash `
 
 # Entrar na BD
 ` psql -U postgres `
