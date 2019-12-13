@@ -21,27 +21,27 @@ public class UserController {
     @Autowired
     private UserValidator userValidator;
 
-    @GetMapping("/registration")
+    @GetMapping("/register")
     public String registration(Model model) {
         model.addAttribute("userForm", new User());
 
-        return "registration";
+        return "register";
     }
 
-    @PostMapping("/registration")
+    @PostMapping("/register")
     public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult) {
         System.out.println("OLA-1");
         userValidator.validate(userForm, bindingResult);
         System.out.println("OLA0");
         if (bindingResult.hasErrors()) {
-            return "registration";
+            return "register";
         }
         System.out.println("OLA1");
         userService.save(userForm);
         System.out.println("OLA2");
         securityService.autoLogin(userForm.getUsername(), userForm.getPassword());
 
-        return "redirect:/welcome";
+        return "redirect:/index";
     }
 
     @GetMapping("/login")
@@ -55,8 +55,8 @@ public class UserController {
         return "login";
     }
 
-    @GetMapping({"/", "/welcome"})
+    @GetMapping({"/", "/index"})
     public String welcome(Model model) {
-        return "welcome";
+        return "index";
     }
 }
