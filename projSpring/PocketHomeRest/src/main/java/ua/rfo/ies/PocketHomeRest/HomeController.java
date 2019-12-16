@@ -1,6 +1,6 @@
 package ua.rfo.ies.PocketHomeRest;
 
-import com.zetcode.service.WordService;
+import ua.rfo.ies.PocketHomeRest.HomeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
