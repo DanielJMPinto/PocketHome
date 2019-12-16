@@ -21,10 +21,20 @@ public class WebConfig implements WebMvcConfigurer {
     @Autowired
     private ApplicationContext applicationContext;
 
+
+
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("index.html")
+                .addResourceLocations("classpath:/WEB-INF/resources/");
+        registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+    }
+
+
     @Bean
     public SpringResourceTemplateResolver templateResolver() {
 
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
+
 
         templateResolver.setApplicationContext(applicationContext);
         templateResolver.setPrefix("classpath:/templates/");
