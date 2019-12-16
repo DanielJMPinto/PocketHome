@@ -1,10 +1,9 @@
 package com.pockethome.login;
 
-import org.springframework.data.annotation.Id;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 public class User {
@@ -16,8 +15,7 @@ public class User {
     private String email;
     private String password;
 
-    public User(long id, String firstName, String lastName, String email, String password) {
-        this.id = id;
+    public User(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

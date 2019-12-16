@@ -14,8 +14,11 @@ public class UserController {
 
     // Insert new user
     @PostMapping(value = "/users")
-    public User newUser (@Valid @RequestBody User user){
-        return userRepository.save(user);
+    public User newUser (@RequestParam(value="email") String email,
+                         @RequestParam(value="first_name") String first_name,
+                         @RequestParam(value="last_name") String last_name,
+                         @RequestParam(value="password") String password){
+        return new User(first_name, last_name, email, password);
     }
 
     // Get the user info
