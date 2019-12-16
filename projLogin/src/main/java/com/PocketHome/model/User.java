@@ -1,4 +1,5 @@
 package com.PocketHome.model;
+
 import javax.persistence.*;
 import java.util.*;
 
@@ -8,10 +9,8 @@ public class User {
     private long id;
     private String firstName;
     private String lastName;
-    private String email;
+    private String username;
     private String password;
-    @Transient
-    private String passwordConfirm;
 
 	/*
 	@OneToMany(mappedBy = "ownerId")
@@ -21,11 +20,11 @@ public class User {
 
     public User() {}
 
-    public User(long id, String firstName, String lastName, String email, String password) {
+    public User(long id, String firstName, String lastName, String username, String password) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.email = email;
+        this.username = username;
         this.password = password;
     }
 
@@ -62,11 +61,11 @@ public class User {
     }
 
     @Column(name = "email_address", nullable = false)
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     @Column(name = "password", nullable = false)
@@ -77,17 +76,10 @@ public class User {
         this.password = password;
     }
 
-    public String getPasswordConfirm() {
-        return passwordConfirm;
-    }
-
-    public void setPasswordConfirm(String passwordConfirm) {
-        this.passwordConfirm = passwordConfirm;
-    }
 
     @Override
     public String toString() {
-        return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+        return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + username
                 + ", password=" + password + "]";
     }
 

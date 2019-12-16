@@ -21,44 +21,42 @@ public class UserController {
     @Autowired
     private UserValidator userValidator;
 
-    @GetMapping("/registration")
+    @GetMapping("/register")
     public String registration(Model model) {
         model.addAttribute("userForm", new User());
 
-        return "registration";
+        return "register";
     }
 
-    @PostMapping("/registration")
+    @PostMapping("/register")
     public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult) {
+        System.out.println("OLA-1");
         userValidator.validate(userForm, bindingResult);
-
+        System.out.println("OLA0");
         if (bindingResult.hasErrors()) {
-            return "registration";
+            return "register";
         }
-
+        System.out.println("OLA1");
         userService.save(userForm);
+        System.out.println("OLA2");
+        securityService.autoLogin(userForm.getUsername(), userForm.getPassword());
 
-        securityService.autoLogin(userForm.getEmail(), userForm.getPassword());
-        System.out.println("i got here didnt i?");
-        return "redirect:/welcome";
+        return "redirect:/index";
     }
 
     @GetMapping("/login")
     public String login(Model model, String error, String logout) {
-
-        System.out.println("error - " + error);
-
         if (error != null)
             model.addAttribute("error", "Your username and password is invalid.");
-        //System.out.println("logout - " + logout);
+
         if (logout != null)
             model.addAttribute("message", "You have been logged out successfully.");
 
         return "login";
     }
 
-    @GetMapping({"/", "/welcome"})
+    @GetMapping({"/", "/index"})
     public String welcome(Model model) {
-        return "welcome";
+        return "index";
     }
 }
