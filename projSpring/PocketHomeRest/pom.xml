@@ -11,6 +11,7 @@
 	<groupId>ua.rfo.ies</groupId>
 	<artifactId>PocketHomeRest</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	<name>PocketHomeRest</name>
 	<description>SpringBoot project for the IES Project PocketHome</description>
 
@@ -55,11 +56,24 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
+
+<dependency>
+        <groupId>javax.xml.bind</groupId>
+        <artifactId>jaxb-api</artifactId>
+        <version>2.3.0</version>
+</dependency>
+
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -78,6 +92,19 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+			        <execution>
+			            <goals>
+			                <goal>repackage</goal>
+			            </goals>
+			            <configuration>
+			                <classifier>spring-boot</classifier>
+			                <mainClass>
+			                  ua.rfo.ies.PocketHomeRestApplication
+			                </mainClass>
+			            </configuration>
+			        </execution>
+    			</executions>
 			</plugin>
 		</plugins>
 	</build>
