@@ -14,6 +14,7 @@ public class SensorLog {
 	private String sensorType;
 	private long value;
 	private long houseId;
+	private String img;
 	
 	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date date;
@@ -21,13 +22,14 @@ public class SensorLog {
 	public SensorLog() {
 	}
 
-	public SensorLog(long id, Date date, long sensorId, String sensorType, long houseId, long value) {
+	public SensorLog(long id, Date date, long sensorId, String sensorType, long houseId, long value, String img) {
 		this.id = id;
 		this.date = date;
 		this.sensorId = sensorId;
 		this.sensorType = sensorType;
 		this.houseId = houseId;
 		this.value = value;
+		this.img = img;
 	}
 	
 	@Id
@@ -84,6 +86,17 @@ public class SensorLog {
 	public void setValue(long value) {
 		this.value = value;
 	}
+	
+	@Column(name = "img", nullable = true)
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
+	
+	
 	
 	
 	
