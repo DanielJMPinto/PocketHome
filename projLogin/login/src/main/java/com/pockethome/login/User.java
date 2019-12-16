@@ -1,4 +1,8 @@
 package com.pockethome.login;
+<<<<<<< HEAD
+=======
+
+>>>>>>> a6c00d8472227706e377564216f0c19b3b9a3aca
 import javax.persistence.*;
 import java.util.*;
 
@@ -80,6 +84,10 @@ public class User {
         return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
                 + ", password=" + password + "]";
     }
+<<<<<<< HEAD
 
 
 }
+=======
+}
+>>>>>>> a6c00d8472227706e377564216f0c19b3b9a3aca
