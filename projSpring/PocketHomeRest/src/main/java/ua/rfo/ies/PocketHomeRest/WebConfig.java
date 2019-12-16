@@ -22,14 +22,6 @@ public class WebConfig implements WebMvcConfigurer {
     private ApplicationContext applicationContext;
 
 
-
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("index.html")
-                .addResourceLocations("classpath:/WEB-INF/resources/");
-        registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
-    }
-
-
     @Bean
     public SpringResourceTemplateResolver templateResolver() {
 
