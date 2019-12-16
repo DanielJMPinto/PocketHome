@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.PutMapping;
 
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -23,6 +24,12 @@ public class UserController {
     @GetMapping(value = "/users/{id}")
     User getUser (@PathVariable(value = "id") Long userId){
         return userRepository.findById(userId).get();
+    }
+    
+    // Get list of users
+    @GetMapping(value = "/users")
+    List<User> getAllUsers(){
+    	return userRepository.findAll();
     }
 
     // Alter the user info
