@@ -1,0 +1,4 @@
+com/pockethome/login/LoginApplication.class
+com/pockethome/login/UserRepository.class
+com/pockethome/login/User.class
+com/pockethome/login/UserController.class
