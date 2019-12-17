@@ -4,16 +4,18 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Dashboard</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
+    <title>Dashboard</title>
     <!-- Custom CSS -->
-    <link href="dist/css/style.min.css" th:href="@{/dist/css/style.mim.css}"  rel="stylesheet">
-    <link href="dist/css/style.css" th:href="@{/dist/css/style.css}"  rel="stylesheet">
+    <link href="assets/libs/chartist/dist/chartist.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="dist/css/style.min.css" rel="stylesheet">
+
     <style>
         .switch input {
             display: none;
@@ -66,6 +68,7 @@
     </style>
 </head>
 
+
 <body>
     <div class="preloader">
         <div class="lds-ripple">
@@ -102,7 +105,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href=""
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
-                                    src="../assets/images/users/1.jpg" alt="user" class="rounded-circle"
+                                    src="assets/images/users/1.jpg" alt="user" class="rounded-circle"
                                     width="31"></a>
                             <div class="dropdown-menu dropdown-menu-right user-dd animated">
                                 <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i>
@@ -164,25 +167,38 @@
                     </div>
                     <div class="col-3">
                         <div class=row>
-                            <a href="../index-components/temperature.html"> </a> <div class="row">
-                                <div class="card col-12">
-                                    <div class="card-body">
-                                        <h4 class="card-title">Humidity Guide</h4>
-
-                                        <table class="table no-border mini-table">
-
-                                            <tbody>
-                                                <tr>
-                                                    <td class="text-muted">Humidity</td>
-                                                    <td class="font-medium">83%</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                        <div class="row">
-                                            <div id="earnings"></div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Temp Guide</h4>
+                                    <div class="d-flex align-items-center flex-row m-t-30">
+                                        <div class="display-5 text-info"><i class="wi wi-day-showers"></i>
+                                            <span>73<sup>°</sup></span></div>
+                                        <div class="m-l-10">
+                                            <h3 class="m-b-0">Saturday</h3><small>Ahmedabad, India</small>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="card col-12">
+                                <div class="card-body">
+                                    <h4 class="card-title">Humidity Guide</h4>
+
+                                    <table class="table no-border mini-table">
+
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-muted">Humidity</td>
+                                                <td class="font-medium">83%</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="row">
+                                        <div id="earnings"></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <!-- GAS -->
                         <div class="row" style="height:auto">
@@ -273,7 +289,7 @@
                             <div class="card-body">
                                 <h4 class="card-title"><strong><i class="mdi mdi-bell-ring"></i> Someone's at the
                                         door!</strong></h4>
-                                <div><img src="../../assets/images/securitycam.jpg" style="width:20vw" /></div>
+                                <div><img src="assets/images/securitycam.jpg" style="width:20vw" /></div>
                             </div>
                         </div>
                     </div>
@@ -286,7 +302,6 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">Temperature Ratio</h4>
-                                <p th:text="${banana}"></p>
                                 <div class="sales ct-charts mt-3"></div>
                             </div>
                         </div>
@@ -299,23 +314,23 @@
         </div>
     </div>
     </div>
-    <script src="../assets/libs/jquery/dist/jquery.min.js" th:src="@{/assets/libs/jquery/dist/jquery.min.js}"></script>
+    <script src="assets/libs/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
-    <script src="/assets/libs/popper.js/dist/umd/popper.min.js"></script>
-    <script src="/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="asse ts/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="../assets/extra-libs/sparkline/sparkline.js"></script>
+    <script src="assets/extra-libs/sparkline/sparkline.js"></script>
     <!--Wave Effects -->
-    <script src="../dist/js/waves.js"></script>
+    <script src="dist/js/waves.js"></script>
     <!--Menu sidebar -->
-    <script src="../dist/js/sidebarmenu.js"></script>
+    <script src="dist/js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
-    <script src="../dist/js/custom.min.js"></script>
+    <script src="dist/js/custom.min.js"></script>
     <!--This page JavaScript -->
     <!--chartis chart-->
-    <script src="../assets/libs/chartist/dist/chartist.min.js"></script>
-    <script src="../assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
-    <script src="../dist/js/pages/dashboards/dashboard1.js"></script>
+    <script src="assets/libs/chartist/dist/chartist.min.js"></script>
+    <script src="assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
+    <script src="dist/js/pages/dashboards/dashboard1.js"></script>
 </body>
 
 </html>
