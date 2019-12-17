@@ -18,7 +18,7 @@ public class HomeController {
 
     @GetMapping(value = "/index")
     public String index(Model model, HomeService HomeService) {
-
+        System.out.println("banana2");
         //var index = HomeService.all();
         // model.addAttribute("index", index);
 

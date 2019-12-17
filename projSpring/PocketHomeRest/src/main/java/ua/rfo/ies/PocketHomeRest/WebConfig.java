@@ -14,7 +14,6 @@ import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
 @Configuration
-@EnableWebMvc
 @ComponentScan(basePackages = {""})
 public class WebConfig implements WebMvcConfigurer {
 
@@ -50,7 +49,6 @@ public class WebConfig implements WebMvcConfigurer {
 
         ThymeleafViewResolver resolver = new ThymeleafViewResolver();
         ViewResolverRegistry registry = new ViewResolverRegistry(null, applicationContext);
-
         resolver.setTemplateEngine(templateEngine());
         registry.viewResolver(resolver);
 
