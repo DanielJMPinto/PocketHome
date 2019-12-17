@@ -1,28 +1,35 @@
 package ua.rfo.ies.PocketHomeRest;
 
-
 import java.util.Date;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "sensor_logs")
 public class SensorLog {
 	private long id;
-	private Date date;
 	private long sensorId;
 	private String sensorType;
 	private long value;
 	private long houseId;
+	private String img;
+	
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	private Date date;
+	
+	public SensorLog() {
+	}
 
-	public SensorLog(long id, Date date, long sensorId, String sensorType, long houseId, long value) {
-		super();
+	public SensorLog(long id, Date date, long sensorId, String sensorType, long houseId, long value, String img) {
 		this.id = id;
 		this.date = date;
 		this.sensorId = sensorId;
 		this.sensorType = sensorType;
 		this.houseId = houseId;
 		this.value = value;
+		this.img = img;
 	}
 	
 	@Id
@@ -79,6 +86,17 @@ public class SensorLog {
 	public void setValue(long value) {
 		this.value = value;
 	}
+	
+	@Column(name = "img", nullable = true)
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
+	
+	
 	
 	
 	

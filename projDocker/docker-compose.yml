@@ -1,0 +1,12 @@
+version: '3.1'
+services:
+  postgres_db:
+    container_name: postegres_database_ies
+    image: postgres
+    environment:
+      POSTGRES_DB: pocket
+      POSTGRES_USER: daniel
+      POSTGRES_PASSWORD: daniel
+    ports:
+      - "5433:5432"
+    restart: always
