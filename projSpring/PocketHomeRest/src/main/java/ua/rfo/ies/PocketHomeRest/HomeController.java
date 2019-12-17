@@ -33,10 +33,11 @@ public class HomeController {
     }
 
     @GetMapping(value = "/dashboard")
-    public String dashboard(Model model, HomeService HomeService) {
+    public String dashboard( Model model) {
         //System.out.println("banana2");
         //var index = HomeService.all();
         // model.addAttribute("index", index);
+
 
         return "dashboard";
     }

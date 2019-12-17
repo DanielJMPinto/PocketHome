@@ -210,10 +210,6 @@
                         <div class="card-body">
                             <h5 class="card-title text-center">Sign In</h5>
 
-                            <li id="btn_dash" class="nav-item" style="display: none">
-                                <a th:href="@{/dashboard}" class="btn btn-custom btn-info btn-lg">Go to your Dashboard!</a>
-                            </li>
-
                             <form class="form-signin" id="form_sign">
                                 <div class="form-label-group">
                                     <input type="email" id="inputEmail" class="form-control" placeholder="Email address"
@@ -237,15 +233,15 @@
                 </div>
             </div>
         </div>
-        <script>
+        <script th:inline="javascript">
             var dict = {"ies@ies.com" : "1234"};
             function teste_login() {
                 console.log("ola");
                 var email = document.getElementById("inputEmail").value;
                 var pass = document.getElementById("inputPassword").value;
                 if (email in dict && dict[email] == pass) {
-                    document.getElementById("form_sign").style.display = "none";
-                    document.getElementById("btn_dash").style.display = "block";
+                    window.location.href = "/dashboard"
+
                 }else{
                     document.getElementById("label_err").innerHTML = "Email or Password incorrect";
                 }
