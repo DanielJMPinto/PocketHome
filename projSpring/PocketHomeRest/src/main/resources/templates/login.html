@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html dir="ltr" lang="en">
+<html dir="ltr" lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -9,12 +9,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
     <title>Dashboard</title>
     <!-- Custom CSS -->
-    <link href="../../assets/libs/chartist/dist/chartist.min.css" rel="stylesheet">
+    <link href="assets/libs/chartist/dist/chartist.min.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="../../dist/css/style.min.css" rel="stylesheet">
+    <link href="dist/css/style.min.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -186,7 +186,7 @@
                             <i class="ti-menu ti-close"></i>
                         </a>
                         <div class="navbar-brand">
-                            <a href="index.html" class="logo">
+                            <a th:href="@{/index}" class="logo">
                                 <h4 style="color:black">PocketHome</h4>
                             </a>
                         </div>
@@ -209,7 +209,12 @@
                     <div class="card card-signin my-5">
                         <div class="card-body">
                             <h5 class="card-title text-center">Sign In</h5>
-                            <form class="form-signin" >
+
+                            <li id="btn_dash" class="nav-item" style="display: none">
+                                <a th:href="@{/dashboard}" class="btn btn-custom btn-info btn-lg">Go to your Dashboard!</a>
+                            </li>
+
+                            <form class="form-signin" id="form_sign">
                                 <div class="form-label-group">
                                     <input type="email" id="inputEmail" class="form-control" placeholder="Email address"
                                         required autofocus>
@@ -239,7 +244,8 @@
                 var email = document.getElementById("inputEmail").value;
                 var pass = document.getElementById("inputPassword").value;
                 if (email in dict && dict[email] == pass) {
-                    window.location.replace("index.html");
+                    document.getElementById("form_sign").style.display = "none";
+                    document.getElementById("btn_dash").style.display = "block";
                 }else{
                     document.getElementById("label_err").innerHTML = "Email or Password incorrect";
                 }
@@ -249,23 +255,23 @@
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
-    <script src="../../assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="assets/libs/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
-    <script src="../../assets/libs/popper.js/dist/umd/popper.min.js"></script>
-    <script src="../../assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="assets/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="../../assets/extra-libs/sparkline/sparkline.js"></script>
+    <script src="assets/extra-libs/sparkline/sparkline.js"></script>
     <!--Wave Effects -->
-    <script src="../../dist/js/waves.js"></script>
+    <script src="dist/js/waves.js"></script>
     <!--Menu sidebar -->
-    <script src="../../dist/js/sidebarmenu.js"></script>
+    <script src="dist/js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
-    <script src="../../dist/js/custom.min.js"></script>
+    <script src="dist/js/custom.min.js"></script>
     <!--This page JavaScript -->
     <!--chartis chart-->
-    <script src="../../assets/libs/chartist/dist/chartist.min.js"></script>
-    <script src="../../assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
-    <script src="../../dist/js/pages/dashboards/dashboard1.js"></script>
+    <script src="assets/libs/chartist/dist/chartist.min.js"></script>
+    <script src="assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
+    <script src="dist/js/pages/dashboards/dashboard1.js"></script>
 </body>
 
 </html>

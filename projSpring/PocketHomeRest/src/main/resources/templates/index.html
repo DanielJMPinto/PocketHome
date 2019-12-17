@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en" xmlns:th="http://www.thymeleaf.org">
 
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,328 +10,130 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
-    <title>Dashboard</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="https://wrappixel.com/demos/free-admin-templates/all-lite-landing-pages/assets/images/logos/nice-favicon.png">
+    <title>PocketHome</title>
     <!-- Custom CSS -->
-    <link href="assets/libs/chartist/dist/chartist.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="dist/css/style.min.css" rel="stylesheet">
-
-    <style>
-        .switch input {
-            display: none;
-        }
-
-        .switch {
-            border-bottom: 20px;
-            display: inline-block;
-            align-content: center;
-            width: 50px;
-            height: 20px;
-            margin: 8px;
-            transform: translateY(50%);
-            position: relative;
-        }
-
-        .slider {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            border-radius: 50px;
-            box-shadow: 0 0 0 2px #777, 0 0 4px #777;
-            cursor: pointer;
-            border: 4px solid transparent;
-            overflow: hidden;
-            transition: .4s;
-        }
-
-        .slider:before {
-            position: absolute;
-            content: "";
-            width: 100%;
-            height: 100%;
-            background: #777;
-            border-radius: 5px;
-            transform: translateX(-30px);
-            transition: .4s;
-        }
-
-        input:checked+.slider:before {
-            transform: translateX(30px);
-            background: limeGreen;
-        }
-
-        input:checked+.slider {
-            box-shadow: 0 0 0 2px limeGreen, 0 0 2px limeGreen;
-        }
-    </style>
+    <link href="https://wrappixel.com/demos/free-admin-templates/all-lite-landing-pages/dist/css/style.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
 </head>
 
-
 <body>
-    <div class="preloader">
-        <div class="lds-ripple">
-            <div class="lds-pos"></div>
-            <div class="lds-pos"></div>
-        </div>
-    </div>
-    <div id="main-wrapper" data-navbarbg="skin6" data-theme="light" data-layout="vertical" data-sidebartype="full"
-        data-boxed-layout="full">
-        <header class="topbar" data-navbarbg="skin6">
-            <nav class="navbar top-navbar navbar-expand-md navbar-light">
-                <div class="navbar-header" data-logobg="skin5" style="background-color:white; ">
-                    <!-- This is for the sidebar toggle which is visible on mobile only -->
-                    <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)">
-                        <i class="ti-menu ti-close"></i>
-                    </a>
-                    <div class="navbar-brand">
-                        <a href="index.html" class="logo">
-                            <h4 style="color:black">PocketHome</h4>
-                        </a>
-                    </div>
-                    <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)"
-                        data-toggle="collapse" data-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="ti-more"></i>
-                    </a>
-                </div>
-                <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin6">
-                    <ul class="navbar-nav float-left mr-auto">
-                        <li class="nav-item search-box">
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav float-right">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href=""
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
-                                    src="assets/images/users/1.jpg" alt="user" class="rounded-circle"
-                                    width="31"></a>
-                            <div class="dropdown-menu dropdown-menu-right user-dd animated">
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i>
-                                    My Profile</a>
-                                <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email m-r-5 m-l-5"></i>
-                                    Inbox</a>
+<!-- ============================================================== -->
+<!-- Main wrapper -->
+<!-- ============================================================== -->
+    <div id="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Header part -->
+        <!-- ============================================================== -->
+        <header class="py-3 bg-white">
+            <div class="container">
+                <!-- Start Header -->
+                <div class="header">
+                    <nav class="navbar navbar-expand-md navbar-light px-0">
+                        <a class="navbar-brand" href="#">
+                            <img src="../assets/images/home.png" alt="logo" height="36px" width="36px">
+                            <div class="navbar-brand">
+                                <a th:href="@{/index}" class="logo">
+                                    <h4 style="color:black">PocketHome</h4>
+                                </a>
                             </div>
-                        </li>
-                    </ul>
+                        </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item">
+                                    <a th:href="@{/login}" class="btn btn-custom btn-info btn-lg">Login</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
                 </div>
-            </nav>
-        </header>
-        <aside class="left-sidebar" data-sidebarbg="skin5">
-            <div class="scroll-sidebar">
-                <nav class="sidebar-nav">
-                    <ul id="sidebarnav">
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.html"
-                                aria-expanded="false">
-                                <i class="mdi mdi-av-timer"></i>
-                                <span class="hide-menu">Dashboard</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pages-profile.html"
-                                aria-expanded="false">
-                                <i class="mdi mdi-account-network"></i>
-                                <span class="hide-menu">Profile</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
+                <!-- End Header -->
             </div>
-        </aside>
-        <div class="page-wrapper">
-            <div class="page-breadcrumb">
-                <div class="row">
-                    <div class="col-5 align-self-center">
-                        <h4 class="page-title">Dashboard</h4>
-                    </div>
-                    <div class="col-7 align-self-center">
-                        <div class="d-flex align-items-center justify-content-end">
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item">
-                                        <a href="#">Home</a>
-                                    </li>
-                                    <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
-                                </ol>
-                            </nav>
+        </header>
+        <!-- ============================================================== -->
+        <!-- Header part -->
+        <!-- ============================================================== -->
+        
+        <!-- ============================================================== -->
+        <!-- Page wrapper part -->
+        <!-- ============================================================== -->
+        <div class="content-wrapper">
+            <!-- ============================================================== -->
+            <!-- Demos part -->
+            <!-- ============================================================== -->
+            <section class="spacer bg-light">
+                <div class="container">
+                    <div class="row justify-content-md-center pt-5">
+                        <div class="col-md-9 text-center">
+                            <h2 class="text-dark">Welcome to <span class="border-bottom border-dark"> PocketHome</span>, a professional solution for your home surveillance needs.</h2>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="container-fluid">
-                <div class="row">
-                    <!-- column -->
-                    <div class="col-1">
-                    </div>
-                    <div class="col-3">
-                        <div class=row>
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title">Temp Guide</h4>
-                                    <div class="d-flex align-items-center flex-row m-t-30">
-                                        <div class="display-5 text-info"><i class="wi wi-day-showers"></i>
-                                            <span>73<sup>°</sup></span></div>
-                                        <div class="m-l-10">
-                                            <h3 class="m-b-0">Saturday</h3><small>Ahmedabad, India</small>
+                    <div class="row py-5">
+                        <!-- ============================================================== -->
+                        <!-- Lite Demo -->
+                        <!-- ============================================================== -->
+                        <div class="col-md-12">
+                            <div class="card p-2 mr-1">
+                                <div class="card-body p-4">
+                                    <div class="text-center">
+                                        <h2 class="text-dark font-weight-medium">What We can do for You:</h2>
+                                        <h4 class="text-success">Starting at 3€ a month</h4>
+                                    </div>
+                                    <div class="live-box text-center mt-4">
+                                        <img class="img-fluid" src="../assets/images/dashboard.png" alt="Lite version">
+                                    </div>
+                                    <p class="text-muted mt-5 line-h33 font-16">PocketHome consists in a  web browser page that allows you to monitor your house security and air conditions from anywhere, anytime.</p>
+                                    <div class="row text-muted  mt-4">
+                                        <div class="col-md-6">
+                                            <ul class="list-unstyled listing">
+                                                <li><img src="https://wrappixel.com/demos/free-admin-templates/all-lite-landing-pages/assets/images/font-icons/light-circle.jpg" class="img-fluid mr-2">Lifetime Warranty</li>
+                                                <li><img src="https://wrappixel.com/demos/free-admin-templates/all-lite-landing-pages/assets/images/font-icons/light-circle.jpg" class="img-fluid mr-2">Wireless Equipment</li>
+                                                <li><img src="https://wrappixel.com/demos/free-admin-templates/all-lite-landing-pages/assets/images/font-icons/light-circle.jpg" class="img-fluid mr-2">Multiroom Systems</li>
+                                                <li><img src="https://wrappixel.com/demos/free-admin-templates/all-lite-landing-pages/assets/images/font-icons/light-circle.jpg" class="img-fluid mr-2">Locking Systems</li>
+                                                <li><img src="https://wrappixel.com/demos/free-admin-templates/all-lite-landing-pages/assets/images/font-icons/light-circle.jpg" class="img-fluid mr-2">24H Conecction to Central</li>
+                                                <li><img src="https://wrappixel.com/demos/free-admin-templates/all-lite-landing-pages/assets/images/font-icons/light-circle.jpg" class="img-fluid mr-2">Emergency Protocols</li>
+                                                <li class="text-dark"><img src="https://wrappixel.com/demos/free-admin-templates/all-lite-landing-pages/assets/images/font-icons/dark-circle.jpg" class="img-fluid mr-2">24H Vigilant Service</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <ul class="list-unstyled listing">
+                                                <li><img src="https://wrappixel.com/demos/free-admin-templates/all-lite-landing-pages/assets/images/font-icons/light-circle.jpg" class="img-fluid mr-2">Access Control</li>
+                                                <li><img src="https://wrappixel.com/demos/free-admin-templates/all-lite-landing-pages/assets/images/font-icons/light-circle.jpg" class="img-fluid mr-2">Humidity and Temperature Sensors</li>
+                                                <li><img src="https://wrappixel.com/demos/free-admin-templates/all-lite-landing-pages/assets/images/font-icons/light-circle.jpg" class="img-fluid mr-2">Integrated System</li>
+                                                <li><img src="https://wrappixel.com/demos/free-admin-templates/all-lite-landing-pages/assets/images/font-icons/light-circle.jpg" class="img-fluid mr-2">Knock Sensors and Much more</li>
+                                                <li class="text-dark "><img src="https://wrappixel.com/demos/free-admin-templates/all-lite-landing-pages/assets/images/font-icons/dark-circle.jpg" class="img-fluid mr-2">30-day Money-back Guarantee</li>
+                                                <li class="text-dark"><img src="https://wrappixel.com/demos/free-admin-templates/all-lite-landing-pages/assets/images/font-icons/dark-circle.jpg" class="img-fluid mr-2">Free Instalation Service</li>
+                                            </ul>
                                         </div>
                                     </div>
+
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="card col-12">
-                                <div class="card-body">
-                                    <h4 class="card-title">Humidity Guide</h4>
-
-                                    <table class="table no-border mini-table">
-
-                                        <tbody>
-                                            <tr>
-                                                <td class="text-muted">Humidity</td>
-                                                <td class="font-medium">83%</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <div class="row">
-                                        <div id="earnings"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- GAS -->
-                        <div class="row" style="height:auto">
-                            <div class="card col-12" style="background-color:red;color:white">
-                                <div class="card-body">
-                                    <h4 class="card-title">Gas</h4>
-                                    <span><i style="font-size:20px;vertical-align:center;"
-                                            class=" mdi mdi-fire"></i><strong style="font-size:20px;">Leak
-                                            detected!</strong></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- column -->
-                    <div class="col-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Status</h4>
-                            </div>
-                            <div class="table-responsive">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th class="border-top-0">NAME</th>
-                                            <th class="border-top-0">STATUS</th>
-                                            <th class="border-top-0"></th>
-
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-
-                                            <td class="txt-oflo"> <i class=" mdi mdi-glassdoor"></i> Front Door</td>
-                                            <td><span class="label label-success label-rounded">OPEN</span> </td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-
-                                            <td class="txt-oflo"> <i class=" mdi mdi-glassdoor"></i> Back Door</td>
-                                            <td><span class="label label-success label-rounded"
-                                                    style="margin-top:70px;">OPEN</span></td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-
-                                            <td class="txt-oflo"><i class=" mdi mdi-lightbulb-on"></i> Living Room</td>
-                                            <td><span class="label label-success label-rounded">ON</span></td>
-                                            <td>
-                                                <div style="vertical-align:top;">
-                                                    <label class="switch">
-                                                        <input type="checkbox">
-                                                        <span class="slider"></span>
-                                                    </label>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-
-                                            <td class="txt-oflo"><i class=" mdi mdi-lightbulb-outline"></i> Kitchen</td>
-                                            <td><span class="label label-danger label-rounded">OFF</span> </td>
-                                            <td>
-                                                <div style="vertical-align:top;">
-                                                    <label class="switch">
-                                                        <input type="checkbox">
-                                                        <span class="slider"></span>
-                                                    </label>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <!-- FIRE -->
-                        <div class="row" style="height:auto; padding:1em">
-                            <div class="card col-12" style="background-color:red;color:white">
-                                <div class="card-body">
-                                    <h4 class="card-title">Fire</h4>
-                                    <span><i style="font-size:20px;vertical-align:center;"
-                                            class=" mdi mdi-fire"></i><strong style="font-size:20px;">House is on
-                                            fire!</strong></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title"><strong><i class="mdi mdi-bell-ring"></i> Someone's at the
-                                        door!</strong></h4>
-                                <div><img src="assets/images/securitycam.jpg" style="width:20vw" /></div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div clas="row" style="height:200px"></div>
-                <div class="row">
-                    <div class="col-2"></div>
-                    <div class="col-8">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Temperature Ratio</h4>
-                                <div class="sales ct-charts mt-3"></div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
         </div>
-        <div class="row">
-
-        </div>
+        <!-- ============================================================== -->
+        <!-- End page wrapperHeader part -->
+        <!-- ============================================================== -->
+        <footer class="text-center p-4"> All Rights Reserved by PocketHome. Designed and Developed by <a href="https://github.com/tomas99batista/PocketHome">Group 8 of the IES class of 2019/20</a>.</footer>
     </div>
-    </div>
-    <script src="assets/libs/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap tether Core JavaScript -->
-    <script src="asse ts/libs/popper.js/dist/umd/popper.min.js"></script>
-    <script src="assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="assets/extra-libs/sparkline/sparkline.js"></script>
-    <!--Wave Effects -->
-    <script src="dist/js/waves.js"></script>
-    <!--Menu sidebar -->
-    <script src="dist/js/sidebarmenu.js"></script>
-    <!--Custom JavaScript -->
-    <script src="dist/js/custom.min.js"></script>
-    <!--This page JavaScript -->
-    <!--chartis chart-->
-    <script src="assets/libs/chartist/dist/chartist.min.js"></script>
-    <script src="assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
-    <script src="dist/js/pages/dashboards/dashboard1.js"></script>
 </body>
+<!-- ============================================================== -->
+<!-- All Jquery -->
+<!-- ============================================================== -->
+<script src="https://wrappixel.com/demos/free-admin-templates/all-lite-landing-pages/assets/plugins/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap tether Core JavaScript -->
+<script src="https://wrappixel.com/demos/free-admin-templates/all-lite-landing-pages/assets/plugins/popper.js/dist/umd/popper.min.js"></script>
+<script src="https://wrappixel.com/demos/free-admin-templates/all-lite-landing-pages/assets/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
 
 </html>

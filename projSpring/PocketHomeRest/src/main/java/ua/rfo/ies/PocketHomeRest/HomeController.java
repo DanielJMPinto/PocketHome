@@ -12,7 +12,7 @@ public class HomeController {
     @GetMapping("/")
     public String home(Model model) {
         model.addAttribute("banana", "valor");
-        System.out.println("banana");
+
         return "index";
     }
 
@@ -23,6 +23,22 @@ public class HomeController {
         // model.addAttribute("index", index);
 
         return "index";
+    }
+
+    @GetMapping("/login")
+    public String login(Model model) {
+        model.addAttribute("banana", "valor");
+        System.out.println("login");
+        return "login";
+    }
+
+    @GetMapping(value = "/dashboard")
+    public String dashboard(Model model, HomeService HomeService) {
+        //System.out.println("banana2");
+        //var index = HomeService.all();
+        // model.addAttribute("index", index);
+
+        return "dashboard";
     }
 
     @GetMapping("/pgFixe")
