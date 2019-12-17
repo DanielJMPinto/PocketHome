@@ -20,6 +20,7 @@
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
 <![endif]-->
 </head>
 
@@ -208,34 +209,42 @@
                     <div class="card card-signin my-5">
                         <div class="card-body">
                             <h5 class="card-title text-center">Sign In</h5>
-                            <form class="form-signin">
+                            <form class="form-signin" >
                                 <div class="form-label-group">
-                                    <input type="email" id="inputEmail" class="form-control" placeholder="Email address">
+                                    <input type="email" id="inputEmail" class="form-control" placeholder="Email address"
+                                        required autofocus>
                                 </div>
 
                                 <div class="form-label-group">
-                                    <label for="inputPassword">Password</label>
                                     <input type="password" id="inputPassword" class="form-control"
                                         placeholder="Password" required>
                                 </div>
 
-                                <div class="custom-control custom-checkbox mb-3">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                    <label class="custom-control-label" for="customCheck1">Remember password</label>
+                                <input class="btn btn-lg btn-primary btn-block text-uppercase" type="button" id="submit" onclick="teste_login()" value="Log In">
+
+                                <div class="form-label-group">
+                                    <label id="label_err"></label>
                                 </div>
-                                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign
-                                    in</button>
-                                <hr class="my-4">
-                                <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i
-                                        class="fab fa-google mr-2"></i> Sign in with Google</button>
-                                <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i
-                                        class="fab fa-facebook-f mr-2"></i> Sign in with Facebook</button>
+
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <script>
+            var dict = {"ies@ies.com" : "1234"};
+            function teste_login() {
+                console.log("ola");
+                var email = document.getElementById("inputEmail").value;
+                var pass = document.getElementById("inputPassword").value;
+                if (email in dict && dict[email] == pass) {
+                    window.location.replace("index.html");
+                }else{
+                    document.getElementById("label_err").innerHTML = "Email or Password incorrect";
+                }
+             }
+        </script>
     </div>
     <!-- ============================================================== -->
     <!-- All Jquery -->
