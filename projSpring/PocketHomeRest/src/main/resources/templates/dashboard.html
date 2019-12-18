@@ -114,6 +114,44 @@
             box-shadow: 0 0 0 2px limeGreen, 0 0 2px limeGreen;
         }
     </style>
+    <script type="text/javascript" th:inline="javascript">
+
+        /*<![CDATA[*/
+          
+           var temp_data = /*[[${temp_data}]]*/;
+           var graph_data = [];
+
+           temp_data.forEach(function(item, index) {
+               graph_data.push({x: new Date(item["date"]), y: item["value"]});
+           });
+
+
+           console.log(graph_data);
+
+           window.onload = function () {
+                startTime();
+                var chart = new CanvasJS.Chart("chartContainer",
+                {
+                axisX:{
+                    title: "timeline",
+                },
+                axisY: {
+                    title: "values"
+                },
+                data: [
+                {        
+                    type: "line",
+                    dataPoints: graph_data
+                }
+                ]
+            });
+
+                chart.render();
+            }
+  
+         /*]]>*/
+  </script>
+  <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </head>
 
 
@@ -234,7 +272,6 @@
                                 return i;
                             }
                         </script>
-
                         <body onload="startTime()">
 
                     </div>
@@ -245,7 +282,27 @@
                                     <h4 class="card-title">Temperature</h4>
                                     <div class="d-flex align-items-center flex-row m-t-30">
                                         <div class="display-5 text-info"><i class="wi wi-day-showers"></i>
-                                            <span>73<sup>°</sup></span></div>
+                                            <span><span id="location_temp"></span><sup>°</sup></span></div>
+<script>
+    link = "http://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1010500.json";
+    var request = new XMLHttpRequest();
+    request.open('GET',link,true);
+    request.onload = function(){
+        var obj = JSON.parse(this.response);
+        if (request.status >= 200 && request.status < 400) {
+            var daily_values = obj['data'][0];
+            var t_min = parseInt(daily_values['tMin']);
+            var t_max = parseInt(daily_values['tMax']);
+            var t_med = (t_max+t_min)/2;
+            document.getElementById("location_temp").innerHTML = t_med;
+        }
+            else{
+            console.log("The city doesn't exist! Kindly check");
+        }
+    }
+request.send();
+</script>
+
                                         <div class="m-l-10">
                                             <h3 class="m-b-0">
                                                 <span id="day_week"></span>
@@ -279,6 +336,42 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- CHUVA -->
+                        <div class="row">
+                            <div class="card col-12">
+                                <div class="card-body">
+                                    <h4 class="card-title">Rain Sensor</h4>
+                                    <table class="table no-border mini-table">
+                                        <tbody>
+                                            <tr>
+                                                <td class="font-medium"><span id="rain_value">   </span></td>
+                                            </tr>
+                                        <script th:inline="javascript">
+                                            /*<![CDATA[*/
+                                            var sensor_log_rain = [[${sensor_log_rain}]][0]['value'];
+                                            console.log('rain sensor', sensor_log_rain, typeof(sensor_log_rain))
+                                            var sensor_rain_info = document.getElementById("rain_value");
+                                            if (sensor_log_rain == 1){
+                                                console.log('entrei1');
+                                                sensor_rain_info.innerHTML = 'RAINING'
+                                                sensor_rain_info.className = "label label-danger label-rounded";
+                                            } else if (sensor_log_rain == 0){
+                                                console.log('entrei0');
+                                                sensor_rain_info.innerHTML = ':)'
+                                                sensor_rain_info.className = "label label-success label-rounded";
+                                            } else {
+                                                sensor_rain_info.innerHTML = 'ERROR'
+                                                sensor_rain_info.className = "label label-danger label-rounded";                                                
+                                            }
+                                            /*]]>*/
+                                        </script>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                     <!-- column -->
                     <div class="col-4">
@@ -306,6 +399,12 @@
                                         </tr>
                                         <script th:inline="javascript">
                                             var sensor_log_door = [[${ sensor_log_door }]][0]['value'];
+                                            <td><span class="label label-success label-rounded" id="door_status">OPEN</span> </td>
+                                            <td></td>
+                                        </tr>
+                                        <script th:inline="javascript">
+                                            /*<![CDATA[*/
+                                            var sensor_log_door = [[${sensor_log_door}]][0]['value'];
                                             var sensor_door_info = document.getElementById("door_status");
                                             if (sensor_log_door == 1) {
                                                 sensor_door_info.innerHTML = 'OPEN'
@@ -314,20 +413,29 @@
                                                 sensor_door_info.innerHTML = 'CLOSED'
                                                 sensor_door_info.className = "label label-danger label-rounded";
                                             }
+                                            /*]]>*/                                                                                                                                         
                                         </script>
 
-                                        <tr>
+                                        </tr>
+                                        <tr th:each="lights: ${sensor_log_light}">
 
-                                            <td class="txt-oflo"><i class=" mdi mdi-lightbulb-on"></i> Living Room</td>
-                                            <td><span class="label label-success label-rounded">ON</span></td>
+                                            <td class="txt-oflo"><i class=" mdi mdi-lightbulb-outline" id="light_bulb_icon"></i> Ligts</td>
+                                            <td><span class="label label-success label-rounded" id="light_status">OFF</span></td>
+
                                             <td>
-                                                <div style="vertical-align:top;">
+                                                <!--
+                                                <form th:action="@{/logs_light}" method="post">
+                                                <div style="vertical-align:top;" >
                                                     <label class="switch">
-                                                        <input type="checkbox">
-                                                        <span class="slider"></span>
+                                                        <input type="checkbox" id="light_slider" onclick="change_lights()"name="value" th:value="*{value}">
+                                                        <span class="slider" ></span>
                                                     </label>
                                                 </div>
+                                                <button type="submit">Fuck this shit</button>
+                                                </form>
+                                                -->
                                             </td>
+
                                         </tr>
 
                                     </tbody>
@@ -342,6 +450,16 @@
                                 <h4 class="card-title"><strong><i class="mdi mdi-bell-ring"></i> Someone's at the
                                         door!</strong></h4>
                                 <div><img src="assets/images/securitycam.jpg" style="max-width:15vw" /></div>
+                            <div class="card-body" th:each="temp: ${sensor_log_temp}">
+                                <h4 class="card-title"><strong>House Temperature</strong></h4>
+                                <div><h5 th:text="${temp.value}" id="temp_text"></h5></div>
+                            </div>
+
+                        </div>
+                        <div class="card">
+                            <div class="card-body" th:each="hum: ${sensor_log_hum}">
+                                <h4 class="card-title"><strong>House Humidity</strong></h4>
+                                <div><h5 th:text="${hum.value}" id="hum_text"></h5></div>
                             </div>
                         </div>
                         <div class="card" style="text-align: center; padding:10px; font-size:2.0rem">
@@ -359,9 +477,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">Temperature Ratio</h4>
-                                <div class="col-8" th:each="temp:${sensor_log_temp}">
-                                    <label th:text="${temp.value}"></label>
-                                </div>
+                                <div id="chartContainer" style="height: 300px; width: 100%;"></div>
                             </div>
                         </div>
                     </div>
@@ -397,6 +513,48 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript" th:inline="javascript">
+        /*<![CDATA[*/
+
+            var temp = document.getElementById("temp_text");
+            var celsius = document.createTextNode(" ºC");
+            temp.appendChild(celsius);
+
+            // -------------------------------------------
+
+            var hum = document.getElementById("hum_text");
+            var per = document.createTextNode(" %");
+            hum.appendChild(per);
+
+            // -------------------------------------------
+
+            var light_value = /*[[${sensor_log_light}]]*/;
+            if (light_value[0]["value"] == 1) {
+                document.getElementById("light_bulb_icon").classList.remove("mdi-lightbulb-outline");
+                document.getElementById("light_bulb_icon").classList.add("mdi-lightbulb-on");
+                document.getElementById("light_status").innerHTML = "ON" ;
+                document.getElementById("light_status").classList.remove("label-success");
+                document.getElementById("light_status").classList.add("label-danger");
+                //document.getElementById("light_slider").checked=true;
+            }else{
+                document.getElementById("light_bulb_icon").classList.remove("mdi-lightbulb-on");
+                document.getElementById("light_bulb_icon").classList.add("mdi-lightbulb-outline");
+                document.getElementById("light_status").innerHTML = "OFF" ;
+                document.getElementById("light_status").classList.remove("label-danger");
+                document.getElementById("light_status").classList.add("label-success");
+                //document.getElementById("light_slider").checked=false;
+            };
+
+            function change_lights() {
+                var slider_value = document.getElementById("light_slider").checked;
+                if (slider_value) {
+                    document.getElementById("light_slider").value = 345;
+                }else{
+                    document.getElementById("light_slider").value = 23;
+                }
+            };
+        /*]]>*/
+    </script>
     </div>
 
 
