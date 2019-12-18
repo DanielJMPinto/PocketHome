@@ -370,10 +370,16 @@ request.send();
                     </div>
                     <div class="col-4">
                         <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title"><strong><i class="mdi mdi-bell-ring"></i> Someone's at the
-                                        door!</strong></h4>
-                                <div><img src="assets/images/securitycam.jpg" style="width:20vw" /></div>
+                            <div class="card-body" th:each="temp: ${sensor_log_temp}">
+                                <h4 class="card-title"><strong>House Temperature</strong></h4>
+                                <div><h5 th:text="${temp.value}" id="temp_text"></h5></div>
+                            </div>
+
+                        </div>
+                        <div class="card">
+                            <div class="card-body" th:each="hum: ${sensor_log_hum}">
+                                <h4 class="card-title"><strong>House Humidity</strong></h4>
+                                <div><h5 th:text="${hum.value}" id="hum_text"></h5></div>
                             </div>
                         </div>
                     </div>
@@ -397,6 +403,18 @@ request.send();
     </div>
     <script type="text/javascript" th:inline="javascript">
         /*<![CDATA[*/
+
+            var temp = document.getElementById("temp_text");
+            var celsius = document.createTextNode(" ºC");
+            temp.appendChild(celsius);
+
+            // -------------------------------------------
+
+            var hum = document.getElementById("hum_text");
+            var per = document.createTextNode(" %");
+            hum.appendChild(per);
+
+            // -------------------------------------------
 
             var light_value = /*[[${sensor_log_light}]]*/;
             if (light_value[0]["value"] == 1) {
