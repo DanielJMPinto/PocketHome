@@ -51,7 +51,7 @@ public class HomeController {
 
         System.out.println("gas: " + (homeservice.find_sensor_log(2)).getClass().getSimpleName() + " - " + homeservice.find_sensor_log(2));
 
-        if(homeservice.find_sensor_log(2).isEmpty()){
+        if(homeservice.find_sensor_log(2)["value"]{
             System.out.println("NO GAS");
             model.addAttribute("gas_flag","no_gas");
         }
@@ -60,16 +60,8 @@ public class HomeController {
             model.addAttribute("gas_flag","gas");
         }
 
+
         return "dashboard";
     }
 
-<<<<<<< HEAD
-=======
-
-    @GetMapping("/pgFixe")
-    @ResponseBody
-    public String fixe(Model model){
-        return "<h1>ola</h1>";
-    }
->>>>>>> 91013bd7aaa2249739fc9f63dcfd8805236b4455
 }
