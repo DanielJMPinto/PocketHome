@@ -4,6 +4,9 @@ import ua.rfo.ies.PocketHomeRest.HomeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -52,6 +55,16 @@ public class HomeController {
 
         return "dashboard";
     }
+
+    @RequestMapping(value = "/dashboard", method = RequestMethod.POST)
+    public String dashboard1(  Model model) {
+        //System.out.println(value);
+
+        return "redirect:/index";
+    }
+
+
+
 
 
     @GetMapping("/pgFixe")

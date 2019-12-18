@@ -248,32 +248,27 @@
                                                     style="margin-top:70px;">OPEN</span></td>
                                             <td></td>
                                         </tr>
-                                        <tr>
+                                        <tr th:each="lights: ${sensor_log_light}">
 
-                                            <td class="txt-oflo"><i class=" mdi mdi-lightbulb-on"></i> Living Room</td>
-                                            <td><span class="label label-success label-rounded">ON</span></td>
+                                            <td class="txt-oflo"><i class=" mdi mdi-lightbulb-outline" id="light_bulb_icon"></i> Ligts</td>
+                                            <td><span class="label label-success label-rounded" id="light_status">OFF</span></td>
+
                                             <td>
-                                                <div style="vertical-align:top;">
+                                                <!--
+                                                <form th:action="@{/logs_light}" method="post">
+                                                <div style="vertical-align:top;" >
                                                     <label class="switch">
-                                                        <input type="checkbox">
-                                                        <span class="slider"></span>
+                                                        <input type="checkbox" id="light_slider" onclick="change_lights()"name="value" th:value="*{value}">
+                                                        <span class="slider" ></span>
                                                     </label>
                                                 </div>
+                                                <button type="submit">Fuck this shit</button>
+                                                </form>
+                                                -->
                                             </td>
-                                        </tr>
-                                        <tr>
 
-                                            <td class="txt-oflo"><i class=" mdi mdi-lightbulb-outline"></i> Kitchen</td>
-                                            <td><span class="label label-danger label-rounded">OFF</span> </td>
-                                            <td>
-                                                <div style="vertical-align:top;">
-                                                    <label class="switch">
-                                                        <input type="checkbox">
-                                                        <span class="slider"></span>
-                                                    </label>
-                                                </div>
-                                            </td>
                                         </tr>
+
                                     </tbody>
                                 </table>
                             </div>
@@ -321,7 +316,41 @@
 
         </div>
     </div>
+    <script type="text/javascript" th:inline="javascript">
+        /*<![CDATA[*/
+
+            var light_value = /*[[${sensor_log_light}]]*/;
+            if (light_value[0]["value"] == 1) {
+                document.getElementById("light_bulb_icon").classList.remove("mdi-lightbulb-outline");
+                document.getElementById("light_bulb_icon").classList.add("mdi-lightbulb-on");
+                document.getElementById("light_status").innerHTML = "ON" ;
+                document.getElementById("light_status").classList.remove("label-success");
+                document.getElementById("light_status").classList.add("label-danger");
+                //document.getElementById("light_slider").checked=true;
+            }else{
+                document.getElementById("light_bulb_icon").classList.remove("mdi-lightbulb-on");
+                document.getElementById("light_bulb_icon").classList.add("mdi-lightbulb-outline");
+                document.getElementById("light_status").innerHTML = "OFF" ;
+                document.getElementById("light_status").classList.remove("label-danger");
+                document.getElementById("light_status").classList.add("label-success");
+                //document.getElementById("light_slider").checked=false;
+            };
+
+            function change_lights() {
+                var slider_value = document.getElementById("light_slider").checked;
+                if (slider_value) {
+                    document.getElementById("light_slider").value = 345;
+                }else{
+                    document.getElementById("light_slider").value = 23;
+                }
+            };
+
+
+
+        /*]]>*/
+    </script>
     </div>
+
 
     <script src="assets/libs/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
