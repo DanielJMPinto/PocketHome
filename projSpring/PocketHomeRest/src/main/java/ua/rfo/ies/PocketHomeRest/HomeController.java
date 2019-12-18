@@ -22,10 +22,6 @@ public class HomeController {
 
     @GetMapping(value = "/index")
     public String index(Model model, HomeService HomeService) {
-        //System.out.println("banana2");
-        //var index = HomeService.all();
-        // model.addAttribute("index", index);
-
         return "index";
     }
 
@@ -38,14 +34,24 @@ public class HomeController {
 
     @GetMapping(value = "/dashboard")
     public String dashboard( Model model) {
+        // TEMPERATURE
         model.addAttribute("sensor_log_temp", homeservice.find_sensor_log(8));
+
+        // GAS
+        model.addAttribute("gas",homeservice.find_sensor_log(2));
+
+        System.out.println("gas: " + (homeservice.find_sensor_log(2)).getClass().getSimpleName() + " - " + homeservice.find_sensor_log(2));
+
+        if(homeservice.find_sensor_log(2).isEmpty()){
+            System.out.println("NO GAS");
+            model.addAttribute("gas_flag","no_gas");
+        }
+        else{
+            System.out.println("GAS");
+            model.addAttribute("gas_flag","gas");
+        }
 
         return "dashboard";
     }
 
-    @GetMapping("/pgFixe")
-    @ResponseBody
-    public String fixe(Model model){
-        return "<h1>ola</h1>";
-    }
 }
