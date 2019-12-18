@@ -43,8 +43,4 @@ Isto é um abstrato
 
 VM: deti-engsoft-08.ua.pt | ssh tomasbatista99@deti-engsoft-08.ua.pt
 
-<https://www.instructables.com/id/Raspberry-Pi-as-low-cost-HD-surveillance-camera/>
-
-<https://www.nagios.org/about/overview/>
-
-<https://www.elastic.co/pt/>
+[API Doc](https://documenter.getpostman.com/view/3294387/SWECYFkU?version=latest&fbclid=IwAR3MCmDxYTNgF9BrZ8tCSU94YesRFfRmHSc27NmwhXAydxwIPNcyWFeWK4g)
