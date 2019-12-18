@@ -198,7 +198,27 @@
                                     <h4 class="card-title">Temperature</h4>
                                     <div class="d-flex align-items-center flex-row m-t-30">
                                         <div class="display-5 text-info"><i class="wi wi-day-showers"></i>
-                                            <span>73<sup>°</sup></span></div>
+                                            <span><span id="location_temp"></span><sup>°</sup></span></div>
+<script>
+    link = "http://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1010500.json";
+    var request = new XMLHttpRequest();
+    request.open('GET',link,true);
+    request.onload = function(){
+        var obj = JSON.parse(this.response);
+        if (request.status >= 200 && request.status < 400) {
+            var daily_values = obj['data'][0];
+            var t_min = parseInt(daily_values['tMin']);
+            var t_max = parseInt(daily_values['tMax']);
+            var t_med = (t_max+t_min)/2;
+            document.getElementById("location_temp").innerHTML = t_med;
+        }
+            else{
+            console.log("The city doesn't exist! Kindly check");
+        }
+    }
+request.send();
+</script>
+
                                         <div class="m-l-10">
                                             <h3 class="m-b-0">
                                             <span id="day_week"></span>
@@ -229,35 +249,6 @@
                                     <div class="row">
                                         <div id="earnings"></div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- GAS -->
-                        <div class="row" style="height:auto">
-                            <div class="card col-12" style="background-color:red;color:white">
-                                <script type="text/javascript" th:inline="javascript">
-                                    /*<![CDATA[*/
-                                        var card = document.getElementById("gas")
-                                        var message = /*[[${gas_flag}]]*/ 'default';
-                                        console.log(message)
-                                        if (message == "no_gas"){
-                                            alert("No gas")
-                                            card.style.display = "none"
-                                        }
-                                        else{
-                                            alert("Gas")
-                                            card.style.display = "block"
-                                        }
-                                    /*]]>*/
-                                    </script>
-                                <div class="card-body" style="display:none" id="gas">
-                                    <h4 class="card-title">Gas</h4>
-                                    <a th:utext="${gas}"></a>
-
-                                    <span><i style="font-size:20px;vertical-align:center;"
-                                            class=" mdi mdi-fire"></i><strong style="font-size:20px;">Leak
-                                            detected!</strong></span>
-                                            
                                 </div>
                             </div>
                         </div>
