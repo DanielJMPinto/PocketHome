@@ -38,10 +38,21 @@ public class HomeController {
 
     @GetMapping(value = "/dashboard")
     public String dashboard( Model model) {
+        model.addAttribute("sensor_log_door", homeservice.find_sensor_log(0));
+        model.addAttribute("sensor_log_flame", homeservice.find_sensor_log(1));
+        model.addAttribute("sensor_log_gas", homeservice.find_sensor_log(2));
+        model.addAttribute("sensor_log_hum_plants", homeservice.find_sensor_log(3));
+        model.addAttribute("sensor_log_light", homeservice.find_sensor_log(4));
+        model.addAttribute("sensor_log_motion", homeservice.find_sensor_log(5));
+        model.addAttribute("sensor_log_rain", homeservice.find_sensor_log(6));
+        model.addAttribute("sensor_log_sound", homeservice.find_sensor_log(7));
         model.addAttribute("sensor_log_temp", homeservice.find_sensor_log(8));
+        model.addAttribute("sensor_log_hum", homeservice.find_sensor_log(9));
+        model.addAttribute("sensor_log_knock", homeservice.find_sensor_log(10));
 
         return "dashboard";
     }
+
 
     @GetMapping("/pgFixe")
     @ResponseBody
