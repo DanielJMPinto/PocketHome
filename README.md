@@ -41,9 +41,7 @@ Isto é um abstrato
 
 [Drive](https://drive.google.com/open?id=1vYYkuciklny5-hgIy_Ow-1TvzgyFIeUR)
 
-<https://tutorials-raspberrypi.com/raspberry-pi-sensors-overview-50-important-components/>
-
-<https://randomnerdtutorials.com/esp32-esp8266-raspberry-pi-lamp-server/>
+VM: deti-engsoft-08.ua.pt | ssh tomasbatista99@deti-engsoft-08.ua.pt
 
 <https://www.instructables.com/id/Raspberry-Pi-as-low-cost-HD-surveillance-camera/>
 

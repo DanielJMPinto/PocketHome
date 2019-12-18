@@ -6,8 +6,9 @@ import json
 
 class Sender:
     def __init__(self):
+        self.credentials = pika.PlainCredentials('tomas', 'tomas25')
         self.connection = pika.BlockingConnection(
-                                pika.ConnectionParameters(host='deti-engsoft-08.ua.pt', 
+                            pika.ConnectionParameters(host='deti-engsoft-08.ua.pt', 
                                                         port=5672,
                                                         virtual_host='/',
                                                         credentials=pika.PlainCredentials('tomas', 'tomas25')))
@@ -23,12 +24,12 @@ class Sender:
         self.channel.basic_publish(exchange='', routing_key='comm_channel', body=json.dumps(message))
         print(f" [x] Sent {message}!")
 
-sender = Sender()
-while True:
-    msg = input('Message: ')
-    if not msg:
-        sender.send('FINISHED_CONN')
-        print('bye')
-        sender.connection.close()
-        break
-    sender.send(msg)
+# sender = Sender('192.168.43.40')
+# while True:
+#     msg = input('Message: ')
+#     if not msg:
+#         sender.send('FINISHED_CONN')
+#         print('bye')
+#         sender.connection.close()
+#         break
+#     sender.send(msg)
