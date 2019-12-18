@@ -70,7 +70,7 @@
 
         /*<![CDATA[*/
           
-           var temp_data = /*[[${temp_data}]]*/ [];
+           var temp_data = /*[[${temp_data}]]*/;
            var graph_data = [];
 
            temp_data.forEach(function(item, index) {
@@ -81,6 +81,7 @@
            console.log(graph_data);
 
            window.onload = function () {
+                startTime();
                 var chart = new CanvasJS.Chart("chartContainer",
                 {
                 axisX:{
@@ -224,7 +225,7 @@
                           return i;
                         }
                         </script>
-                        <body onload="startTime()">
+                        <body>
 
                         <div id="txt"></div>
                     </div>
