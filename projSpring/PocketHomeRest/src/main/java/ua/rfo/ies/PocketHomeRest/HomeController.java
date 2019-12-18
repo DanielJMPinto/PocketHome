@@ -77,12 +77,4 @@ public class HomeController {
 
         return "redirect:/index";
     }
-<<<<<<< HEAD
-=======
-
-
-
-
-
->>>>>>> a7b54695b2148feeb312c4143c5f169ccf4e2c36
 }
