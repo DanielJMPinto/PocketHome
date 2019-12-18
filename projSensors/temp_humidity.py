@@ -42,7 +42,7 @@ try:
 				'value': result.humidity,
 				'date': str(datetime.now()),
 				'houseId': 1,
-      }
+			}	
 			sender.send(msg)
 		# enviar valores de temperatura de minuto em minuto
 		time.sleep(3)
