@@ -5,10 +5,10 @@ import uuid
 import json
 
 class Sender:
-    def __init__(self, ip):
+    def __init__(self):
         self.credentials = pika.PlainCredentials('tomas', 'tomas25')
         self.connection = pika.BlockingConnection(
-                            pika.ConnectionParameters(host=ip, 
+                            pika.ConnectionParameters(host='deti-engsoft-08.ua.pt', 
                                                         port=5672,
                                                         virtual_host='/',
                                                         credentials=self.credentials))

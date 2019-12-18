@@ -1,0 +1,11 @@
+# Connect to Postgres running on docker
+` sudo docker exec -it ies_db bash `
+
+# Entrar na BD
+` psql -U postgres `
+
+# Usar a BD de IES
+` \c ies `
+
+# SuperUser
+ies | ies
