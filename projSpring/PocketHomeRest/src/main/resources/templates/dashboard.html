@@ -337,13 +337,9 @@ request.send();
                                             /*<![CDATA[*/
                                             var sensor_log_movement = [[${sensor_log_motion}]][0]['value'];
                                             var movement = [[${sensor_log_motion}]][0]['date'];
-                                            console.log('a');
-                                            console.log('movement array: ', movement);
-                                            console.log('movement sensor', sensor_log_movement)
                                             var sensor_move_info = document.getElementById("movement_sensor");
                                             var sensor_move_date = document.getElementById("date_movement");
                                             if (sensor_log_movement == 1){
-                                                console.log('entrei1');
                                                 sensor_move_info.innerHTML = '!Movement Detected!'
                                                 sensor_move_date.innerHTML = movement
                                                 sensor_move_info.className = "label label-danger label-rounded";
