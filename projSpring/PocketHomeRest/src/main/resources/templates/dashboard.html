@@ -235,11 +235,29 @@
                         <!-- GAS -->
                         <div class="row" style="height:auto">
                             <div class="card col-12" style="background-color:red;color:white">
-                                <div class="card-body">
+                                <script type="text/javascript" th:inline="javascript">
+                                    /*<![CDATA[*/
+                                        var card = document.getElementById("gas")
+                                        var message = /*[[${gas_flag}]]*/ 'default';
+                                        console.log(message)
+                                        if (message == "no_gas"){
+                                            alert("No gas")
+                                            card.style.display = "none"
+                                        }
+                                        else{
+                                            alert("Gas")
+                                            card.style.display = "block"
+                                        }
+                                    /*]]>*/
+                                    </script>
+                                <div class="card-body" style="display:none" id="gas">
                                     <h4 class="card-title">Gas</h4>
+                                    <a th:utext="${gas}"></a>
+
                                     <span><i style="font-size:20px;vertical-align:center;"
                                             class=" mdi mdi-fire"></i><strong style="font-size:20px;">Leak
                                             detected!</strong></span>
+                                            
                                 </div>
                             </div>
                         </div>
