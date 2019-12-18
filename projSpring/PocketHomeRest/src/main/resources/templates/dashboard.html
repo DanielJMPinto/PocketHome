@@ -66,6 +66,43 @@
             box-shadow: 0 0 0 2px limeGreen, 0 0 2px limeGreen;
         }
     </style>
+    <script type="text/javascript" th:inline="javascript">
+
+        /*<![CDATA[*/
+          
+           var temp_data = /*[[${temp_data}]]*/ [];
+           var graph_data = [];
+
+           temp_data.forEach(function(item, index) {
+               graph_data.push({x: new Date(item["date"]), y: item["value"]});
+           });
+
+
+           console.log(graph_data);
+
+           window.onload = function () {
+                var chart = new CanvasJS.Chart("chartContainer",
+                {
+                axisX:{
+                    title: "timeline",
+                },
+                axisY: {
+                    title: "values"
+                },
+                data: [
+                {        
+                    type: "line",
+                    dataPoints: graph_data
+                }
+                ]
+            });
+
+                chart.render();
+            }
+  
+         /*]]>*/
+  </script>
+  <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </head>
 
 
@@ -358,9 +395,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">Temperature Ratio</h4>
-                                <div class="col-8" th:each="temp:${sensor_log_temp}">
-                                    <label th:text="${temp.value}"></label>
-                                </div>
+                                <div id="chartContainer" style="height: 300px; width: 100%;"></div>
                             </div>
                         </div>
                     </div>
