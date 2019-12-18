@@ -308,7 +308,9 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">Temperature Ratio</h4>
-                                <div class="sales ct-charts mt-3"></div>
+                                <div class="col-8" th:each="temp:${sensor_log_temp}">
+                                    <label th:text="${temp.value}"></label>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -320,6 +322,7 @@
         </div>
     </div>
     </div>
+
     <script src="assets/libs/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="asse ts/libs/popper.js/dist/umd/popper.min.js"></script>
