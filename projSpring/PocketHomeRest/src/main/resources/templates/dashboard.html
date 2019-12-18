@@ -282,26 +282,27 @@
                                     <h4 class="card-title">Temperature</h4>
                                     <div class="d-flex align-items-center flex-row m-t-30">
                                         <div class="display-5 text-info"><i class="wi wi-day-showers"></i>
-                                            <span><span id="location_temp"></span><sup>°</sup></span></div>
-<script>
-    link = "http://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1010500.json";
-    var request = new XMLHttpRequest();
-    request.open('GET',link,true);
-    request.onload = function(){
-        var obj = JSON.parse(this.response);
-        if (request.status >= 200 && request.status < 400) {
-            var daily_values = obj['data'][0];
-            var t_min = parseInt(daily_values['tMin']);
-            var t_max = parseInt(daily_values['tMax']);
-            var t_med = (t_max+t_min)/2;
-            document.getElementById("location_temp").innerHTML = t_med;
-        }
-            else{
-            console.log("The city doesn't exist! Kindly check");
-        }
-    }
-request.send();
-</script>
+                                            <span><span id="location_temp"></span><sup>°</sup></span>
+                                        </div>
+                                        <script>
+                                            link = "http://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1010500.json";
+                                            var request = new XMLHttpRequest();
+                                            request.open('GET',link,true);
+                                            request.onload = function(){
+                                                var obj = JSON.parse(this.response);
+                                                if (request.status >= 200 && request.status < 400) {
+                                                    var daily_values = obj['data'][0];
+                                                    var t_min = parseInt(daily_values['tMin']);
+                                                    var t_max = parseInt(daily_values['tMax']);
+                                                    var t_med = (t_max+t_min)/2;
+                                                    document.getElementById("location_temp").innerHTML = t_med;
+                                                }
+                                                    else{
+                                                    console.log("The city doesn't exist! Kindly check");
+                                                }
+                                            }
+                                        request.send();
+                                        </script>
 
                                         <div class="m-l-10">
                                             <h3 class="m-b-0">
@@ -442,7 +443,26 @@ request.send();
                                 </table>
                             </div>
                         </div>
-
+                        <!-- FIRE -->
+                        <div class="row" style="height:auto; padding:1em">
+                            <div class="card col-12" id="back_color_flame" style="background-color:blue;color:white" th:each="fire:${sensor_log_flame}">
+                                <div class="card-body">
+                                    <h4 class="card-title">Fire</h4>
+                                    <span><i style="font-size:20px;vertical-align:center;"
+                                            class=" mdi mdi-fire" ></i><strong style="font-size:20px;" id="flame_text">There are no signs of fire!</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- FIRE -->
+                        <div class="row" style="height:auto; padding:1em">
+                            <div class="card col-12" id="back_color_gas" style="background-color:blue;color:white" th:each="gas:${sensor_log_gas}">
+                                <div class="card-body">
+                                    <h4 class="card-title">Gas</h4>
+                                    <span><i style="font-size:20px;vertical-align:center;"
+                                             class=" far fa-exclamation-triangle"  ></i><strong style="font-size:20px;" id="gas_text">There are no signs of gas leaks!</strong></span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-4">
                         <div class="card">
@@ -553,6 +573,29 @@ request.send();
                     document.getElementById("light_slider").value = 23;
                 }
             };
+
+            // ------------------------------------
+
+            var flame_value = /*[[${sensor_log_flame}]]*/;
+            if (flame_value[0]["value"] == 1) {
+                document.getElementById("back_color_flame").style.backgroundColor = "red";
+                document.getElementById("flame_text").textContent = "House is on fire!" ;
+            }else{
+                document.getElementById("back_color_flame").style.backgroundColor = "blue";
+                document.getElementById("flame_text").textContent = "There are no signs of fire!" ;
+            };
+
+            // ------------------------------------
+
+            var gas_value = /*[[${sensor_log_gas}]]*/;
+            if (gas_value[0]["value"] == 1) {
+                document.getElementById("back_color_gas").style.backgroundColor = "red";
+                document.getElementById("gas_text").textContent = "A gas leak was detected!" ;
+            }else{
+                document.getElementById("back_color_gas").style.backgroundColor = "blue";
+                document.getElementById("gas_text").textContent = "There are no signs of gas leaks!" ;
+            };
+
         /*]]>*/
     </script>
     </div>
