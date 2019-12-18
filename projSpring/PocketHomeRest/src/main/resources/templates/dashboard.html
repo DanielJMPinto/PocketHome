@@ -243,16 +243,7 @@
                     </div>
                 </div>
             </div>
-            <!--Knock modal-->
-            <div id="modal_knock"  style="display:none" class="modal" th:each="knock:${sensor_log_knock}">
-                <div class="modal-content" style="height:auto; max-width: 25vw;">
-                    <div class="modal-body">
-                        <span class="close" onclick="close_knock_modal()">&times;</span>
-                        <span><i style="font-size:20px;vertical-align:center;" ></i><strong
-                                style="font-size:20px;" id="knock_text">Someone knocked at the door at </strong></span>
-                    </div>
-                </div>
-            </div>
+
             <div class="container-fluid">
                 <div class="row">
                     <!-- column -->
@@ -448,6 +439,15 @@
                                             class=" mdi mdi-fire"></i><strong style="font-size:20px;">House is on
                                             fire!</strong></span>
                                 </div>
+
+                            </div>
+                            <div class="card col-12" id="div_knock" style="background-color:red;color:white">
+                                <div class="card-body" th:each="knock:${sensor_log_knock}">
+                                    <h4 class="card-title">Door Knock</h4>
+                                    <span><i style="font-size:20px;vertical-align:center;"
+                                             class=" "></i><strong style="font-size:20px;" id="knock_text" >Someone knocked at the door at </strong></span>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -465,6 +465,9 @@
                                 <div><h5 th:text="${hum.value}" id="hum_text"></h5></div>
                             </div>
                         </div>
+                    </div>
+                    <div class="col-4">
+
                     </div>
 
                 </div>
@@ -532,22 +535,17 @@
             var date = knock_value[0]["date"];
             var data = document.createTextNode(date);
             var text_knock = document.getElementById("knock_text");
-            text_knock.appendChild(data);
+            var texto = text_knock.appendChild(data);
 
-            var count = 0;
-            if (knock_value[0]["value"] == 1 && count == 0) {
-                document.getElementById("modal_knock").style.display = "block";
 
+
+
+            if (knock_value[0]["value"] == 1) {
+                document.getElementById("div_knock").style.backgroundColor = "red";
+                document.getElementById("knock_text").textContent = "Someone knocked ate the door at ".appendChild(document.createTextNode(knock_value[0]["date"])) ;
             }else{
-                document.getElementById("modal_knock").style.display = "none";
-            };
-
-
-            function close_knock_modal() {
-                
-                document.getElementById("modal_knock").style.display = "none";
-                count+=1;
-
+                document.getElementById("div_knock").style.backgroundColor = "blue";
+                document.getElementById("knock_text").textContent = "No one knocked on the door recently" ;
             };
 
         /*]]>*/
