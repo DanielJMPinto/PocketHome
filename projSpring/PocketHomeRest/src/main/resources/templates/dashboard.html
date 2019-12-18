@@ -290,6 +290,42 @@ request.send();
                                 </div>
                             </div>
                         </div>
+                        <!-- CHUVA -->
+                        <div class="row">
+                            <div class="card col-12">
+                                <div class="card-body">
+                                    <h4 class="card-title">Rain Sensor</h4>
+                                    <table class="table no-border mini-table">
+                                        <tbody>
+                                            <tr>
+                                                <td class="font-medium"><span id="rain_value">   </span></td>
+                                            </tr>
+                                        <script th:inline="javascript">
+                                            /*<![CDATA[*/
+                                            var sensor_log_rain = [[${sensor_log_rain}]][0]['value'];
+                                            console.log('rain sensor', sensor_log_rain, typeof(sensor_log_rain))
+                                            var sensor_rain_info = document.getElementById("rain_value");
+                                            if (sensor_log_rain == 1){
+                                                console.log('entrei1');
+                                                sensor_rain_info.innerHTML = 'RAINING'
+                                                sensor_rain_info.className = "label label-danger label-rounded";
+                                            } else if (sensor_log_rain == 0){
+                                                console.log('entrei0');
+                                                sensor_rain_info.innerHTML = ':)'
+                                                sensor_rain_info.className = "label label-success label-rounded";
+                                            } else {
+                                                sensor_rain_info.innerHTML = 'ERROR'
+                                                sensor_rain_info.className = "label label-danger label-rounded";                                                
+                                            }
+                                            /*]]>*/
+                                        </script>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                     <!-- column -->
                     <div class="col-4">
@@ -311,10 +347,11 @@ request.send();
                                         <tr>
 
                                             <td class="txt-oflo"> <i class=" mdi mdi-glassdoor"></i> Front Door</td>
-                                            <td><span class="label label-success label-rounded" id="door_status"></span> </td>
+                                            <td><span class="label label-success label-rounded" id="door_status">OPEN</span> </td>
                                             <td></td>
                                         </tr>
                                         <script th:inline="javascript">
+                                            /*<![CDATA[*/
                                             var sensor_log_door = [[${sensor_log_door}]][0]['value'];
                                             var sensor_door_info = document.getElementById("door_status");
                                             if (sensor_log_door == 1){
@@ -324,13 +361,9 @@ request.send();
                                                 sensor_door_info.innerHTML = 'CLOSED'
                                                 sensor_door_info.className = "label label-danger label-rounded";
                                             }
+                                            /*]]>*/                                                                                                                                         
                                         </script>
 
-
-                                            <td class="txt-oflo"> <i class=" mdi mdi-glassdoor"></i> Back Door</td>
-                                            <td><span class="label label-success label-rounded"
-                                                    style="margin-top:70px;">OPEN</span></td>
-                                            <td></td>
                                         </tr>
                                         <tr th:each="lights: ${sensor_log_light}">
 
@@ -442,9 +475,6 @@ request.send();
                     document.getElementById("light_slider").value = 23;
                 }
             };
-
-
-
         /*]]>*/
     </script>
     </div>

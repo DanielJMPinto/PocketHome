@@ -53,20 +53,6 @@ public class HomeController {
         model.addAttribute("sensor_log_knock", homeservice.find_sensor_log(10));
         model.addAttribute("temp_data", homeservice.getTenLatestReadings(8, "2019-12-12"));
 
-        // GAS
-        model.addAttribute("gas",homeservice.find_sensor_log(2));
-
-        System.out.println("gas: " + (homeservice.find_sensor_log(2)).getClass().getSimpleName() + " - " + homeservice.find_sensor_log(2));
-
-        if(homeservice.find_sensor_log(2).isEmpty()){
-            System.out.println("NO GAS");
-            model.addAttribute("gas_flag","no_gas");
-        }
-        else{
-            System.out.println("GAS");
-            model.addAttribute("gas_flag","gas");
-        }
-
         return "dashboard";
     }
 
