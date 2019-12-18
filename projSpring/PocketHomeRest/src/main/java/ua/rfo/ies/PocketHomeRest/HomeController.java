@@ -52,15 +52,6 @@ public class HomeController {
         model.addAttribute("sensor_log_hum", homeservice.find_sensor_log(9));
         model.addAttribute("sensor_log_knock", homeservice.find_sensor_log(10));
         model.addAttribute("temp_data", homeservice.getTenLatestReadings(8, "2019-12-12"));
-
         return "dashboard";
-    }
-
-    
-    @RequestMapping(value = "/dashboard", method = RequestMethod.POST)
-    public String dashboard1(  Model model) {
-        //System.out.println(value);
-
-        return "redirect:/index";
     }
 }
