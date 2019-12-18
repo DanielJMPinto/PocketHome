@@ -194,9 +194,9 @@
                                     <table class="table no-border mini-table">
 
                                         <tbody>
-                                            <tr>
+                                            <tr th:each="hum:${sensor_log_hum}">
                                                 <td class="text-muted">Humidity</td>
-                                                <td class="font-medium">83%</td>
+                                                <td class="font-medium" th:text="${hum.value}"></td>
                                             </tr>
                                         </tbody>
                                     </table>
