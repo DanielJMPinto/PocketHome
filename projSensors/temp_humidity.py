@@ -27,20 +27,22 @@ try:
 			print("Temperature: %-3.1f C" % result.temperature)
 			# Temperature
 			msg = {
-				'SENSOR_ID': 8,
-				'SENSOR': 'TEMP_SENSOR',
-				'VALUE': result.temperature,
-				'DATE': str(datetime.now()),
+				'sensorId': 8,
+				'sensorType': 'TEMP_SENSOR',
+				'value': result.temperature,
+				'date': str(datetime.now()),
+				'houseId': 1,
 			}
 			sender.send(msg)
 			print("Humidity: %-3.1f %%" % result.humidity)
 			# Temperature
 			msg = {
-				'SENSOR_ID': 9,
-				'SENSOR': 'HUM_SENSOR',
-				'VALUE': result.humidity,
-				'DATE': str(datetime.now()),
-			}
+				'sensorId': 9,
+				'sensorType': 'HUM_SENSOR',
+				'value': result.humidity,
+				'date': str(datetime.now()),
+				'houseId': 1,
+      }
 			sender.send(msg)
 		# enviar valores de temperatura de minuto em minuto
 		time.sleep(3)

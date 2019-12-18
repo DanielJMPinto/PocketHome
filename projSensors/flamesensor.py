@@ -13,10 +13,11 @@ def flame_sensor_callback(channel):
 		print('NO_FLAME')
 		val = 0
 	msg = {
-		'SENSOR_ID': 1,
-		'SENSOR': 'FLAME_SENSOR',
-		'VALUE': val,
-		'DATE': str(datetime.now()),
+		'sensorId': 1,
+		'sensorType': 'FLAME_SENSOR',
+		'value': val,
+		'date': str(datetime.now()),
+		'houseId': 1,		
 	}
 	sender.send(msg)
 

@@ -13,10 +13,11 @@ def door_sensor_callback(channel):
 		print('OPEN')
 		val = 0
 	msg = {
-		'SENSOR_ID': 0,
-		'SENSOR': 'DOOR_SENSOR',
-		'VALUE': val,
-		'DATE': str(datetime.now()),
+		'sensorId': 0,
+		'sensorType': 'DOOR_SENSOR',
+		'value': val,
+		'date': str(datetime.now()),
+		'houseId': 1,
 	}
 	sender.send(msg)
 

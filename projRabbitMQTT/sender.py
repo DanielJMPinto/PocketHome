@@ -25,14 +25,11 @@ class Sender:
         print(f" [x] Sent {message}!")
 
 # sender = Sender('192.168.43.40')
-sender = Sender()
-while True:
-    msg = input('Message: ')
-    if not msg:
-        sender.send('FINISHED_CONN')
-        print('bye')
-        sender.connection.close()
-        break
-    sender.send(msg)
-
-
+# while True:
+#     msg = input('Message: ')
+#     if not msg:
+#         sender.send('FINISHED_CONN')
+#         print('bye')
+#         sender.connection.close()
+#         break
+#     sender.send(msg)

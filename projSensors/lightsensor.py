@@ -13,11 +13,12 @@ def light_sensor_callback(channel):
 		print('NO_LIGHT')
 		val = 0
 	msg = {
-		'SENSOR_ID': 4,
-		'SENSOR': 'LIGHT_SENSOR',
-		'VALUE': val,
-		'DATE': str(datetime.now()),
-	}
+		'sensorId': 4,
+		'sensorType': 'LIGHT_SENSOR',
+		'value': val,
+		'date': str(datetime.now()),
+		'houseId': 1,
+  }
 	sender.send(msg)
 
 # Configure Sender

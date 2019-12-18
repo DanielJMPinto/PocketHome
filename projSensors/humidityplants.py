@@ -13,10 +13,11 @@ def humplants_sensor_callback(channel):
 		print('NO_MOISTURE')
 		val = 0
 	msg = {
-		'SENSOR_ID': 3,
-		'SENSOR': 'HUMPLANTS_SENSOR',
-		'VALUE': val,
-		'DATE': str(datetime.now()),
+		'sensorId': 3,
+		'sensorType': 'HUMPLANTS_SENSOR',
+		'value': val,
+		'date': str(datetime.now()),
+		'houseId': 1,
 	}
 	sender.send(msg)
 

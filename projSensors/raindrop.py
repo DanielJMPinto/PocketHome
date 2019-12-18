@@ -13,10 +13,11 @@ def rain_sensor_callback(channel):
 		print('NO_RAIN')
 		val = 0
 	msg = {
-		'SENSOR_ID': 6,
-		'SENSOR': 'RAIN_SENSOR',
-		'VALUE': val,
-		'DATE': str(datetime.now()),
+		'sensorId': 6,
+		'sensorType': 'RAIN_SENSOR',
+		'value': val,
+		'date': str(datetime.now()),
+		'houseId': 1,
 	}
 	sender.send(msg)
 	time.sleep(3)
