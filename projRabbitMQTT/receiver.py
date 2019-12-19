@@ -20,7 +20,7 @@ def callback(ch, method, properties, body):
     print(f'  [x] Received message [{msg_id}] at [{timestamp}]: {content}')
     print(content, type(content))
     # API CALL
-    req = requests.post(url = API_URL, data=json.dumps(content), headers = {'content-type': 'application/json'})
+    req = requests.post(url = API_URL, data=content, headers = {'content-type': 'application/json'})
     response = req.text 
     print(f'Response: {response}') 
 
