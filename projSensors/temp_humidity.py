@@ -21,6 +21,7 @@ try:
 	while True:
 		result = instance.read()
 		if result.is_valid():
+			
 			print("Temperature: %-3.1f C" % result.temperature)
 			# Temperature
 			msg = {
@@ -31,8 +32,8 @@ try:
 				'houseId': 1,
 			}
 			sender.send(msg)
-			print(msg)
-			print("Humidity: %-3.1f %%" % result.humidity)
+
+      print("Humidity: %-3.1f %%" % result.humidity)
 			# Temperature
 			msg = {
 				'sensorId': 9,
@@ -43,9 +44,9 @@ try:
 			}
 			print(msg)
 			sender.send(msg)
+		
 		# enviar valores de temperatura de minuto em minuto
-		time.sleep(1)
-
+	time.sleep(0.1)
 except KeyboardInterrupt:
 	print("Cleanup")
 	GPIO.cleanup()
