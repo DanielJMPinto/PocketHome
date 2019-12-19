@@ -15,36 +15,38 @@ GPIO.setmode(GPIO.BCM)
 instance = dht11.DHT11(pin=17)
 
 # Configure Sender
-if len(sys.argv) != 2:
-	print('USAGE: python3 file.py 192.168.X.Y')
-	exit()
-sender = Sender(sys.argv[1])
+sender = Sender()
 
 try:
-	while True:
-		result = instance.read()
-		if result.is_valid():
-			print("Temperature: %-3.1f C" % result.temperature)
-			# Temperature
-			msg = {
-				'SENSOR_ID': 8,
-				'SENSOR': 'TEMP_SENSOR',
-				'VALUE': result.temperature,
-				'DATE': str(datetime.now()),
-			}
-			sender.send(msg)
-			print("Humidity: %-3.1f %%" % result.humidity)
-			# Temperature
-			msg = {
-				'SENSOR_ID': 9,
-				'SENSOR': 'HUM_SENSOR',
-				'VALUE': result.humidity,
-				'DATE': str(datetime.now()),
-			}
-			sender.send(msg)
-		# enviar valores de temperatura de minuto em minuto
-		time.sleep(3)
+    while True:
+        result = instance.read()
+        if result.is_valid():
+            print("Temperature: %-3.1f C" % result.temperature)
+            # Temperature
+            msg = {
+                'sensorId': 8,
+                'sensorType': 'TEMP_SENSOR',
+                'value': result.temperature,
+                'date': str(datetime.now()),
+                'houseId': 1,
+            }
+            sender.send(msg)
+            print(msg)
+
+            print("Humidity: %-3.1f %%" % result.humidity)
+            # Temperature
+            msg = {
+                'sensorId': 9,
+                'sensorType': 'HUM_SENSOR',
+                'value': result.humidity,
+                'date': str(datetime.now()),
+                'houseId': 1,
+            }	
+            sender.send(msg)
+            print(msg)
+
+        time.sleep(12)
 
 except KeyboardInterrupt:
-	print("Cleanup")
-	GPIO.cleanup()
+    print("Cleanup")
+    GPIO.cleanup()

@@ -6,26 +6,21 @@ from datetime import datetime
 from sender import Sender
 
 def gas_sensor_callback(channel):
-	if not GPIO.input(channel):
-		print('NO_GAS')
-		val = 0
-	else:
+	if GPIO.input(channel):
 		print('GAS')
 		val = 1
-	msg = {
-		'SENSOR_ID': 2,
-		'SENSOR': 'GAS_SENSOR',
-		'VALUE': val,
-		'DATE': str(datetime.now()),
-	}
-	sender.send(msg)
+		msg = {
+			'sensorId': 2,
+			'sensorType': 'GAS_SENSOR',
+			'value': val,
+			'date': str(datetime.now()),
+			'houseId': 1,
+		}
+		sender.send(msg)
 	time.sleep(3)
 
 # Configure Sender
-if len(sys.argv) != 2:
-	print('USAGE: python3 file.py 192.168.X.Y')
-	exit()
-sender = Sender(sys.argv[1])
+sender = Sender()
 
 # GAS SENSOR
 GAS_SENSOR_PIN = 20

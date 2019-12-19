@@ -23,10 +23,11 @@ def motion_sensor_callback(channel):
 		val = 1
 		take_photo()
 		msg = {
-			'SENSOR_ID': 5,
-			'SENSOR': 'PIR_SENSOR',
-			'VALUE': val,
-			'DATE': str(datetime.now()),
+			'sensorId': 5,
+			'sensorType': 'PIR_SENSOR',
+			'value': val,
+			'date': str(datetime.now()),
+			'houseId': 1,
 		}
 		sender.send(msg)
 		# Time to stop searching, to not give multiple values
@@ -34,10 +35,7 @@ def motion_sensor_callback(channel):
 
 
 # Configure Sender
-if len(sys.argv) != 2:
-	print('USAGE: python3 file.py 192.168.X.Y')
-	exit()
-sender = Sender(sys.argv[1])
+sender = Sender()
 
 # MOTION SENSOR
 MOTION_SENSOR_PIN = 24
