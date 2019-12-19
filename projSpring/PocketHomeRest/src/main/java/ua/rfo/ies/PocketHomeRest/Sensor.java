@@ -9,6 +9,8 @@ public class Sensor {
 	private long id;
 	private String type;
 	private long houseId;
+	
+	public Sensor() {}
 
 	public Sensor(long id, String type, long houseId) {
 		super();
