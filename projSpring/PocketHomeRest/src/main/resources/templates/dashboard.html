@@ -254,26 +254,20 @@
                                                 /*<![CDATA[*/
                                                 var card = document.getElementById("rain-card");
                                                 var sensor_log_rain = [[${ sensor_log_rain }]][0]['value'];
-                                                console.log('rain sensor', sensor_log_rain, typeof (sensor_log_rain))
                                                 var sensor_rain_info = document.getElementById("rain_value");
                                                 if (sensor_log_rain == 1) {
-                                                    console.log('entrei1');
                                                     sensor_rain_info.innerHTML = 'RAINING';
                                                     //sensor_rain_info.className = "label label-danger label-rounded";
                                                     card.style.backgroundColor="#39d0f7";
                                                     card.style.color = "white";
                                                     document.getElementById("icon-rain").className = "wi wi-rain";
-                                                    console.log(document.getElementById("icon-rain").className);
                                                 } else if (sensor_log_rain == 0) {
-                                                    console.log('entrei0');
                                                     sensor_rain_info.innerHTML = 'NOT RAINING'
                                                     //sensor_rain_info.className = "label label-success label-rounded";
                                                     document.getElementById("icon-rain").className = "wi wi-cloud";
                                                     card.style.backgroundColor="white";
                                                     card.style.color="#6A7A8C";
-                                                    console.log(document.getElementById("icon-rain").className);
                                                 } else {
-                                                    console.log('erro');
                                                     document.getElementById("icon-rain").className = "wi wi-cloud";
                                                     sensor_rain_info.innerHTML = 'ERROR';
                                                     sensor_rain_info.className = "label label-danger label-rounded";
@@ -327,7 +321,6 @@
                                             /*<![CDATA[*/
                                             var sensor_door = /*[[${sensor_log_door}]]*/;
                                             var sensor_log_door = sensor_door[0]['value'];
-                                            console.log('s_l_door', sensor_log_door, typeof(sensor_log_door));
                                             var sensor_door_info = document.getElementById("door_status");
                                             if (sensor_log_door == 0) {
                                                 console.log('open door')
@@ -365,8 +358,8 @@
                                 <div class="card-body">
                                     <h4 class="card-title">Fire</h4>
                                     <span><i style="font-size:20px;vertical-align:center;"
-                                            ></i><strong style="font-size:20px;"
-                                            id="flame_text">There are no signs of fire! </strong><strong style="font-size:20px;" id="fire_date_text"  th:text="${#dates.format(fire.date, 'dd-MM-yyyy HH:mm')}"></strong></span>
+                                            class=" mdi mdi-fire"></i><strong style="font-size:20px;"
+                                            id="flame_text">There are no signs of fire!</strong></span>
                                 </div>
                             </div>
                         </div>
@@ -487,18 +480,7 @@
                     </div>
                 </div>
             </div>
-            <!-- FIRE -->
-            <div id="modal_fire" style="display:none" class="modal">
-                <div class="modal-content" style="height:auto; background-color:red;color:white;max-width: 25vw;">
-                    <div class="modal-body">
-                        <span class="close">&times;</span>
-                        <h4 class="card-title">Fire</h4>
-                        <span><i style="font-size:20px;vertical-align:center;" ></i><strong
-                                style="font-size:20px;">House is on
-                                fire!</strong></span>
-                    </div>
-                </div>
-            </div>
+
         </div>
 
 
@@ -543,29 +525,21 @@
             //document.getElementById("light_slider").checked=true;
 
         };
-
-        function change_lights() {
-            var slider_value = document.getElementById("light_slider").checked;
-            if (slider_value) {
-                document.getElementById("light_slider").value = 345;
-            } else {
-                document.getElementById("light_slider").value = 23;
-            }
-        };
+        console.log("sai luzes");
 
         // ------------------------------------
-
-        var flame_value = /*[[${sensor_log_flame}]]*/;
-        if (flame_value[0]["value"] == 1) {
-            document.getElementById("back_color_flame").style.backgroundColor = "red";
-            document.getElementById("fire_date_text").style.display = "block";
-            document.getElementById("flame_text").textContent = "House is on fire!";
-        } else {
-            document.getElementById("back_color_flame").style.backgroundColor = "blue";
-            document.getElementById("fire_date_text").style.display = "none";
-            document.getElementById("flame_text").textContent = "There are no signs of fire!";
-        };
-
+            var flame_value = /*[[${sensor_log_flame}]]*/;
+            console.log('flame_value', flame_value[0]["value"])
+            if (flame_value[0]["value"] == 1) {
+                document.getElementById("back_color_flame").style.backgroundColor = "red";
+                document.getElementById("flame_text").textContent = "House is on fire!";
+            } else if (flame_value[0]["value"] == 0){
+                document.getElementById("back_color_flame").style.backgroundColor = "blue";
+                document.getElementById("flame_text").textContent = "There are no signs of fire!";
+            } else{
+                document.getElementById("back_color_flame").style.backgroundColor = "green";
+                document.getElementById("flame_text").textContent = "ERRROR";
+            };
         // ------------------------------------
 
         var gas_value = /*[[${sensor_log_gas}]]*/;
@@ -588,18 +562,18 @@
         var data = document.createTextNode(date);
         console.log('data_node', data);
         if (knock_value[0]["value"] == 1) {
-            console.log("entrei1");
             document.getElementById("div_knock").style.backgroundColor = "red";
             document.getElementById("knock_date_text").style.display = "block";
             document.getElementById("knock_text").textContent = "Someone knocked ate the door at ";
         } else {
-            console.log("entrei2");
             document.getElementById("div_knock").style.backgroundColor = "blue";
             document.getElementById("knock_date_text").style.display = "none";
             document.getElementById("knock_text").textContent = "No one knocked on the door recently";
          };
          console.log("sai");
+        
         /*]]>*/
+   
     </script>
 
     <script type="text/javascript" th:inline="javascript">
