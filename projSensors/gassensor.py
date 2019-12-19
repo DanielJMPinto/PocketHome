@@ -23,10 +23,7 @@ def gas_sensor_callback(channel):
 	time.sleep(3)
 
 # Configure Sender
-if len(sys.argv) != 2:
-	print('USAGE: python3 file.py 192.168.X.Y')
-	exit()
-sender = Sender(sys.argv[1])
+sender = Sender()
 
 # GAS SENSOR
 GAS_SENSOR_PIN = 20

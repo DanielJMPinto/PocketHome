@@ -22,10 +22,7 @@ def flame_sensor_callback(channel):
 	sender.send(msg)
 
 # Configure Sender
-if len(sys.argv) != 2:
-	print('USAGE: python3 file.py 192.168.X.Y')
-	exit()
-sender = Sender(sys.argv[1])
+sender = Sender()
 
 # FLAME SENSOR
 FLAME_SENSOR_PIN = 21
