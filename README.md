@@ -3,7 +3,7 @@
 
 ## Project Abstract
 
-PocketHome is a web browser application that allows you to monitor your house from anywhere, anytime.
+PocketHome is a web browser application that allows you to monitor your house from *anywhere*, *anytime*.
 
 ### Project Manager [Flávia Figueiredo]
 
