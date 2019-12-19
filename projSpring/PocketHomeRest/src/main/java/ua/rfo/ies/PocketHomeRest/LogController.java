@@ -5,13 +5,12 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 @RestController
 public class LogController {
 	@Autowired
@@ -36,7 +35,16 @@ public class LogController {
 	public SensorLog createLog(@Valid @RequestBody SensorLog log) {
 		return logrepo.save(log);
 	}
-	
+
+	@PostMapping("/logs_light")
+	public String insertLog(@Valid @RequestParam(name = "value")int value) {
+		System.out.println("ola");
+		System.out.println(value);
+		//return logrepo.save(log);
+		return "redirect:/dashboard";
+	}
+
+
 	// Não há put porque ninguém edita registos
 	
 
