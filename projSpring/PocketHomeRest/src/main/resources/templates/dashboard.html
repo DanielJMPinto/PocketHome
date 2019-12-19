@@ -113,12 +113,26 @@
         input:checked+.slider {
             box-shadow: 0 0 0 2px limeGreen, 0 0 2px limeGreen;
         }
+    </style>
+    <script type="text/javascript" th:inline="javascript">
+
+        /*<![CDATA[*/
+          
+           var temp_data = /*[[${temp_data}]]*/;
+           var graph_data = [];
+
+           temp_data.forEach(function(item, index) {
+               graph_data.push({x: new Date(item["date"]), y: item["value"]});
+           });
+
+
+           console.log(graph_data);
 
         .card{
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 5px 0 rgba(0, 0, 0, 0.19);
             border-radius: 10px;
         }
-    </style>
+    </script>
 </head>
 
 
@@ -208,6 +222,26 @@
                                     <h4 class="card-title">Temperature</h4>
                                     <div class="d-flex align-items-center flex-row m-t-30">
                                         <div class="display-5 text-info"><i class="wi wi-day-showers"></i>
+                                            <span><span id="location_temp"></span><sup>°</sup></span></div>
+                                            <script>
+                                                link = "http://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1010500.json";
+                                                var request = new XMLHttpRequest();
+                                                request.open('GET',link,true);
+                                                request.onload = function(){
+                                                    var obj = JSON.parse(this.response);
+                                                    if (request.status >= 200 && request.status < 400) {
+                                                        var daily_values = obj['data'][0];
+                                                        var t_min = parseInt(daily_values['tMin']);
+                                                        var t_max = parseInt(daily_values['tMax']);
+                                                        var t_med = (t_max+t_min)/2;
+                                                        document.getElementById("location_temp").innerHTML = t_med;
+                                                    }
+                                                        else{
+                                                        console.log("The city doesn't exist! Kindly check");
+                                                    }
+                                                }
+                                            request.send();
+                                            </script>
                                             <span><span id="location_temp"></span><sup>°</sup></span>
                                         </div>
                                         <script>
@@ -254,7 +288,6 @@
                                                 <td style="font-size:2rem;" class="font-medium"><i id="icon-rain" style="color:white;font-size:0px" class="" aria hidden="true"></i><span id="rain_value"> </span></td>
                                                 
                                             </tr>
-<<<<<<< HEAD
                                             <script th:inline="javascript">
                                                 /*<![CDATA[*/
                                                 var card = document.getElementById("rain-card");
@@ -285,22 +318,6 @@
                                                     card.style.backgroundColor="#39d0f7";
                                                     card.style.color = "white";
                                                 }
-=======
-                                        <script th:inline="javascript">
-                                            /*<![CDATA[*/
-                                            var sensor_log_rain = [[${sensor_log_rain}]][0]['value'];
-                                            var sensor_rain_info = document.getElementById("rain_value");
-                                            if (sensor_log_rain == 1){
-                                                sensor_rain_info.innerHTML = 'RAINING'
-                                                sensor_rain_info.className = "label label-danger label-rounded";
-                                            } else if (sensor_log_rain == 0){
-                                                sensor_rain_info.innerHTML = ':)'
-                                                sensor_rain_info.className = "label label-success label-rounded";
-                                            } else {
-                                                sensor_rain_info.innerHTML = 'ERROR'
-                                                sensor_rain_info.className = "label label-danger label-rounded";                                                
-                                            }
->>>>>>> ff0dec4faf515ef4b3ef5ec06307729a992942a2
                                             /*]]>*/
                                             </script>
 
@@ -419,6 +436,15 @@
                                             class=" far fa-exclamation-triangle"></i><strong style="font-size:20px;"
                                             id="gas_text">There are no signs of gas leaks!</strong></span>
                                 </div>
+
+                            </div>
+                            <div class="card col-12" id="div_knock" style="background-color:red;color:white">
+                                <div class="card-body" th:each="knock:${sensor_log_knock}">
+                                    <h4 class="card-title">Door Knock</h4>
+                                    <span><i style="font-size:20px;vertical-align:center;"
+                                             class=" "></i><strong style="font-size:20px;" id="knock_text" >Someone knocked at the door at </strong></span>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -554,6 +580,24 @@
                 }
             };
 
+            //----------------------------
+
+            var knock_value = /*[[${sensor_log_knock}]]*/;
+
+            var date = knock_value[0]["date"];
+            var data = document.createTextNode(date);
+            var text_knock = document.getElementById("knock_text");
+            var texto = text_knock.appendChild(data);
+
+
+
+
+            if (knock_value[0]["value"] == 1) {
+                document.getElementById("div_knock").style.backgroundColor = "red";
+                document.getElementById("knock_text").textContent = "Someone knocked ate the door at ".appendChild(document.createTextNode(knock_value[0]["date"])) ;
+            }else{
+                document.getElementById("div_knock").style.backgroundColor = "blue";
+                document.getElementById("knock_text").textContent = "No one knocked on the door recently" ;
             // ------------------------------------
 
             var flame_value = /*[[${sensor_log_flame}]]*/;
