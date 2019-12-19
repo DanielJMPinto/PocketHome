@@ -51,7 +51,8 @@ public class HomeController {
         model.addAttribute("sensor_log_temp", homeservice.find_sensor_log(8));
         model.addAttribute("sensor_log_hum", homeservice.find_sensor_log(9));
         model.addAttribute("sensor_log_knock", homeservice.find_sensor_log(10));
-        model.addAttribute("temp_data", homeservice.getTenLatestReadings(8, "2019-12-12"));
+        model.addAttribute("temp_data", homeservice.getTenLatestReadings(8));
         return "dashboard";
     }
 }
+
