@@ -45,3 +45,4 @@ GPIO.add_event_callback(VIBRATION_SENSOR_PIN, vibration_sensor_callback)
 
 while True:
 	time.sleep(0.1)
+

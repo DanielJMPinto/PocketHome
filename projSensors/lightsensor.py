@@ -2,6 +2,7 @@
 import RPi.GPIO as GPIO
 import time
 import sys
+import json
 from datetime import datetime
 from sender import Sender
 
@@ -12,18 +13,17 @@ def light_sensor_callback(channel):
 	else:
 		print('NO_LIGHT')
 		val = 0
-	msg = {
-		'sensorId': 4,
-		'sensorType': 'LIGHT_SENSOR',
-		'value': val,
-		'date': str(datetime.now()),
-		'houseId': 1,
-  }
+	msg = {"sensorId":4,
+		"sensorType":
+		"LIGHT_SENSOR",
+		"value":val,
+		"date":str(datetime.now()),
+		"houseId":1}
 	sender.send(msg)
+	time.sleep(1)
 
 # Configure Sender
 sender = Sender()
-
 
 # LIGHT SENSOR
 LIGHT_SENSOR_PIN = 4
