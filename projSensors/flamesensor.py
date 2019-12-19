@@ -9,23 +9,17 @@ def flame_sensor_callback(channel):
 	if not GPIO.input(channel):
 		print('FLAME')
 		val = 1
-	else:
-		print('NO_FLAME')
-		val = 0
-	msg = {
-		'sensorId': 1,
-		'sensorType': 'FLAME_SENSOR',
-		'value': val,
-		'date': str(datetime.now()),
-		'houseId': 1,		
-	}
-	sender.send(msg)
+		msg = {
+			'sensorId': 1,
+			'sensorType': 'FLAME_SENSOR',
+			'value': val,
+			'date': str(datetime.now()),
+			'houseId': 1,		
+		}
+		sender.send(msg)
 
 # Configure Sender
-if len(sys.argv) != 2:
-	print('USAGE: python3 file.py 192.168.X.Y')
-	exit()
-sender = Sender(sys.argv[1])
+sender = Sender()
 
 # FLAME SENSOR
 FLAME_SENSOR_PIN = 21

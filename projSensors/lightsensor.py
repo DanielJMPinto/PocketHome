@@ -20,6 +20,7 @@ def light_sensor_callback(channel):
 		"date":str(datetime.now()),
 		"houseId":1}
 	sender.send(msg)
+	time.sleep(1)
 
 # Configure Sender
 sender = Sender()
