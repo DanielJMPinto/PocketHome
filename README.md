@@ -44,3 +44,8 @@ Isto é um abstrato
 VM: deti-engsoft-08.ua.pt | ssh tomasbatista99@deti-engsoft-08.ua.pt
 
 [API Documentation](https://documenter.getpostman.com/view/3294387/SWECYFkU?version=latest&fbclid=IwAR3MCmDxYTNgF9BrZ8tCSU94YesRFfRmHSc27NmwhXAydxwIPNcyWFeWK4g)
+
+Login:
+
+> **User:** ies@ies.com
+> **Password:** 1234
