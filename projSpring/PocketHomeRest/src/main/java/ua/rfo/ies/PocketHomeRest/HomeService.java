@@ -29,12 +29,9 @@ public class HomeService{
                         resultSet.getLong("value"),
                         resultSet.getString("img")
                 );
-
-
                 return log;
             }
         };
-
         return template.query(sql, rm);
     }
 
