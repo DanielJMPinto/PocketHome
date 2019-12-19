@@ -113,45 +113,12 @@
         input:checked+.slider {
             box-shadow: 0 0 0 2px limeGreen, 0 0 2px limeGreen;
         }
+
+        .card{
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 5px 0 rgba(0, 0, 0, 0.19);
+            border-radius: 10px;
+        }
     </style>
-    <script type="text/javascript" th:inline="javascript">
-
-        /*<![CDATA[*/
-          
-           var temp_data = /*[[${temp_data}]]*/;
-           var graph_data = [];
-
-           temp_data.forEach(function(item, index) {
-               graph_data.push({x: new Date(item["date"]), y: item["value"]});
-           });
-
-
-           console.log(graph_data);
-
-           window.onload = function () {
-                startTime();
-                var chart = new CanvasJS.Chart("chartContainer",
-                {
-                axisX:{
-                    title: "timeline",
-                },
-                axisY: {
-                    title: "values"
-                },
-                data: [
-                {        
-                    type: "line",
-                    dataPoints: graph_data
-                }
-                ]
-            });
-
-                chart.render();
-            }
-  
-         /*]]>*/
-  </script>
-  <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </head>
 
 
@@ -162,8 +129,7 @@
             <div class="lds-pos"></div>
         </div>
     </div>
-    <div id="main-wrapper" data-navbarbg="skin6" data-theme="light" data-layout="vertical" data-sidebartype="full"
-        data-boxed-layout="full">
+    <div id="main-wrapper" data-navbarbg="skin6" data-theme="light" data-layout="vertical">
         <header class="topbar" data-navbarbg="skin6">
             <nav class="navbar top-navbar navbar-expand-md navbar-light">
                 <div class="navbar-header" data-logobg="skin5" style="background-color:white; ">
@@ -171,14 +137,9 @@
                     <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)">
                         <i class="ti-menu ti-close"></i>
                     </a>
-                    <div class="navbar-brand">
+                    <div class="navbar-brand" style="">
                         <a th:href="@{/dashboard}" class="logo">
                             <h4 style="color:black">Dashboard</h4>
-                        </a>
-                    </div>
-                    <div class="navbar-brand">
-                        <a th:href="@{/index}" class="logo">
-                            <h4 style="color:black">Logout</h4>
                         </a>
                     </div>
 
@@ -193,10 +154,11 @@
                         <li class="nav-item search-box">
                         </li>
                     </ul>
+                    <!--
                     <ul class="navbar-nav float-right">
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href=""
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><img
                                     src="assets/images/users/1.jpg" alt="user" class="rounded-circle" width="31"></a>
                             <div class="dropdown-menu dropdown-menu-right user-dd animated">
                                 <a class="dropdown-item" href="javascript:void(0)"><i class="ti-user m-r-5 m-l-5"></i>
@@ -206,53 +168,16 @@
                             </div>
                         </li>
                     </ul>
+                -->
+                    <a th:href="@{/index}" class="navbar-nav float-right">
+                        <h4 style="color:black; text-align:center; vertical-align: bottom; font-size:0.8rem">Logout</h4>
+                    </a>
                 </div>
             </nav>
         </header>
-        <aside class="left-sidebar" data-sidebarbg="skin5">
-            <div class="scroll-sidebar">
-                <nav class="sidebar-nav">
-                    <ul id="sidebarnav">
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dashboard.html"
-                                aria-expanded="false">
-                                <i class="mdi mdi-av-timer"></i>
-                                <span class="hide-menu">Dashboard</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pages-profile.html"
-                                aria-expanded="false">
-                                <i class="mdi mdi-account-network"></i>
-                                <span class="hide-menu">Profile</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </aside>
-        <div class="page-wrapper">
-            <div class="page-breadcrumb">
-                <div class="row">
-                    <div class="col-5 align-self-center">
-                        <h4 class="page-title">Dashboard</h4>
-                    </div>
-                    <div class="col-7 align-self-center">
-                        <div class="d-flex align-items-center justify-content-end">
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item">
-                                        <a href="#">Home</a>
-                                    </li>
-                                    <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
-                                </ol>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div style="background-color:#f7f7f7;">
             <div class="container-fluid">
-                <div class="row">
+                <div class="row" style="padding-top: 10px;">
                     <!-- column -->
                     <div class="col-1">
                         <script>
@@ -272,12 +197,13 @@
                                 return i;
                             }
                         </script>
+
                         <body onload="startTime()">
 
                     </div>
                     <div class="col-3">
                         <div class=row>
-                            <div class="card">
+                            <div class="card" style="min-width: 100%;">
                                 <div class="card-body">
                                     <h4 class="card-title">Temperature</h4>
                                     <div class="d-flex align-items-center flex-row m-t-30">
@@ -287,21 +213,21 @@
                                         <script>
                                             link = "http://api.ipma.pt/open-data/forecast/meteorology/cities/daily/1010500.json";
                                             var request = new XMLHttpRequest();
-                                            request.open('GET',link,true);
-                                            request.onload = function(){
+                                            request.open('GET', link, true);
+                                            request.onload = function () {
                                                 var obj = JSON.parse(this.response);
                                                 if (request.status >= 200 && request.status < 400) {
                                                     var daily_values = obj['data'][0];
                                                     var t_min = parseInt(daily_values['tMin']);
                                                     var t_max = parseInt(daily_values['tMax']);
-                                                    var t_med = (t_max+t_min)/2;
+                                                    var t_med = (t_max + t_min) / 2;
                                                     document.getElementById("location_temp").innerHTML = t_med;
                                                 }
-                                                    else{
+                                                else {
                                                     console.log("The city doesn't exist! Kindly check");
                                                 }
                                             }
-                                        request.send();
+                                            request.send();
                                         </script>
 
                                         <div class="m-l-10">
@@ -317,55 +243,49 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="card col-12">
-                                <div class="card-body">
-                                    <h4 class="card-title">Humidity Guide</h4>
-
-                                    <table class="table no-border mini-table">
-
-                                        <tbody>
-                                            <tr th:each="hum:${sensor_log_hum}">
-                                                <td class="text-muted">Humidity</td>
-                                                <td class="font-medium" th:text="${hum.value}"></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <div class="row">
-                                        <div id="earnings"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <!-- CHUVA -->
                         <div class="row">
-                            <div class="card col-12">
+                            <div class="card col-12" id="rain-card">
                                 <div class="card-body">
                                     <h4 class="card-title">Rain Sensor</h4>
                                     <table class="table no-border mini-table">
                                         <tbody>
                                             <tr>
-                                                <td class="font-medium"><span id="rain_value">   </span></td>
+                                                <td style="font-size:2rem;" class="font-medium"><i id="icon-rain" style="color:white;font-size:0px" class="" aria hidden="true"></i><span id="rain_value"> </span></td>
+                                                
                                             </tr>
-                                        <script th:inline="javascript">
-                                            /*<![CDATA[*/
-                                            var sensor_log_rain = [[${sensor_log_rain}]][0]['value'];
-                                            console.log('rain sensor', sensor_log_rain, typeof(sensor_log_rain))
-                                            var sensor_rain_info = document.getElementById("rain_value");
-                                            if (sensor_log_rain == 1){
-                                                console.log('entrei1');
-                                                sensor_rain_info.innerHTML = 'RAINING'
-                                                sensor_rain_info.className = "label label-danger label-rounded";
-                                            } else if (sensor_log_rain == 0){
-                                                console.log('entrei0');
-                                                sensor_rain_info.innerHTML = ':)'
-                                                sensor_rain_info.className = "label label-success label-rounded";
-                                            } else {
-                                                sensor_rain_info.innerHTML = 'ERROR'
-                                                sensor_rain_info.className = "label label-danger label-rounded";                                                
-                                            }
+                                            <script th:inline="javascript">
+                                                /*<![CDATA[*/
+                                                var card = document.getElementById("rain-card");
+                                                var sensor_log_rain = [[${ sensor_log_rain }]][0]['value'];
+                                                console.log('rain sensor', sensor_log_rain, typeof (sensor_log_rain))
+                                                var sensor_rain_info = document.getElementById("rain_value");
+                                                if (sensor_log_rain == 1) {
+                                                    console.log('entrei1');
+                                                    sensor_rain_info.innerHTML = 'RAINING';
+                                                    //sensor_rain_info.className = "label label-danger label-rounded";
+                                                    card.style.backgroundColor="#39d0f7";
+                                                    card.style.color = "white";
+                                                    document.getElementById("icon-rain").className = "wi wi-rain";
+                                                    console.log(document.getElementById("icon-rain").className);
+                                                } else if (sensor_log_rain == 0) {
+                                                    console.log('entrei0');
+                                                    sensor_rain_info.innerHTML = 'NOT RAINING'
+                                                    //sensor_rain_info.className = "label label-success label-rounded";
+                                                    document.getElementById("icon-rain").className = "wi wi-cloud";
+                                                    card.style.backgroundColor="white";
+                                                    card.style.color="#6A7A8C";
+                                                    console.log(document.getElementById("icon-rain").className);
+                                                } else {
+                                                    console.log('erro');
+                                                    document.getElementById("icon-rain").className = "wi wi-cloud";
+                                                    sensor_rain_info.innerHTML = 'ERROR';
+                                                    sensor_rain_info.className = "label label-danger label-rounded";
+                                                    card.style.backgroundColor="#39d0f7";
+                                                    card.style.color = "white";
+                                                }
                                             /*]]>*/
-                                        </script>
+                                            </script>
 
                                         </tbody>
                                     </table>
@@ -386,7 +306,6 @@
                                         <tr>
                                             <th class="border-top-0">NAME</th>
                                             <th class="border-top-0">STATUS</th>
-                                            <th class="border-top-0"></th>
 
                                         </tr>
                                     </thead>
@@ -394,18 +313,13 @@
                                         <tr>
 
                                             <td class="txt-oflo"> <i class=" mdi mdi-glassdoor"></i> Front Door</td>
-                                            <td><span class="label label-success label-rounded" id="door_status"></span>
-                                            </td>
-                                            <td></td>
-                                        </tr>
-                                        <script th:inline="javascript">
-                                            var sensor_log_door = [[${ sensor_log_door }]][0]['value'];
-                                            <td><span class="label label-success label-rounded" id="door_status">OPEN</span> </td>
+                                            <td><span class="label label-success label-rounded"
+                                                    id="door_status">OPEN</span> </td>
                                             <td></td>
                                         </tr>
                                         <script th:inline="javascript">
                                             /*<![CDATA[*/
-                                            var sensor_log_door = [[${sensor_log_door}]][0]['value'];
+                                            var sensor_log_door = /*[[${sensor_log_door}]]*/[0]['value'];
                                             var sensor_door_info = document.getElementById("door_status");
                                             if (sensor_log_door == 1) {
                                                 sensor_door_info.innerHTML = 'OPEN'
@@ -414,127 +328,141 @@
                                                 sensor_door_info.innerHTML = 'CLOSED'
                                                 sensor_door_info.className = "label label-danger label-rounded";
                                             }
-                                            /*]]>*/                                                                                                                                         
+                                            /*]]>*/
                                         </script>
 
                                         </tr>
                                         <tr th:each="lights: ${sensor_log_light}">
 
-                                            <td class="txt-oflo"><i class=" mdi mdi-lightbulb-outline" id="light_bulb_icon"></i> Ligts</td>
-                                            <td><span class="label label-success label-rounded" id="light_status">OFF</span></td>
+                                            <td class="txt-oflo"><i class=" mdi mdi-lightbulb-outline"
+                                                    id="light_bulb_icon"></i> Ligts</td>
+                                            <td><span class="label label-success label-rounded"
+                                                    id="light_status">OFF</span></td>
 
-                                            <td>
-                                                <!--
-                                                <form th:action="@{/logs_light}" method="post">
-                                                <div style="vertical-align:top;" >
-                                                    <label class="switch">
-                                                        <input type="checkbox" id="light_slider" onclick="change_lights()"name="value" th:value="*{value}">
-                                                        <span class="slider" ></span>
-                                                    </label>
-                                                </div>
-                                                <button type="submit">Fuck this shit</button>
-                                                </form>
-                                                -->
-                                            </td>
-
-                                        </tr>
+                                         </tr>
 
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                         <!-- FIRE -->
-                        <div class="row" style="height:auto; padding:1em">
-                            <div class="card col-12" id="back_color_flame" style="background-color:blue;color:white" th:each="fire:${sensor_log_flame}">
+                        <div class="row" style="height:auto; padding:0.5em 0.5em 0 0.5em">
+                            <div class="card col-12" id="back_color_flame" style="background-color:blue;color:white"
+                                th:each="fire:${sensor_log_flame}">
                                 <div class="card-body">
                                     <h4 class="card-title">Fire</h4>
                                     <span><i style="font-size:20px;vertical-align:center;"
-                                            class=" mdi mdi-fire" ></i><strong style="font-size:20px;" id="flame_text">There are no signs of fire!</strong></span>
+                                            class=" mdi mdi-fire"></i><strong style="font-size:20px;"
+                                            id="flame_text">There are no signs of fire!</strong></span>
                                 </div>
                             </div>
                         </div>
                         <!-- FIRE -->
-                        <div class="row" style="height:auto; padding:1em">
-                            <div class="card col-12" id="back_color_gas" style="background-color:blue;color:white" th:each="gas:${sensor_log_gas}">
+                        <div class="row" style="height:auto; padding:0 0.5em 0.5em 0.5em">
+                            <div class="card col-12" id="back_color_gas" style="background-color:blue;color:white"
+                                th:each="gas:${sensor_log_gas}">
                                 <div class="card-body">
                                     <h4 class="card-title">Gas</h4>
                                     <span><i style="font-size:20px;vertical-align:center;"
-                                             class=" far fa-exclamation-triangle"  ></i><strong style="font-size:20px;" id="gas_text">There are no signs of gas leaks!</strong></span>
+                                            class=" far fa-exclamation-triangle"></i><strong style="font-size:20px;"
+                                            id="gas_text">There are no signs of gas leaks!</strong></span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title"><strong><i class="mdi mdi-bell-ring"></i> Someone's at the
-                                        door!</strong></h4>
-                                <div><img src="assets/images/securitycam.jpg" style="max-width:15vw" /></div>
-                            <div class="card-body" th:each="temp: ${sensor_log_temp}">
-                                <h4 class="card-title"><strong>House Temperature</strong></h4>
-                                <div><h5 th:text="${temp.value}" id="temp_text"></h5></div>
+                    <div class="col-3">
+                        <div class="row">
+                            <div class="card" style="min-width: 100%;">
+                                <div class="card-body" th:each="temp: ${sensor_log_temp}">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <h4 class="card-title">House Temperature</h4>
+                                        </div>
+                                        <div class='col-6' style="text-align: right;">
+                                            <h5 th:text="${temp.value}" id="temp_text" style="padding:5px;font-size:2.8rem"></h5>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+                        </div>
+                        <div class="row">
+                        
+                            <div class="card" style="min-width: 100%;">
+                                <div class="card-body" th:each="hum: ${sensor_log_hum}">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <h4 class="card-title">House Humidity</h4>
+                                        </div>
+                                        <div class="col-6" style="text-align: right;">
+                                            <h5 th:text="${hum.value}" id="hum_text" style="padding:5px;font-size:2.8rem"></h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="card" style="text-align: center; padding:10px; font-size:2.0rem; min-width: 100%;">
+                                <i style="text-align:left; font-size:1.4rem; padding:2px" class="mdi mdi-av-timer">
+                                    Clock</i>
+                                <div id="txt"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-1"></div>
+                    
 
-                        </div>
-                        <div class="card">
-                            <div class="card-body" th:each="hum: ${sensor_log_hum}">
-                                <h4 class="card-title"><strong>House Humidity</strong></h4>
-                                <div><h5 th:text="${hum.value}" id="hum_text"></h5></div>
+                    <div clas="row" style="height:100px"></div>
+                    
+                    <!-- GRAPH -->
+                    <div class="row" style="min-width: 100%;">
+                        <div class="col-2"></div>
+                        <div class="col-8">
+                            <div class="card" style="min-width: 100%;">
+                                <div class="card-body">
+                                    <h4 class="card-title">Temperature Ratio</h4>
+                                    <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="card" style="text-align: center; padding:10px; font-size:2.0rem">
-                            <i style="text-align:left; font-size:1.4rem; padding:2px" class="mdi mdi-av-timer">
-                                Clock</i>
-                            <div id="txt"></div>
                         </div>
                     </div>
 
                 </div>
-                <div clas="row" style="height:200px"></div>
-                <div class="row">
-                    <div class="col-2"></div>
-                    <div class="col-8">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Temperature Ratio</h4>
-                                <div id="chartContainer" style="height: 300px; width: 100%;"></div>
-                            </div>
-                        </div>
+            </div>
+
+            <!-- GAS -->
+            <div id="modal_gas" style="display:none;" class="modal">
+                <div class="modal-content" style="height:auto; background-color:red;color:white ;max-width: 25vw;">
+                    <div class="modal-body">
+                        <span class="close">&times;</span>
+                        <h4 class="card-title">Gas</h4>
+                        <a th:utext="${gas}"></a>
+
+                        <span><i style="font-size:20px;vertical-align:center;" class=" mdi mdi-fire"></i><strong
+                                style="font-size:20px;">Leak
+                                detected!</strong></span>
+
+                    </div>
+                </div>
+            </div>
+            <!-- FIRE -->
+            <div id="modal_fire" style="display:none" class="modal">
+                <div class="modal-content" style="height:auto; background-color:red;color:white;max-width: 25vw;">
+                    <div class="modal-body">
+                        <span class="close">&times;</span>
+                        <h4 class="card-title">Fire</h4>
+                        <span><i style="font-size:20px;vertical-align:center;" class=" mdi mdi-fire"></i><strong
+                                style="font-size:20px;">House is on
+                                fire!</strong></span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- GAS -->
-        <div id="modal_gas" style="display:none;" class="modal">
-            <div class="modal-content" style="height:auto; background-color:red;color:white ;max-width: 25vw;">
-                <div class="modal-body">
-                    <span class="close">&times;</span>
-                    <h4 class="card-title">Gas</h4>
-                    <a th:utext="${gas}"></a>
 
-                    <span><i style="font-size:20px;vertical-align:center;" class=" mdi mdi-fire"></i><strong
-                            style="font-size:20px;">Leak
-                            detected!</strong></span>
-
-                </div>
-            </div>
-        </div>
-        <!-- FIRE -->
-        <div id="modal_fire" style="display:none" class="modal">
-            <div class="modal-content" style="height:auto; background-color:red;color:white;max-width: 25vw;">
-                <div class="modal-body">
-                    <span class="close">&times;</span>
-                    <h4 class="card-title">Fire</h4>
-                    <span><i style="font-size:20px;vertical-align:center;" class=" mdi mdi-fire"></i><strong
-                            style="font-size:20px;">House is on
-                            fire!</strong></span>
-                </div>
-            </div>
-        </div>
     </div>
-    <script type="text/javascript" th:inline="javascript">
-        /*<![CDATA[*/
+
+        <script type="text/javascript" th:inline="javascript">
+            /*<![CDATA[*/
 
             var temp = document.getElementById("temp_text");
             var celsius = document.createTextNode(" ºC");
@@ -552,14 +480,14 @@
             if (light_value[0]["value"] == 1) {
                 document.getElementById("light_bulb_icon").classList.remove("mdi-lightbulb-outline");
                 document.getElementById("light_bulb_icon").classList.add("mdi-lightbulb-on");
-                document.getElementById("light_status").innerHTML = "ON" ;
+                document.getElementById("light_status").innerHTML = "ON";
                 document.getElementById("light_status").classList.remove("label-success");
                 document.getElementById("light_status").classList.add("label-danger");
                 //document.getElementById("light_slider").checked=true;
-            }else{
+            } else {
                 document.getElementById("light_bulb_icon").classList.remove("mdi-lightbulb-on");
                 document.getElementById("light_bulb_icon").classList.add("mdi-lightbulb-outline");
-                document.getElementById("light_status").innerHTML = "OFF" ;
+                document.getElementById("light_status").innerHTML = "OFF";
                 document.getElementById("light_status").classList.remove("label-danger");
                 document.getElementById("light_status").classList.add("label-success");
                 //document.getElementById("light_slider").checked=false;
@@ -569,7 +497,7 @@
                 var slider_value = document.getElementById("light_slider").checked;
                 if (slider_value) {
                     document.getElementById("light_slider").value = 345;
-                }else{
+                } else {
                     document.getElementById("light_slider").value = 23;
                 }
             };
@@ -579,10 +507,10 @@
             var flame_value = /*[[${sensor_log_flame}]]*/;
             if (flame_value[0]["value"] == 1) {
                 document.getElementById("back_color_flame").style.backgroundColor = "red";
-                document.getElementById("flame_text").textContent = "House is on fire!" ;
-            }else{
+                document.getElementById("flame_text").textContent = "House is on fire!";
+            } else {
                 document.getElementById("back_color_flame").style.backgroundColor = "blue";
-                document.getElementById("flame_text").textContent = "There are no signs of fire!" ;
+                document.getElementById("flame_text").textContent = "There are no signs of fire!";
             };
 
             // ------------------------------------
@@ -590,15 +518,53 @@
             var gas_value = /*[[${sensor_log_gas}]]*/;
             if (gas_value[0]["value"] == 1) {
                 document.getElementById("back_color_gas").style.backgroundColor = "red";
-                document.getElementById("gas_text").textContent = "A gas leak was detected!" ;
-            }else{
+                document.getElementById("gas_text").textContent = "A gas leak was detected!";
+            } else {
                 document.getElementById("back_color_gas").style.backgroundColor = "blue";
-                document.getElementById("gas_text").textContent = "There are no signs of gas leaks!" ;
+                document.getElementById("gas_text").textContent = "There are no signs of gas leaks!";
             };
+
+            /*]]>*/
+        </script>
+
+    <script type="text/javascript" th:inline="javascript">
+
+        /*<![CDATA[*/
+
+        var temp_data = /*[[${temp_data}]]*/;
+        var graph_data = [];
+
+        temp_data.forEach(function (item, index) {
+            graph_data.push({ x: new Date(item["date"]), y: item["value"] });
+        });
+
+
+        console.log(graph_data);
+
+        window.onload = function () {
+            startTime();
+            var chart = new CanvasJS.Chart("chartContainer",
+                {
+                    axisX: {
+                        title: "timeline",
+                    },
+                    axisY: {
+                        title: "values"
+                    },
+                    data: [
+                        {
+                            type: "line",
+                            dataPoints: graph_data
+                        }
+                    ]
+                });
+
+            chart.render();
+        }
 
         /*]]>*/
     </script>
-    </div>
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
 
     <script type="text/javascript" th:inline="javascript">
@@ -611,18 +577,18 @@
         // Get the <span> element that closes the modal
         var span = document.getElementsByClassName("close")[0];
 
-        var value = sensor[0]['value'];Co
+        var value = sensor[0]['value']; Co
         if (value == 0) {
             modal.style.display = "none";
         }
-        else if (value==1) {
+        else if (value == 1) {
             modal.style.display = "block";
         }
-            // When the user clicks on <span> (x), close the modal
-            span.onclick = function () {
-                modal.style.display = "none";
-                console.log("OFF")
-            }
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+            console.log("OFF")
+        }
         /*]]>*/
     </script>
 
