@@ -2,7 +2,7 @@
 <html dir="ltr" lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta http-equiv="refresh" content="10">
+    <meta httP-equiv="refresh" content="8">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Tell the browser to be responsive to screen width -->
@@ -124,7 +124,12 @@
 
 
 <body>
-
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
     <div id="main-wrapper" data-navbarbg="skin6" data-theme="light" data-layout="vertical">
         <header class="topbar" data-navbarbg="skin6">
             <nav class="navbar top-navbar navbar-expand-md navbar-light">
@@ -293,7 +298,7 @@
                             <div class="card-body" th:each="knock:${sensor_log_knock}">
                                 <h4 class="card-title">Door Knock</h4>
                                 <span><i style="font-size:20px;vertical-align:center;"
-                                         class=" "></i><strong style="font-size:20px;" id="knock_text" >Someone knocked at the door at </strong><strong style="font-size:20px;" id="knock_date_text"  th:text="${#dates.format(knock.date, 'dd-MM-yyyy HH:mm')}"></strong></span>
+                                         class=" "></i><strong style="font-size:20px;" id="knock_text" >Someone knocked at the door at </strong></span>
                             </div>
 
                         </div>
@@ -320,26 +325,19 @@
 
                                             <td class="txt-oflo"> <i class=" mdi mdi-glassdoor"></i> Front Door</td>
                                             <td><span class="label label-success label-rounded"
-                                                    id="door_status"> </span> </td>
+                                                    id="door_status">OPEN</span> </td>
                                             <td></td>
                                         </tr>
                                         <script th:inline="javascript">
                                             /*<![CDATA[*/
-                                            var sensor_door = /*[[${sensor_log_door}]]*/;
-                                            var sensor_log_door = sensor_door[0]['value'];
-                                            console.log('s_l_door', sensor_log_door, typeof(sensor_log_door));
+                                            var sensor_log_door = /*[[${sensor_log_door}]]*/;
                                             var sensor_door_info = document.getElementById("door_status");
-                                            if (sensor_log_door == 0) {
-                                                console.log('open door')
+                                            if (sensor_log_door[0]['value'] == 0) {
                                                 sensor_door_info.innerHTML = 'OPEN'
                                                 sensor_door_info.className = "label label-success label-rounded";
-                                            } else if (sensor_log_door == 1) {
-                                                console.log('closed door')
+                                            } else if (sensor_log_door[0]['value'] == 1) {
+                                                sensor_door_info.innerHTML = 'CLOSED'
                                                 sensor_door_info.className = "label label-danger label-rounded";
-                                            } else{
-                                                sensor_door_info.innerHTML = 'ERROR'
-                                                sensor_door_info.className = "label label-danger label-rounded";
-
                                             }
                                             /*]]>*/
                                         </script>
@@ -365,12 +363,12 @@
                                 <div class="card-body">
                                     <h4 class="card-title">Fire</h4>
                                     <span><i style="font-size:20px;vertical-align:center;"
-                                            ></i><strong style="font-size:20px;"
-                                            id="flame_text">There are no signs of fire! </strong><strong style="font-size:20px;" id="fire_date_text"  th:text="${#dates.format(fire.date, 'dd-MM-yyyy HH:mm')}"></strong></span>
+                                            class=" mdi mdi-fire"></i><strong style="font-size:20px;"
+                                            id="flame_text">There are no signs of fire!</strong></span>
                                 </div>
                             </div>
                         </div>
-                        <!-- GAS -->
+                        <!-- FIRE -->
                         <div class="row" style="height:auto; padding:0 0.5em 0.5em 0.5em">
                             <div class="card col-12" id="back_color_gas" style="background-color:blue;color:white"
                                 th:each="gas:${sensor_log_gas}">
@@ -378,7 +376,7 @@
                                     <h4 class="card-title">Gas</h4>
                                     <span><i style="font-size:20px;vertical-align:center;"
                                             class=" far fa-exclamation-triangle"></i><strong style="font-size:20px;"
-                                            id="gas_text">There are no signs of gas leaks! </strong><strong style="font-size:20px;" id="gas_date_text"  th:text="${#dates.format(gas.date, 'dd-MM-yyyy HH:mm')}"></strong></span>
+                                            id="gas_text">There are no signs of gas leaks!</strong></span>
                                 </div>
                             </div>
                         </div>
@@ -407,7 +405,7 @@
                                             <h4 class="card-title">House Humidity</h4>
                                         </div>
                                         <div class="col-6" style="text-align: right;">
-                                            <h5 th:text="${hum.value}" id="hum_text" style="padding:5px;font-size:2.8rem"></h5>%
+                                            <h5 th:text="${hum.value}" id="hum_text" style="padding:5px;font-size:2.8rem"></h5>
                                         </div>
                                     </div>
                                 </div>
@@ -420,36 +418,7 @@
                                 <div id="txt"></div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="card col-12" style="background-color:blue;color:white"
-                                th:each="motion:${sensor_log_motion}">
-                                <div class="card-body">
-                                    <h4 class="card-title">Movement</h4>
-                                    <span><strong style="font-size:20px;" id="movement_sensor">
-                                        
-                                    </strong><strong style="font-size:20px;" id="date_movement"  th:text="${#dates.format(motion.date, 'dd-MM-yyyy HH:mm')}"></strong></span>
-                                </div>
-                                        <script th:inline="javascript">
-                                            /*<![CDATA[*/
-                                            var sensor_log_movement = [[${sensor_log_motion}]][0]['value'];
-                                            var movement = [[${sensor_log_motion}]][0]['date'];
-                                            var sensor_move_info = document.getElementById("movement_sensor");
-                                            var sensor_move_date = document.getElementById("date_movement");
-                                            if (sensor_log_movement == 1){
-                                                sensor_move_info.innerHTML = 'Movement Detected! '
-                                            } else {
-                                                sensor_move_info.innerHTML = 'ERROR'
-                                                sensor_move_date.innerHTML = 'ERROR'
-                                                sensor_move_info.className = "label label-danger label-rounded";                                                
-                                            };
-                                            /*]]>*/
-                                        </script>
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            </div>
+                        
                     </div>
                     <div class="col-1"></div>
                     
@@ -468,8 +437,6 @@
                             </div>
                         </div>
                     </div>
-
-                </div>
             </div>
 
             <!-- GAS -->
@@ -480,7 +447,7 @@
                         <h4 class="card-title">Gas</h4>
                         <a th:utext="${gas}"></a>
 
-                        <span><i style="font-size:20px;vertical-align:center;" ></i><strong
+                        <span><i style="font-size:20px;vertical-align:center;" class=" mdi mdi-fire"></i><strong
                                 style="font-size:20px;">Leak
                                 detected!</strong></span>
 
@@ -493,7 +460,7 @@
                     <div class="modal-body">
                         <span class="close">&times;</span>
                         <h4 class="card-title">Fire</h4>
-                        <span><i style="font-size:20px;vertical-align:center;" ></i><strong
+                        <span><i style="font-size:20px;vertical-align:center;" class=" mdi mdi-fire"></i><strong
                                 style="font-size:20px;">House is on
                                 fire!</strong></span>
                     </div>
@@ -504,103 +471,84 @@
 
     </div>
 
-    <script type="text/javascript" th:inline="javascript">
-        /*<![CDATA[*/
+        <script type="text/javascript" th:inline="javascript">
+            /*<![CDATA[*/
 
-        var temp = document.getElementById("temp_text");
-        var celsius = document.createTextNode(" ºC");
-        temp.appendChild(celsius);
-        console.log(temp.appendChild(celsius));
-        // -------------------------------------------
+            var temp = document.getElementById("temp_text");
+            var celsius = document.createTextNode(" ºC");
+            temp.appendChild(celsius);
 
-        var hum = document.getElementById("hum_text");
-        var per = document.createTextNode(" %");
-        hum.appendChild(per);
+            // -------------------------------------------
 
-        // -------------------------------------------
+            var hum = document.getElementById("hum_text");
+            var per = document.createTextNode(" %");
+            hum.appendChild(per);
 
-        var light_value = /*[[${sensor_log_light}]]*/;
-        if (light_value[0]["value"] == 1) {
-            document.getElementById("light_bulb_icon").classList.remove("mdi-lightbulb-outline");
-            document.getElementById("light_bulb_icon").classList.add("mdi-lightbulb-on");
-            document.getElementById("light_status").innerHTML = "ON";
-            document.getElementById("light_status").classList.remove("label-success");
-            document.getElementById("light_status").classList.add("label-danger");
-            //document.getElementById("light_slider").checked=true;
-        } else if light_value[0]["value"] == 0{
-            document.getElementById("light_bulb_icon").classList.remove("mdi-lightbulb-on");
-            document.getElementById("light_bulb_icon").classList.add("mdi-lightbulb-outline");
-            document.getElementById("light_status").innerHTML = "OFF";
-            document.getElementById("light_status").classList.remove("label-danger");
-            document.getElementById("light_status").classList.add("label-success");
-            //document.getElementById("light_slider").checked=false;
-        } else{
-            document.getElementById("light_bulb_icon").classList.remove("mdi-lightbulb-outline");
-            document.getElementById("light_bulb_icon").classList.add("mdi-lightbulb-on");
-            document.getElementById("light_status").innerHTML = "ERROR";
-            document.getElementById("light_status").classList.remove("label-success");
-            document.getElementById("light_status").classList.add("label-danger");
-            //document.getElementById("light_slider").checked=true;
+            // -------------------------------------------
 
-        };
-
-        function change_lights() {
-            var slider_value = document.getElementById("light_slider").checked;
-            if (slider_value) {
-                document.getElementById("light_slider").value = 345;
+            var light_value = /*[[${sensor_log_light}]]*/;
+            if (light_value[0]["value"] == 1) {
+                document.getElementById("light_bulb_icon").classList.remove("mdi-lightbulb-outline");
+                document.getElementById("light_bulb_icon").classList.add("mdi-lightbulb-on");
+                document.getElementById("light_status").innerHTML = "ON";
+                document.getElementById("light_status").classList.remove("label-success");
+                document.getElementById("light_status").classList.add("label-danger");
+                //document.getElementById("light_slider").checked=true;
             } else {
-                document.getElementById("light_slider").value = 23;
-            }
-        };
+                document.getElementById("light_bulb_icon").classList.remove("mdi-lightbulb-on");
+                document.getElementById("light_bulb_icon").classList.add("mdi-lightbulb-outline");
+                document.getElementById("light_status").innerHTML = "OFF";
+                document.getElementById("light_status").classList.remove("label-danger");
+                document.getElementById("light_status").classList.add("label-success");
+                //document.getElementById("light_slider").checked=false;
+            };
 
-        // ------------------------------------
+            function change_lights() {
+                var slider_value = document.getElementById("light_slider").checked;
+                if (slider_value) {
+                    document.getElementById("light_slider").value = 345;
+                } else {
+                    document.getElementById("light_slider").value = 23;
+                }
+            };
 
-        var flame_value = /*[[${sensor_log_flame}]]*/;
-        if (flame_value[0]["value"] == 1) {
-            document.getElementById("back_color_flame").style.backgroundColor = "red";
-            document.getElementById("fire_date_text").style.display = "block";
-            document.getElementById("flame_text").textContent = "House is on fire!";
-        } else {
-            document.getElementById("back_color_flame").style.backgroundColor = "blue";
-            document.getElementById("fire_date_text").style.display = "none";
-            document.getElementById("flame_text").textContent = "There are no signs of fire!";
-        };
+            // ------------------------------------
 
-        // ------------------------------------
+            var flame_value = /*[[${sensor_log_flame}]]*/;
+            if (flame_value[0]["value"] == 1) {
+                document.getElementById("back_color_flame").style.backgroundColor = "red";
+                document.getElementById("flame_text").textContent = "House is on fire!";
+            } else {
+                document.getElementById("back_color_flame").style.backgroundColor = "blue";
+                document.getElementById("flame_text").textContent = "There are no signs of fire!";
+            };
 
-        var gas_value = /*[[${sensor_log_gas}]]*/;
-        if (gas_value[0]["value"] == 1) {
-            document.getElementById("back_color_gas").style.backgroundColor = "red";
-            document.getElementById("gas_date_text").style.display = "block";
-            document.getElementById("gas_text").textContent = "A gas leak was detected!";
-        } else {
-            document.getElementById("back_color_gas").style.backgroundColor = "blue";
-            document.getElementById("gas_date_text").style.display = "none";
-            document.getElementById("gas_text").textContent = "There are no signs of gas leaks!";
-        };
+            // ------------------------------------
 
-        //----------------------------------------
+            var gas_value = /*[[${sensor_log_gas}]]*/;
+            if (gas_value[0]["value"] == 1) {
+                document.getElementById("back_color_gas").style.backgroundColor = "red";
+                document.getElementById("gas_text").textContent = "A gas leak was detected!";
+            } else {
+                document.getElementById("back_color_gas").style.backgroundColor = "blue";
+                document.getElementById("gas_text").textContent = "There are no signs of gas leaks!";
+            };
 
-        var knock_value = /*[[${sensor_log_knock}]]*/;
-        console.log('knock_value', knock_value);
-        var date = knock_value[0]["date"];
-        console.log('date', date);
-        var data = document.createTextNode(date);
-        console.log('data_node', data);
-        if (knock_value[0]["value"] == 1) {
-            console.log("entrei1");
-            document.getElementById("div_knock").style.backgroundColor = "red";
-            document.getElementById("knock_date_text").style.display = "block";
-            document.getElementById("knock_text").textContent = "Someone knocked ate the door at ";
-        } else {
-            console.log("entrei2");
-            document.getElementById("div_knock").style.backgroundColor = "blue";
-            document.getElementById("knock_date_text").style.display = "none";
-            document.getElementById("knock_text").textContent = "No one knocked on the door recently";
-         };
-         console.log("sai");
-        /*]]>*/
-    </script>
+            //----------------------------------------
+
+            var knock_value = /*[[${sensor_log_knock}]]*/;
+            var date = knock_value[0]["date"];
+            var data = document.createTextNode(date);
+            var text_knock = document.getElementById("knock_text");
+            var texto = text_knock.appendChild(data);
+            if (knock_value[0]["value"] == 1) {
+                document.getElementById("div_knock").style.backgroundColor = "red";
+                document.getElementById("knock_text").textContent = "Someone knocked ate the door at ".appendChild(document.createTextNode(knock_value[0]["date"]));
+            } else {
+                document.getElementById("div_knock").style.backgroundColor = "blue";
+                document.getElementById("knock_text").textContent = "No one knocked on the door recently";}
+            /*]]>*/
+        </script>
 
     <script type="text/javascript" th:inline="javascript">
 
