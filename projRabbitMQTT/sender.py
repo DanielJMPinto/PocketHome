@@ -24,12 +24,12 @@ class Sender:
         self.channel.basic_publish(exchange='', routing_key='comm_channel', body=json.dumps(message))
         print(f" [x] Sent {message}!")
 
-sender = Sender()
-while True:
-    msg = input('Message: ')
-    if not msg:
-        sender.send('FINISHED_CONN')
-        print('bye')
-        sender.connection.close()
-        break
-    sender.send(msg)
+#sender = Sender()
+#while True:
+#    msg = input('Message: ')
+#    if not msg:
+#        sender.send('FINISHED_CONN')
+#        print('bye')
+#        sender.connection.close()
+#        break
+#    sender.send(msg)
