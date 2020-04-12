@@ -6,7 +6,7 @@ import json
 
 class Sender:
     def __init__(self):
-        self.credentials = pika.PlainCredentials('tomas', 'tomas25')
+        self.credentials = pika.PlainCredentials()
         self.connection = pika.BlockingConnection(
                             pika.ConnectionParameters(host='deti-engsoft-08.ua.pt', 
                                                         port=5672,
