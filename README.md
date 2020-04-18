@@ -1,6 +1,6 @@
-
 # PocketHome
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/52dcfe4b76014b5f97cf97b7f1b000c4)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=tomas99batista/PocketHome&amp;utm_campaign=Badge_Grade)
 ## Project Abstract
 
 PocketHome is a web browser application that allows you to monitor your house from *anywhere*, *anytime*.
